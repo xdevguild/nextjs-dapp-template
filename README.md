@@ -248,7 +248,7 @@ If you would like to test other templates:
 
 Also, check the implementation of the NFT Minter Dapp based on almost the same codebase:
 
-- [Elven Tools Minter Dapp](https://github.com/ElvenTools/elven-tools-dapp)
+- [elven-tools-dapp](https://github.com/ElvenTools/elven-tools-dapp)
 
 ### Contact
 
