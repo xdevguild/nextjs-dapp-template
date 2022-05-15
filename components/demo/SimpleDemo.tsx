@@ -8,11 +8,14 @@ import { SimpleScQeryDemo } from './SimpleScQueryDemo';
 import { shortenHash } from '../../utils/shortenHash';
 import { networkConfig, chainType } from '../../config/network';
 import { ActionButton } from '../tools/ActionButton';
+import { useLoginInfo } from '../../hooks/auth/useLoginInfo';
+import { LoginMethodsEnum } from '../../types/enums';
 
 export const SimpleDemo = () => {
   const [result, setResult] = useState<{ type: string; content: string }>();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
+  const { loginMethod } = useLoginInfo();
 
   const handleTxCb = useCallback(
     ({ transaction, pending, error }: TransactionCb) => {
@@ -77,8 +80,9 @@ export const SimpleDemo = () => {
           backdropFilter="blur(10px)"
         >
           <Box fontSize="x-large" fontWeight="black">
-            {error}
+            Transaction status:
           </Box>
+          <Box fontSize="lg">{error}</Box>
           <ActionButton mt={4} onClick={handleClose}>
             Close
           </ActionButton>
@@ -94,6 +98,11 @@ export const SimpleDemo = () => {
           <Box fontSize="x-large" fontWeight="black">
             Transaction is pending. Please wait.
           </Box>
+          {loginMethod === LoginMethodsEnum.walletconnect && (
+            <Box>
+              Confirm it on the Maiar mobile app and wait till it finishes.
+            </Box>
+          )}
           <Spinner size="xl" mt={6} color="dappTemplate.color2.darker" />
         </FlexCardWrapper>
       )}
