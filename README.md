@@ -239,6 +239,17 @@ Here are other deployment solutions: [NextJS Deployment](https://nextjs.org/docs
 - More tooling and components
 - tests
 
+### Other solutions
+
+If you would like to test other templates:
+
+- [erd-next-starter](https://github.com/Elrond-Giants/erd-next-starter)
+- [dapp-template](https://github.com/ElrondNetwork/dapp-template)
+
+Also, check the implementation of the NFT Minter Dapp based on almost the same codebase:
+
+- [Elven Tools Minter Dapp](https://github.com/ElvenTools/elven-tools-dapp)
+
 ### Contact
 
 - [Elrond's Dev Guild](https://github.com/ElrondDevGuild)
