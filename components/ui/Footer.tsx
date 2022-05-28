@@ -1,4 +1,5 @@
 import { Container, Box, Text } from '@chakra-ui/react';
+import packageJson from '../../package.json';
 
 export const Footer = () => {
   return (
@@ -15,7 +16,7 @@ export const Footer = () => {
         fontWeight="normal"
         textAlign="center"
       >
-        <Box>Elrond NextJS Dapp Template</Box>
+        <Box>Elrond NextJS Dapp Template (v{`${packageJson.version}`})</Box>
         <Box fontSize="xs" fontWeight="hairline">
           All for free. Please support the project. Give it credit and tell the
           world about it. Attribution is not required but welcomed in the form
