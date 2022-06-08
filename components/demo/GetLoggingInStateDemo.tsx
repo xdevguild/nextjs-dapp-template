@@ -11,19 +11,19 @@ export const GetLoggingInStateDemo = () => {
         Logging in current state:
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           isLoggingIn:
         </Text>{' '}
         {isLoggingIn ? 'true' : 'false'}
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           error:
         </Text>{' '}
         {error}
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           isLoggedIn:
         </Text>{' '}
         {isLoggedIn ? 'true' : 'false'}

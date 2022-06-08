@@ -12,26 +12,26 @@ export const GetLoginInfoDemo = () => {
         Login info state:
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           loginMethod:
         </Text>{' '}
         {loginMethod}
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           expires:
         </Text>{' '}
         {expires}
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           loginToken:
         </Text>{' '}
         {loginToken}
       </Text>
       <Tooltip label={signature}>
         <Text>
-          <Text display="inline-block" fontWeight="bold">
+          <Text as="span" display="inline-block" fontWeight="bold">
             signature:
           </Text>{' '}
           {shortenHash(signature, 8)}

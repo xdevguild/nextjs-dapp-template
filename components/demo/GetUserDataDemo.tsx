@@ -14,7 +14,7 @@ export const GetUserDataDemo = () => {
         User data:
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           address:
         </Text>{' '}
         <Link
@@ -25,13 +25,13 @@ export const GetUserDataDemo = () => {
         </Link>
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           nonce:
         </Text>{' '}
         {nonce}
       </Text>
       <Text>
-        <Text display="inline-block" fontWeight="bold">
+        <Text as="span" display="inline-block" fontWeight="bold">
           balance:
         </Text>{' '}
         {balance
