@@ -5,7 +5,7 @@ export const SocialMediaIcons = () => {
   return (
     <Box display="flex" alignItems="center" gap={3}>
       <SocialIcon
-        url="https://www.github.com/ElrondDevGuild"
+        url="https://github.com/ElrondDevGuild/nextjs-dapp-template"
         bgColor="#fff"
         style={{ width: 30, height: 30 }}
       />

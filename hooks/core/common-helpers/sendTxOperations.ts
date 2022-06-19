@@ -1,7 +1,8 @@
 // Tools used internally by sent transactions hooks
 import { Account, TransactionWatcher, Transaction } from '@elrondnetwork/erdjs';
-import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider/out';
-import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider/out';
+import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider';
+import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
+import { HWProvider } from '@elrondnetwork/erdjs-hw-provider';
 import { Dispatch, SetStateAction } from 'react';
 import { setAccountState } from '../../../store/auth';
 import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
@@ -56,6 +57,9 @@ export const sendTxOperations = async (
       await dappProvider.signTransaction(tx);
     }
     if (dappProvider instanceof WalletConnectProvider) {
+      await dappProvider.signTransaction(tx);
+    }
+    if (dappProvider instanceof HWProvider) {
       await dappProvider.signTransaction(tx);
     }
     if (loginInfoSnap.loginMethod !== LoginMethodsEnum.wallet) {

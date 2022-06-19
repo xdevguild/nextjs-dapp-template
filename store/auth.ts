@@ -5,12 +5,14 @@ import cloneDeep from 'lodash.clonedeep';
 // Account info state + persistance
 
 interface AccountState extends Record<string, any> {
+  addressIndex: number; // For HW provider only
   address: string;
   nonce: number;
   balance: string;
 }
 
 const accountInitialState: AccountState = {
+  addressIndex: 0,
   address: '',
   nonce: 0,
   balance: '',

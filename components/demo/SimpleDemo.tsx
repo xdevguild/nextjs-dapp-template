@@ -10,12 +10,14 @@ import { networkConfig, chainType } from '../../config/network';
 import { ActionButton } from '../tools/ActionButton';
 import { useLoginInfo } from '../../hooks/auth/useLoginInfo';
 import { LoginMethodsEnum } from '../../types/enums';
+import { useAccount } from '../../hooks/auth/useAccount';
 
 export const SimpleDemo = () => {
   const [result, setResult] = useState<{ type: string; content: string }>();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
-  const { loginMethod } = useLoginInfo();
+  const { loginMethod, loginToken } = useLoginInfo();
+  const { address } = useAccount();
 
   const handleTxCb = useCallback(
     ({ transaction, pending, error }: TransactionCb) => {
@@ -103,7 +105,27 @@ export const SimpleDemo = () => {
               Confirm it on the Maiar mobile app and wait till it finishes.
             </Box>
           )}
-          <Spinner size="xl" mt={6} color="dappTemplate.color2.darker" />
+          {loginMethod === LoginMethodsEnum.ledger && (
+            <>
+              {address && (
+                <>
+                  <Box fontWeight="bold">Confirm your address on Ledger:</Box>
+                  <Box>{address}</Box>
+                </>
+              )}
+              {loginToken && (
+                <>
+                  <Box fontWeight="bold">Confirm the auth token on Ledger:</Box>
+                  <Box>{`${loginToken}{}`}</Box>
+                </>
+              )}
+              <Box>
+                Then wait some time to finish the transaction. You will get the
+                transaction hash and link at the end.
+              </Box>
+            </>
+          )}
+          <Spinner mt={6} color="dappTemplate.color2.darker" />
         </FlexCardWrapper>
       )}
       {result?.type && (

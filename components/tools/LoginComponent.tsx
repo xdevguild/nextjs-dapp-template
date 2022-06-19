@@ -1,23 +1,35 @@
 // Login component wraps all auth services in one place
 // You can always use only one of them if needed
-import { useCallback, memo } from 'react';
+import { useCallback, memo, useState } from 'react';
 import { Box, Stack } from '@chakra-ui/react';
 import { useLogin } from '../../hooks/auth/useLogin';
 import { LoginMethodsEnum } from '../../types/enums';
 import { MobileLoginQR } from './MobileLoginQR';
 import { ActionButton } from './ActionButton';
+import { LedgerAccountsList } from './LedgerAccountsList';
 
 export const LoginComponent = memo(() => {
-  const { login, isLoggedIn, error, walletConnectUri } = useLogin();
+  const { login, isLoggedIn, error, walletConnectUri, getHWAccounts } =
+    useLogin();
+  const [loginMethod, setLoginMethod] = useState<LoginMethodsEnum>();
 
   const handleLogin = useCallback(
-    (type: LoginMethodsEnum) => () => {
-      login(type);
+    (type: LoginMethodsEnum, ledgerAccountsIndex?: number) => () => {
+      setLoginMethod(type);
+      login(type, ledgerAccountsIndex);
     },
     [login]
   );
 
-  if (error) return <div>{error}</div>;
+  const handleLedgerAccountsList = useCallback(() => {
+    setLoginMethod(LoginMethodsEnum.ledger);
+  }, []);
+
+  const resetLoginMethod = useCallback(() => {
+    setLoginMethod(undefined);
+  }, []);
+
+  if (error) return <Box textAlign="center">{error}</Box>;
 
   return (
     <>
@@ -42,13 +54,23 @@ export const LoginComponent = memo(() => {
             >
               Maiar Mobile App
             </ActionButton>
+            <ActionButton isFullWidth onClick={handleLedgerAccountsList}>
+              Ledger
+            </ActionButton>
           </>
         )}
       </Stack>
-      {walletConnectUri && (
+      {loginMethod === LoginMethodsEnum.walletconnect && walletConnectUri && (
         <Box mt={5}>
           <MobileLoginQR walletConnectUri={walletConnectUri} />
         </Box>
+      )}
+      {loginMethod === LoginMethodsEnum.ledger && (
+        <LedgerAccountsList
+          getHWAccounts={getHWAccounts}
+          resetLoginMethod={resetLoginMethod}
+          handleLogin={handleLogin}
+        />
       )}
     </>
   );
