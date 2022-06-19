@@ -63,7 +63,8 @@ export function useTransaction(
       dappProvider &&
       apiNetworkProvider &&
       currentNonce !== undefined &&
-      !pending
+      !pending &&
+      accountSnap.address
     ) {
       setPending(true);
       cb?.({ pending: true });
@@ -75,6 +76,7 @@ export function useTransaction(
         chainID: networkConfig[chainType].shortId,
         data,
         ...(value ? { value: TokenPayment.egldFromAmount(value) } : {}),
+        sender: new Address(accountSnap.address),
       });
 
       tx.setNonce(currentNonce);

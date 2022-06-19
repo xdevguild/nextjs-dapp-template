@@ -1,5 +1,5 @@
-import { Box, Link, Text, Spinner, Flex } from '@chakra-ui/react';
-import { U32Value } from '@elrondnetwork/erdjs';
+import { Link, Text } from '@chakra-ui/react';
+import { U32Value, ContractFunction } from '@elrondnetwork/erdjs';
 import { useScTransaction } from '../../hooks/core/useScTransaction';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';
@@ -22,7 +22,7 @@ export const SimpleNftMintDemo = ({
   const handleSendTx = useCallback(() => {
     triggerTx({
       smartContractAddress: mintSmartContractAddress,
-      func: mintFunctionName,
+      func: new ContractFunction(mintFunctionName),
       gasLimit: 14000000,
       args: [new U32Value(1)],
       value: 0.001,

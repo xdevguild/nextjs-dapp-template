@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
-  SmartContract,
   ContractFunction,
   Address,
   Transaction,
   TypedValue,
   TokenPayment,
+  ContractCallPayloadBuilder,
 } from '@elrondnetwork/erdjs';
 import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { useSnapshot } from 'valtio';
@@ -22,7 +22,7 @@ import { useWebWalletTxSend } from './common-helpers/useWebWalletTxSend';
 
 interface ScTransactionParams {
   smartContractAddress: string;
-  func: string;
+  func: ContractFunction;
   gasLimit: number;
   args: TypedValue[] | undefined;
   value: number | undefined;
@@ -65,21 +65,25 @@ export function useScTransaction(
       dappProvider &&
       apiNetworkProvider &&
       currentNonce !== undefined &&
-      !pending
+      !pending &&
+      accountSnap.address &&
+      func
     ) {
       setPending(true);
       cb?.({ pending: true });
 
-      const contract = new SmartContract({
-        address: new Address(smartContractAddress),
-      });
+      const data = new ContractCallPayloadBuilder()
+        .setFunction(func)
+        .setArgs(args || [])
+        .build();
 
-      let tx = contract.call({
-        func: new ContractFunction(func),
+      const tx = new Transaction({
+        data,
         gasLimit,
-        args,
         ...(value ? { value: TokenPayment.egldFromAmount(value) } : {}),
         chainID: networkConfig[chainType].shortId,
+        receiver: new Address(smartContractAddress),
+        sender: new Address(accountSnap.address),
       });
 
       tx.setNonce(currentNonce);

@@ -2,7 +2,7 @@
 
 - [elrond-nextjs-dapp.netlify.com](https://elrond-nextjs-dapp.netlify.com)
 
-Simple alternative to the [dapp-core](https://github.com/ElrondNetwork/dapp-core) with React.
+Simple alternative to the [dapp-core](https://github.com/ElrondNetwork/dapp-core) with React. Heavily based on [Elven Tools Dapp](https://www.elven.tools/docs/minter-dapp-introduction.html).
 
 The Dapp is built using Nextjs and a couple of helpful tools. More docs soon!
 It has straightforward and complete functionality.
@@ -54,7 +54,7 @@ const NextJSDappTemplate = ({ Component, pageProps }: AppProps) => {
 
 #### LoginModalButton
 
-The component provides the `Connect` button with the modal, which will contain another three buttons for three different authentication possibilities (Maiar Mobile App, Maiar Defi Wallet - browser extension, Elrond Web Wallet). You should be able to use it in any place on the website.
+The component provides the `Connect` button with the modal, which will contain another three buttons for four different authentication possibilities (Maiar Mobile App, Maiar Defi Wallet - browser extension, Elrond Web Wallet). You should be able to use it in any place on the website.
 
 ```jsx
 import { LoginModalButton } from '../tools/LoginModalButton';
@@ -234,7 +234,6 @@ On each repository code push, the Netlify services will redeploy the app.
 Here are other deployment solutions: [NextJS Deployment](https://nextjs.org/docs/deployment).
 
 ### Missing for now:
-- Ledger auth
 - More docs and examples
 - More tooling and components
 - tests

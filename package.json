@@ -1,6 +1,6 @@
 {
   "name": "nextjs-dapp-template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Julian Ćwirko <julian.io>",
   "license": "MIT",
   "homepage": "https://github.com/ElrondDevGuild/nextjs-dapp-template",
@@ -21,6 +21,7 @@
     "@chakra-ui/theme-tools": "^1.3.6",
     "@elrondnetwork/erdjs": "10.2.2",
     "@elrondnetwork/erdjs-extension-provider": "2.0.1",
+    "@elrondnetwork/erdjs-hw-provider": "2.0.2",
     "@elrondnetwork/erdjs-network-providers": "0.1.5",
     "@elrondnetwork/erdjs-wallet-connect-provider": "2.0.1",
     "@elrondnetwork/erdjs-web-wallet-provider": "2.0.0",

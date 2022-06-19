@@ -1,6 +1,7 @@
 import { useWebWalletLogin } from './useWebWalletLogin';
 import { useExtensionLogin } from './useExtensionLogin';
 import { useMobileAppLogin } from './useMobileAppLogin';
+import { useLedgerLogin } from './useLedgerLogin';
 import { Login } from '../../types/account';
 import { LoginMethodsEnum } from '../../types/enums';
 
@@ -27,7 +28,15 @@ export const useLogin = (params?: Login) => {
     error: extensionLoginError,
   } = useExtensionLogin(params);
 
-  const login = async (type: LoginMethodsEnum) => {
+  const {
+    login: ledgerLogin,
+    isLoggedIn: ledgerIsLoggedIn,
+    isLoggingIn: ledgerIsLoggingIn,
+    error: ledgerLoginError,
+    getHWAccounts,
+  } = useLedgerLogin(params);
+
+  const login = async (type: LoginMethodsEnum, ledgerAccountIndex?: number) => {
     if (type === LoginMethodsEnum.extension) {
       await extensionLogin();
     }
@@ -37,14 +46,30 @@ export const useLogin = (params?: Login) => {
     if (type === LoginMethodsEnum.walletconnect) {
       await mobileLogin();
     }
+    if (type === LoginMethodsEnum.ledger) {
+      await ledgerLogin(ledgerAccountIndex);
+    }
     return null;
   };
 
   return {
     walletConnectUri,
+    getHWAccounts,
     login,
-    isLoggedIn: webIsLoggedIn || mobileIsLoggedIn || extensionIsLoggedIn,
-    isLoggingIn: webIsLoggingIn || mobileIsLoggingIn || extensionIsLoggingIn,
-    error: webLoginError || mobileLoginError || extensionLoginError,
+    isLoggedIn:
+      webIsLoggedIn ||
+      mobileIsLoggedIn ||
+      extensionIsLoggedIn ||
+      ledgerIsLoggedIn,
+    isLoggingIn:
+      webIsLoggingIn ||
+      mobileIsLoggingIn ||
+      extensionIsLoggingIn ||
+      ledgerIsLoggingIn,
+    error:
+      webLoginError ||
+      mobileLoginError ||
+      extensionLoginError ||
+      ledgerLoginError,
   };
 };
