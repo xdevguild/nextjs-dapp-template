@@ -10,14 +10,12 @@ import { networkConfig, chainType } from '../../config/network';
 import { ActionButton } from '../tools/ActionButton';
 import { useLoginInfo } from '../../hooks/auth/useLoginInfo';
 import { LoginMethodsEnum } from '../../types/enums';
-import { useAccount } from '../../hooks/auth/useAccount';
 
 export const SimpleDemo = () => {
   const [result, setResult] = useState<{ type: string; content: string }>();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
-  const { loginMethod, loginToken } = useLoginInfo();
-  const { address } = useAccount();
+  const { loginMethod } = useLoginInfo();
 
   const handleTxCb = useCallback(
     ({ transaction, pending, error }: TransactionCb) => {
@@ -106,24 +104,10 @@ export const SimpleDemo = () => {
             </Box>
           )}
           {loginMethod === LoginMethodsEnum.ledger && (
-            <>
-              {address && (
-                <>
-                  <Box fontWeight="bold">Confirm your address on Ledger:</Box>
-                  <Box>{address}</Box>
-                </>
-              )}
-              {loginToken && (
-                <>
-                  <Box fontWeight="bold">Confirm the auth token on Ledger:</Box>
-                  <Box>{`${loginToken}{}`}</Box>
-                </>
-              )}
-              <Box>
-                Then wait some time to finish the transaction. You will get the
-                transaction hash and link at the end.
-              </Box>
-            </>
+            <Box>
+              Then wait some time to finish the transaction. You will get the
+              transaction hash and link at the end.
+            </Box>
           )}
           <Spinner mt={6} color="dappTemplate.color2.darker" />
         </FlexCardWrapper>

@@ -2,26 +2,30 @@
 
 - [elrond-nextjs-dapp.netlify.com](https://elrond-nextjs-dapp.netlify.com)
 
-Simple alternative to the [dapp-core](https://github.com/ElrondNetwork/dapp-core) with React. Heavily based on [Elven Tools Dapp](https://www.elven.tools/docs/minter-dapp-introduction.html).
+Nextjs alternative to the [dapp-core](https://github.com/ElrondNetwork/dapp-core).
+Based on [Elven Tools Dapp](https://www.elven.tools/docs/minter-dapp-introduction.html).
 
-The Dapp is built using Nextjs and a couple of helpful tools. More docs soon!
+The Dapp is built using Nextjs and a couple of helpful tools.
 It has straightforward and complete functionality.
 
 ### Main assumption for the dapp:
+
 - it works on Nextjs
-- it uses erdjs 10.* without the dapp-core library.
-- it uses backed side redirections to hide the API endpoint. The only exposed one is `/api`
-- it uses the .env file - there is an example in the repo
-- it uses a couple of config files in the 'config' directory (it will be simplified in the future)
+- it uses erdjs 11.\* without the dapp-core library.
+- it uses backed side redirections to hide the API endpoint. The only exposed one is `/api/elrond` and it is used only be the dapp internally
+- it uses the .env file - there is an example in the repo (for all configuration, also for the demo config)
 - it uses chakra-ui
 
 ### How to start it locally:
+
 1. clone or download the repo
 2. `cd nextjs-dapp-template`
 3. `npm install`
-4. configure .env.local (you can copy the contents of the .env.example)
-6. `npm run dev` -> for development
-7. `npm run build` -> `npm start` for production
+4. configure .env.local (you can copy the contents of the .env.example) `cp .env.example .env.local`
+5. `npm run dev` -> for development
+6. `npm run build` -> `npm start` for production
+
+Check how to deploy very similar dapp using the Netlify services: https://www.elven.tools/docs/dapp-deployment.html
 
 ### Howto
 
@@ -59,7 +63,17 @@ The component provides the `Connect` button with the modal, which will contain a
 ```jsx
 import { LoginModalButton } from '../tools/LoginModalButton';
 
-<LoginModalButton />
+<LoginModalButton />;
+```
+
+#### useLogin
+
+It is the main hook for logging in. It is used in the `LoginComponent` in the `LoginModalButton`. The hook is one for all auth providers and can take the auth token as an argument. It can be by any string. Based on this, the auth signature will be generated. This is required when you verify the user account on the backend side. The dapp doesn't use it by default, but you can still pass it.
+
+```jsx
+const { login, isLoggedIn, error, walletConnectUri, getHWAccounts } = useLogin({
+  token: 'some_hash_here',
+});
 ```
 
 #### Authenticated
@@ -71,8 +85,6 @@ It can display the spinner and also the fallback React element.
 **Important** Do not wrap it in big sections of the code. Its purpose is to be used multiple times on as small blocks as possible.
 
 ```jsx
-
-
 <Authenticated
   spinnerCentered
   fallback={
@@ -100,10 +112,10 @@ const { pending, triggerTx, transaction, error } = useTransaction({ cb });
 const handleSendTx = useCallback(() => {
   const demoMessage = 'Transaction demo!';
   triggerTx({
-    address: egldTransferAddress,
+    address: process.env.NEXT_PUBLIC_EGLD_TRANSFER_ADDRESS,
     gasLimit: 50000 + 1500 * demoMessage.length,
     data: new TransactionPayload(demoMessage),
-    value: 0.001,
+    value: process.env.NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT,
   });
 }, [triggerTx]);
 ```
@@ -113,22 +125,22 @@ const handleSendTx = useCallback(() => {
 The hook provides all that is required for triggering smart contract transactions. useScTransaction can also take a callback function as an argument.
 
 ```jsx
- const { pending, triggerTx, transaction, error } = useScTransaction({ cb });
+const { pending, triggerTx, transaction, error } = useScTransaction({ cb });
 
 const handleSendTx = useCallback(() => {
   triggerTx({
-    smartContractAddress: mintSmartContractAddress,
-    func: mintFunctionName,
+    smartContractAddress: process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS,
+    func: process.env.NEXT_PUBLIC_MINT_FUNCTION_NAME,
     gasLimit: 14000000,
     args: [new U32Value(1)],
-    value: 0.001,
+    value: process.env.NEXT_PUBLIC_MINT_PAYMENT_PER_TOKEN,
   });
 }, [triggerTx]);
 ```
 
 #### useScQuery()
 
-The hook uses useSWR under the hood and can be triggered on a component mount or remotely on some action. It has two different states for the pending action. For initial load and on revalidate. It also takes one of two return data types: 'int' and 'string'. You can still use the string type for boolean and check if you will get `01`, which is `true`. For now, it assumes that you know what data type will be returned by a smart contract.
+The hook uses useSWR under the hood and can be triggered on a component mount or remotely on some action. It has two different states for the pending action. For initial load and on revalidate. It also takes one of three return data types: 'number', 'string', 'boolean'. For now, it assumes that you know what data type will be returned by a smart contract. Later it will get more afvanced functionality.
 
 ```jsx
 const {
@@ -137,15 +149,17 @@ const {
   isLoading, // pending state for initial load
   isValidating, // pending state for each revalidation of the data, for example using the mutate
   error,
-} = useScQuery({
-  type: SCQueryType.INT, // can be int or string
+} = useScQuery <
+number >
+{
+  type: SCQueryType.NUMBER, // can be number, string or boolean
   payload: {
-    scAddress: mintSmartContractAddress,
-    funcName: queryFunctionName,
+    scAddress: process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS,
+    funcName: process.env.NEXT_PUBLIC_QUERY_FUNCTION_NAME,
     args: [],
   },
   autoInit: false, // you can enable or disable the trigger of the query on the component mount
-});
+};
 ```
 
 #### useLoggingIn()
@@ -174,13 +188,15 @@ const { loginMethod, expires, loginToken, signature } = useLoginInfo();
 
 ### Working with the API
 
-The API endpoint is proxied on the backend side. The only public API endpoint is `/api`. This is useful when you don't want to show the API endpoint because, for example, you use the paid ones. Also, there is an option to block the `/api` endpoint to be used only within the Dapp, even previewing it in the browser won't be possible.
+The API endpoint is proxied on the backend side. The only public API endpoint is `/api/elrond`. This is useful when you don't want to show the API endpoint because, for example, you use the paid ones. Also, there is an option to block the `/api/elrond` endpoint to be used only within the Dapp, even previewing it in the browser won't be possible.
 
-You can use `API_ALLOWED_DAPP_HOST` in the .env file to enable `/api` restrictions. If you don't want to restrict it, you can remove that variable.
+You can use `API_ALLOWED_DAPP_HOST` in the .env file to enable `/api/elrond` restrictions. If you don't want to restrict it, you can remove that variable.
 
-In the `pages/api/_middleware.ts`, you'll find the logic for the API restrictions. And in the `next.config.js`, you'll find the configuration for rewrites of the API.
+In the `middleware.ts`, you'll find the logic for the API restrictions. And in the `next.config.js`, you'll find the configuration for rewrites of the API.
 
 In this demo, the Dapp uses a public API endpoint, so it isn't essential, but it is beneficial when you need to use paid 3rd party service.
+
+Read more about it here: https://www.elven.tools/docs/dapp-api-proxy.html
 
 ### Working with the .env and config files
 
@@ -197,10 +213,10 @@ Here are all variables:
 NEXT_PUBLIC_ELROND_CHAIN = devnet
 
 # This is the masked/proxied public API endpoint
-# only the current instance of the Dapp can use it if only API_ALLOWED_DAPP_HOST is set
-NEXT_PUBLIC_ELROND_API = /api
+# only current instance of the Dapp can use it if only API_ALLOWED_DAPP_HOST is set
+NEXT_PUBLIC_ELROND_API = /api/elrond
 
-# This is the main domain of your dapp
+# This is basically the main domain of your dapp
 NEXT_PUBLIC_DAPP_HOST = http://localhost:3000
 
 # =============================================
@@ -208,11 +224,35 @@ NEXT_PUBLIC_DAPP_HOST = http://localhost:3000
 # =============================================
 
 # Your main Elrond API can be a custom one. There won't be a possibility
-# to reveal this endpoint. NEXT_PUBLIC_ELROND_API will mask it
+# to reveal this endpoint, it will be masked by NEXT_PUBLIC_ELROND_API
 ELROND_CUSTOM_API = https://devnet-api.elrond.com
 
 # Only this host will be allowed to consume the API (optional)
+# It will work only inside the Dapp, no one will be able to use the endpoint, even in browser
+# When removed the API will be available for testing through browser, Postman etc.
 API_ALLOWED_DAPP_HOST = http://localhost:3000
+
+# =============================================
+# Public variables for the the demo only
+# =============================================
+
+# The wallet address used for the demo EGLD transaction on the devnet
+NEXT_PUBLIC_EGLD_TRANSFER_ADDRESS = erd17a4wydhhd6t3hhssvcp9g23ppn7lgkk4g2tww3eqzx4mlq95dukss0g50f
+
+# The smart contract address used for minting the NFT token (as example deployed Elven Tools Smart Contract)
+NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS = erd1qqqqqqqqqqqqqpgq5za2pty2tlfqhj20z9qmrrpjmyt6advcgtkscm7xep
+
+# The function/endpoint name for minting on the smart contract
+NEXT_PUBLIC_MINT_FUNCTION_NAME = mint
+
+# The function/view name for getting the total tokens left to be mint on smart contract
+NEXT_PUBLIC_QUERY_FUNCTION_NAME = getTotalTokensLeft
+
+# The payment per one NFT token, defined on smart contract (0.01 EGLD)
+NEXT_PUBLIC_MINT_PAYMENT_PER_TOKEN = 0.01
+
+# The amount of EGLD to send in the demo transfer (0.001 EGLD)
+NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT = 0.001
 ```
 
 All variables which start with `NEXT_PUBLIC_` will be readable on the frontend side of the dapp. So please don't use them for any secret keys and data. If you need something to be available only on the backend side, don't use the `NEXT_PUBLIC_` prefix.
@@ -223,7 +263,7 @@ Each hosting provider will have a different way of doing that. We will take a lo
 
 ### Deployment
 
-For deployment, we recommend the [Netlify](https://www.netlify.com/). Why Netlify? Because it is the simplest way to deploy the Nextjs app for free. Of course, the most recommended is the [Vercel]() which you could also try.
+For deployment, we recommend the [Netlify](https://www.netlify.com/). Why Netlify? Because it is the simplest way to deploy the Nextjs app for free. Of course, the most recommended is the [Vercel](https://vercel.com/) which you could also try.
 
 As for Netlify, the only what you need to do there is to go to the settings and configure from which repository the app should be deployed. Check out how: [Netlify getting started](https://docs.netlify.com/get-started/).
 
@@ -231,9 +271,12 @@ Then fill up the env variables. See how here: [Netlify env vars setup](https://d
 
 On each repository code push, the Netlify services will redeploy the app.
 
+Read more about it here: https://www.elven.tools/docs/dapp-deployment.html
+
 Here are other deployment solutions: [NextJS Deployment](https://nextjs.org/docs/deployment).
 
 ### Missing for now:
+
 - More docs and examples
 - More tooling and components
 - tests

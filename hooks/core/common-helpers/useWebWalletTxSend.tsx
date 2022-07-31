@@ -1,4 +1,4 @@
-import { useEffect, Dispatch, SetStateAction, useRef } from 'react';
+import { useEffect, Dispatch, SetStateAction } from 'react';
 import {
   WALLET_PROVIDER_CALLBACK_PARAM,
   WALLET_PROVIDER_CALLBACK_PARAM_TX_SIGNED,
@@ -11,6 +11,7 @@ import { DappProvider } from '../../../types/network';
 import { accountState } from '../../../store/auth';
 import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { postSendTxOperations, TransactionCb } from './sendTxOperations';
+import { errorParse } from '../../../utils/errorParse';
 
 interface UseWebWalletTxSendProps {
   setPending: Dispatch<SetStateAction<boolean>>;
@@ -58,9 +59,10 @@ export const useWebWalletTxSend = ({
             apiNetworkProvider,
             cb
           );
-        } catch (e: any) {
-          setError(e?.message);
-          cb?.({ error: e?.message });
+        } catch (e) {
+          const err = errorParse(e);
+          setError(err);
+          cb?.({ error: err });
         } finally {
           setPending(false);
           cb?.({ pending: false });

@@ -27,14 +27,14 @@ export const GetLoginInfoDemo = () => {
         <Text as="span" display="inline-block" fontWeight="bold">
           loginToken:
         </Text>{' '}
-        {loginToken}
+        {loginToken || '-'}
       </Text>
       <Tooltip label={signature}>
         <Text>
           <Text as="span" display="inline-block" fontWeight="bold">
             signature:
           </Text>{' '}
-          {shortenHash(signature, 8)}
+          {signature ? shortenHash(signature, 8) : '-'}
         </Text>
       </Tooltip>
     </FlexCardWrapper>

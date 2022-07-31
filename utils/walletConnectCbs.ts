@@ -4,6 +4,7 @@ import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { setAccountState, setLoginInfoState } from '../store/auth';
 import { LoginMethodsEnum } from '../types/enums';
 import { optionalRedirect } from '../utils/optionalRedirect';
+import { errorParse } from './errorParse';
 
 export const WcOnLogin = async (
   apiNetworkProvider?: ApiNetworkProvider,
@@ -22,9 +23,10 @@ export const WcOnLogin = async (
       );
       userAccountInstance.update(userAccountOnNetwork);
       setAccountState('address', userAccountInstance.address.bech32());
-    } catch (e: any) {
+    } catch (e) {
+      const err = errorParse(e);
       console.warn(
-        `Something went wrong trying to synchronize the user account: ${e?.message}`
+        `Something went wrong trying to synchronize the user account: ${err}`
       );
     }
   }

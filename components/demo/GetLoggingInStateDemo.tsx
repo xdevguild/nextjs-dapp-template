@@ -20,7 +20,7 @@ export const GetLoggingInStateDemo = () => {
         <Text as="span" display="inline-block" fontWeight="bold">
           error:
         </Text>{' '}
-        {error}
+        {error || '-'}
       </Text>
       <Text>
         <Text as="span" display="inline-block" fontWeight="bold">

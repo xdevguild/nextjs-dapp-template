@@ -10,6 +10,7 @@ import { setLoginInfoState, setLoggingInState } from '../../store/auth';
 import { useLogout } from './useLogout';
 import { Login } from '../../types/account';
 import { useLoggingIn } from './useLoggingIn';
+import { errorParse } from '../../utils/errorParse';
 
 export const useWebWalletLogin = (params?: Login) => {
   const { logout } = useLogout();
@@ -40,8 +41,9 @@ export const useWebWalletLogin = (params?: Login) => {
       if (params?.token) {
         setLoginInfoState('loginToken', params.token);
       }
-    } catch (e: any) {
-      setLoggingInState('error', `Error logging in ${e?.message}`);
+    } catch (e) {
+      const err = errorParse(e);
+      setLoggingInState('error', `Error logging in ${err}`);
       setLoginInfoState('loginMethod', '');
     } finally {
       setLoggingInState('pending', false);

@@ -1,3 +1,10 @@
 {
-  "extends": ["next", "prettier", "plugin:valtio/recommended"]
+  "extends": [
+    "next",
+    "prettier",
+    "plugin:valtio/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser"
 }

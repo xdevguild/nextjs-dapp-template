@@ -14,12 +14,13 @@ import { useLogout } from './useLogout';
 import { Login } from '../../types/account';
 import { useLoggingIn } from './useLoggingIn';
 import { DappProvider } from '../../types/network';
+import { errorParse } from '../../utils/errorParse';
 
 export const useLedgerLogin = (params?: Login) => {
   const { logout } = useLogout();
   const { isLoggedIn, isLoggingIn, error } = useLoggingIn();
 
-  const login = async (addressIndex: number = 0) => {
+  const login = async (addressIndex = 0) => {
     const apiNetworkProvider =
       getNetworkState<ApiNetworkProvider>('apiNetworkProvider');
     const dappProvider = getNetworkState<DappProvider>('dappProvider');
@@ -84,14 +85,15 @@ export const useLedgerLogin = (params?: Login) => {
       setLoginInfoState('expires', getNewLoginExpiresTimestamp());
 
       optionalRedirect(params?.callbackRoute);
-    } catch (err: any) {
-      setLoggingInState('error', `Error logging in ${err?.message}`);
+    } catch (e) {
+      const err = errorParse(e);
+      setLoggingInState('error', `Error logging in ${err}`);
     } finally {
       setLoggingInState('pending', false);
     }
   };
 
-  const getHWAccounts = async (page: number = 0, pageSize: number = 10) => {
+  const getHWAccounts = async (page = 0, pageSize = 10) => {
     const dappProvider = getNetworkState<DappProvider>('dappProvider');
     let hwWalletProvider;
 
