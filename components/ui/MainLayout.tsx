@@ -1,9 +1,9 @@
 import { Container, Box } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { FC, memo, PropsWithChildren } from 'react';
 import { MetaHead, MetaHeadProps } from './MetaHead';
 import { Footer } from './Footer';
 
-export const MainLayout: FC<MetaHeadProps> = memo(
+export const MainLayout: FC<PropsWithChildren<MetaHeadProps>> = memo(
   ({ children, metaTitle, metaDescription, metaImage, metaUrl }) => {
     return (
       <>

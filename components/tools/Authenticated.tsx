@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, PropsWithChildren } from 'react';
 import { Spinner, Flex } from '@chakra-ui/react';
 import { useLoggingIn } from '../../hooks/auth/useLoggingIn';
 
@@ -8,7 +8,7 @@ interface AuthenticatedProps {
   spinnerCentered?: boolean;
 }
 
-export const Authenticated: FC<AuthenticatedProps> = ({
+export const Authenticated: FC<PropsWithChildren<AuthenticatedProps>> = ({
   children,
   fallback = null,
   noSpinner = false,

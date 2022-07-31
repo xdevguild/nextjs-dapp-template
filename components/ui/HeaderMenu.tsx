@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { Box } from '@chakra-ui/react';
 import { Logo } from './Logo';
 
-export const HeaderMenu: FC = ({ children }) => {
+export const HeaderMenu: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Box
       display="flex"
