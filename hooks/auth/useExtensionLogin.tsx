@@ -13,6 +13,7 @@ import { useLogout } from './useLogout';
 import { Login } from '../../types/account';
 import { useLoggingIn } from './useLoggingIn';
 import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { errorParse } from '../../utils/errorParse';
 
 export const useExtensionLogin = (params?: Login) => {
   const { logout } = useLogout();
@@ -49,10 +50,9 @@ export const useExtensionLogin = (params?: Login) => {
 
       try {
         await providerInstance.login(providerLoginData);
-      } catch (e: any) {
-        console.warn(
-          `Something went wrong trying to login the user: ${e?.message}`
-        );
+      } catch (e) {
+        const err = errorParse(e);
+        console.warn(`Something went wrong trying to login the user: ${err}`);
       }
 
       setNetworkState('dappProvider', providerInstance);
@@ -64,8 +64,6 @@ export const useExtensionLogin = (params?: Login) => {
 
       if (apiNetworkProvider) {
         try {
-          setLoggingInState('pending', true);
-
           const userAccountOnNetwork = await apiNetworkProvider.getAccount(
             userAddressInstance
           );
@@ -75,9 +73,10 @@ export const useExtensionLogin = (params?: Login) => {
 
           setAccountState('nonce', userAccountInstance.nonce.valueOf());
           setAccountState('balance', userAccountInstance.balance.toString());
-        } catch (e: any) {
+        } catch (e) {
+          const err = errorParse(e);
           console.warn(
-            `Something went wrong trying to synchronize the user account: ${e?.message}`
+            `Something went wrong trying to synchronize the user account: ${err}`
           );
         }
       }
@@ -94,8 +93,9 @@ export const useExtensionLogin = (params?: Login) => {
       setLoggingInState('loggedIn', Boolean(address));
 
       optionalRedirect(params?.callbackRoute);
-    } catch (e: any) {
-      setLoggingInState('error', `Error logging in ${e?.message}`);
+    } catch (e) {
+      const err = errorParse(e);
+      setLoggingInState('error', `Error logging in ${err}`);
     } finally {
       setLoggingInState('pending', false);
     }

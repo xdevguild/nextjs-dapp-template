@@ -5,8 +5,8 @@ import { NetworkType } from '../types/network';
 
 export const DEFAULT_MIN_GAS_LIMIT = 50_000;
 
-export const DAPP_CONFIG_ENDPOINT: string = '/dapp/config';
-export const DAPP_INIT_ROUTE: string = '/dapp/init';
+export const DAPP_CONFIG_ENDPOINT = '/dapp/config';
+export const DAPP_INIT_ROUTE = '/dapp/init';
 
 export const chainType = process.env.NEXT_PUBLIC_ELROND_CHAIN || 'devnet';
 

@@ -18,6 +18,7 @@ import { useLogout } from './useLogout';
 import { Login } from '../../types/account';
 import { useLoggingIn } from './useLoggingIn';
 import { DappProvider } from '../../types/network';
+import { errorParse } from '../../utils/errorParse';
 
 export const useMobileAppLogin = (params?: Login) => {
   const { logout } = useLogout();
@@ -94,8 +95,9 @@ export const useMobileAppLogin = (params?: Login) => {
 
       generateWcUri(bridgeAddress, walletConnectUri);
       setLoggingInState('pending', true);
-    } catch (e: any) {
-      setLoggingInState('error', `Error logging in ${e?.message}`);
+    } catch (e) {
+      const err = errorParse(e);
+      setLoggingInState('error', `Error logging in ${err}`);
     } finally {
       setLoggingInState('pending', false);
     }

@@ -6,6 +6,7 @@ import { LoginMethodsEnum } from '../../types/enums';
 import { ActionButton } from './ActionButton';
 import { shortenHash } from '../../utils/shortenHash';
 import { useLoginInfo } from '../../hooks/auth/useLoginInfo';
+import { errorParse } from '../../utils/errorParse';
 
 interface LedgerAccountsListProps {
   getHWAccounts: (page?: number, pageSize?: number) => Promise<string[]>;
@@ -45,15 +46,18 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
         mounted.current && setListPending(true);
         const accounts = await getHWAccounts(currentPage, ADDRESSES_PER_PAGE);
         if (accounts?.length > 0 && mounted.current) setAccounts(accounts);
-      } catch (e: any) {
+      } catch (e) {
+        const err = e as { statusCode: number; name: string };
         if (
-          (e.statusCode === LEDGER_NOT_CONNECTED_CODE ||
-            e.name === LEDGER_DISCONNECTED) &&
+          (err.statusCode === LEDGER_NOT_CONNECTED_CODE ||
+            err.name === LEDGER_DISCONNECTED) &&
           mounted.current
         ) {
           setError(
             'Not connected, please check the connection and make sure that you have the Elrond app opened on your Ledger device.'
           );
+        } else {
+          setError(`Error: ${errorParse(e)}`);
         }
       } finally {
         mounted.current && setListPending(false);
@@ -79,7 +83,7 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
   }, [router]);
 
   const login = useCallback(
-    (index, address) => () => {
+    (index: number, address: string) => () => {
       handleLogin(LoginMethodsEnum.ledger, index)();
       setAddress(address);
     },

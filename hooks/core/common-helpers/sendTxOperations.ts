@@ -4,11 +4,12 @@ import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider';
 import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
 import { HWProvider } from '@elrondnetwork/erdjs-hw-provider';
 import { Dispatch, SetStateAction } from 'react';
-import { setAccountState } from '../../../store/auth';
+import { setAccountState, LoginInfoState } from '../../../store/auth';
 import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { LoginMethodsEnum } from '../../../types/enums';
 import { WalletProvider } from '@elrondnetwork/erdjs-web-wallet-provider';
 import { DappProvider } from '../../../types/network';
+import { errorParse } from '../../../utils/errorParse';
 
 export interface TransactionCb {
   transaction?: Transaction | null;
@@ -22,7 +23,7 @@ export const postSendTxOperations = async (
   apiNetworkProvider: ApiNetworkProvider,
   cb?: (params: TransactionCb) => void
 ) => {
-  let transactionWatcher = new TransactionWatcher(apiNetworkProvider);
+  const transactionWatcher = new TransactionWatcher(apiNetworkProvider);
   await transactionWatcher.awaitCompleted(tx);
   setTransaction(tx);
   cb?.({ transaction: tx, pending: false });
@@ -38,7 +39,7 @@ export const postSendTxOperations = async (
 export const sendTxOperations = async (
   dappProvider: DappProvider,
   tx: Transaction,
-  loginInfoSnap: any,
+  loginInfoSnap: LoginInfoState,
   apiNetworkProvider: ApiNetworkProvider,
   setTransaction: Dispatch<SetStateAction<Transaction | null>>,
   setError: Dispatch<SetStateAction<string>>,
@@ -66,9 +67,10 @@ export const sendTxOperations = async (
       await apiNetworkProvider.sendTransaction(tx);
       await postSendTxOperations(tx, setTransaction, apiNetworkProvider, cb);
     }
-  } catch (e: any) {
-    setError(e?.message);
-    cb?.({ error: e?.message });
+  } catch (e) {
+    const err = errorParse(e);
+    setError(err);
+    cb?.({ error: err });
   } finally {
     setPending(false);
     cb?.({ pending: false });

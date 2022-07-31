@@ -30,6 +30,7 @@ import { isLoginExpired } from '../../utils/expiresAt';
 import { clearDappProvider } from '../../store/network';
 import { clearAuthStates } from '../../store/auth';
 import { DappProvider } from '../../types/network';
+import { errorParse } from '../../utils/errorParse';
 
 export const useElrondNetworkSync = () => {
   const { logout } = useLogout();
@@ -44,17 +45,18 @@ export const useElrondNetworkSync = () => {
 
   useEffect(() => {
     const accountStorage = localStorage.getItem('elrond_dapp__account');
-    if (accountStorage) {
-      const parsedStorage = JSON.parse(accountStorage);
-      setAccountState('address', parsedStorage.address);
-      setAccountState('nonce', parsedStorage.nonce);
-      setAccountState('balance', parsedStorage.balance);
-      setAccountState('addressIndex', parsedStorage.addressIndex);
-      if (!parsedStorage.address) setLoggingInState('pending', false);
-      setAccountDone(true);
-    } else {
+    const parsedStorage = accountStorage ? JSON.parse(accountStorage) : null;
+
+    if (!parsedStorage?.address) {
       setLoggingInState('pending', false);
+      return;
     }
+
+    setAccountState('address', parsedStorage.address);
+    setAccountState('nonce', parsedStorage.nonce);
+    setAccountState('balance', parsedStorage.balance);
+    setAccountState('addressIndex', parsedStorage.addressIndex);
+    setAccountDone(true);
   }, []);
 
   useEffect(() => {
@@ -69,11 +71,16 @@ export const useElrondNetworkSync = () => {
     }
   }, []);
 
-  useEffect(() => {
+  useEffectOnlyOnUpdate(() => {
     localStorage.setItem('elrond_dapp__account', JSON.stringify(accountSnap));
-  }, [accountSnap.address, accountSnap.nonce, accountSnap.balance]);
+  }, [
+    accountSnap.address,
+    accountSnap.nonce,
+    accountSnap.balance,
+    accountSnap.addressIndex,
+  ]);
 
-  useEffect(() => {
+  useEffectOnlyOnUpdate(() => {
     localStorage.setItem(
       'elrond_dapp__loginInfo',
       JSON.stringify(loginInfoSnap)
@@ -128,17 +135,17 @@ export const useElrondNetworkSync = () => {
           case LoginMethodsEnum.extension:
             dappProvider = ExtensionProvider.getInstance();
             try {
-              const isSuccessfullyInitialized: boolean =
-                await dappProvider.init();
-              dappProvider.setAddress(accountSnap.address);
+              await dappProvider.init();
 
-              if (!isSuccessfullyInitialized) {
+              if (!dappProvider.isInitialized()) {
                 console.warn(
-                  'Something went wrong trying to redirect to wallet login..'
+                  'Something went wrong trying to sync with the extension! Try to connect again.'
                 );
                 return;
+              } else {
+                dappProvider.setAddress(accountSnap.address);
+                network.setNetworkState('dappProvider', dappProvider);
               }
-              network.setNetworkState('dappProvider', dappProvider);
             } catch (e) {
               console.warn("Can't initialize the Dapp Provider!");
             }
@@ -163,9 +170,15 @@ export const useElrondNetworkSync = () => {
               providerHandlers
             );
             dappProviderRef.current = dappProvider;
-            network.setNetworkState('dappProvider', dappProvider);
             try {
               await dappProvider.init();
+              if (!dappProvider.isInitialized()) {
+                console.warn(
+                  'Something went wrong trying to sync with the Maiar app!'
+                );
+              } else {
+                network.setNetworkState('dappProvider', dappProvider);
+              }
             } catch {
               console.warn("Can't initialize the Dapp Provider!");
             }
@@ -194,7 +207,17 @@ export const useElrondNetworkSync = () => {
             network.setNetworkState<DappProvider>('dappProvider', dappProvider);
             try {
               await dappProvider.init();
-              dappProvider.setAddressIndex(accountSnap.addressIndex);
+              if (!dappProvider.isInitialized()) {
+                console.warn(
+                  'Something went wrong trying to sync with the Ledger!'
+                );
+              } else {
+                dappProvider.setAddressIndex(accountSnap.addressIndex);
+                network.setNetworkState<DappProvider>(
+                  'dappProvider',
+                  dappProvider
+                );
+              }
             } catch {
               console.warn("Can't initialize the Dapp Provider!");
             }
@@ -220,12 +243,14 @@ export const useElrondNetworkSync = () => {
             userAddressInstance
           );
           userAccountInstance.update(userAccountOnNetwork);
+          setAccountState('address', address);
           setAccountState('nonce', userAccountInstance.nonce.valueOf());
           setAccountState('balance', userAccountInstance.balance.toString());
           setLoggingInState('loggedIn', Boolean(address));
-        } catch (e: any) {
+        } catch (e) {
+          const err = errorParse(e);
           console.warn(
-            `Something went wrong trying to synchronize the user account: ${e?.message}`
+            `Something went wrong trying to synchronize the user account: ${err}`
           );
         }
       }
