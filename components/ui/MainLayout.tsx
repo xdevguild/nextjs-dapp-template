@@ -26,7 +26,8 @@ export const MainLayout: FC<PropsWithChildren<MetaHeadProps>> = memo(
     prev.metaTitle === next.metaTitle &&
     prev.metaDescription === next.metaDescription &&
     prev.metaImage === next.metaImage &&
-    prev.metaUrl === next.metaUrl
+    prev.metaUrl === next.metaUrl &&
+    prev.children === next.children
 );
 
 MainLayout.displayName = 'MainLayout';
