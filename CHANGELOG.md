@@ -1,8 +1,8 @@
-### [2.0.1](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.0.1)
+### [2.0.1](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.0.1) (2022-08-13)
 - fix problems with rerendering (wrong memo usage)
 - update dependencies
 
-### [2.0.0](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.0.0) 
+### [2.0.0](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.0.0) (2022-08-01)
 - Nextjs update
 - React update
 - erdjs libraries update
