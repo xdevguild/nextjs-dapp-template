@@ -14,7 +14,7 @@ export const apiCall = {
       };
 
       const response = await fetch(
-        this.baseEndpoint + endpoint,
+        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 
@@ -45,7 +45,7 @@ export const apiCall = {
       };
 
       const response = await fetch(
-        this.baseEndpoint + endpoint,
+        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 
@@ -75,7 +75,7 @@ export const apiCall = {
       };
 
       const response = await fetch(
-        this.baseEndpoint + endpoint,
+        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 
@@ -100,7 +100,7 @@ export const apiCall = {
       };
 
       const response = await fetch(
-        this.baseEndpoint + endpoint,
+        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 

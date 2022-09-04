@@ -11,7 +11,7 @@ It has straightforward and complete functionality.
 ### Main assumption for the dapp:
 
 - it works on Nextjs
-- it uses erdjs 11.\* without the dapp-core library.
+- it uses erdjs 11.* without the dapp-core library.
 - it uses backed side redirections to hide the API endpoint. The only exposed one is `/api/elrond` and it is used only be the dapp internally
 - it uses the .env file - there is an example in the repo (for all configuration, also for the demo config)
 - it uses chakra-ui
@@ -149,9 +149,7 @@ const {
   isLoading, // pending state for initial load
   isValidating, // pending state for each revalidation of the data, for example using the mutate
   error,
-} = useScQuery <
-number >
-{
+} = useScQuery<number>({
   type: SCQueryType.NUMBER, // can be number, string or boolean
   payload: {
     scAddress: process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS,
@@ -159,7 +157,7 @@ number >
     args: [],
   },
   autoInit: false, // you can enable or disable the trigger of the query on the component mount
-};
+});
 ```
 
 #### useLoggingIn()
@@ -185,6 +183,23 @@ The hook will provide the information about the user's auth data state. The data
 ```jsx
 const { loginMethod, expires, loginToken, signature } = useLoginInfo();
 ```
+
+#### useApiCall()
+
+The hook provides a convenient way of doing custom API calls unrelated to transactions or smart contract queries. By default it will use Elrond API endpoint. But it can be any type of API, not only Elrond API. In that case you would need to pass the `{ baseEndpoint: "https://some-api.com" }` in options
+
+```jsx
+const { data, isLoading, isValidating, fetch, error } = useApiCall<Token[]>({
+  url: `/accounts/<some_erd_address_here>/tokens`, // can be any API endpoint without the host, because it is already handled internally
+  autoInit: true, // similar to useScQuery
+  type: 'get', // can be get, post, delete, put
+  payload: {},
+  options: {}
+});
+```
+
+You can pass the response type. Returned object is the same as in `useScQuery`
+The hook uses `swr` and native `fetch` under the hood.
 
 ### Working with the API
 
