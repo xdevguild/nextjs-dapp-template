@@ -303,9 +303,10 @@ If you would like to test other templates:
 - [erd-next-starter](https://github.com/Elrond-Giants/erd-next-starter)
 - [dapp-template](https://github.com/ElrondNetwork/dapp-template)
 
-Also, check the implementation of the NFT Minter Dapp based on almost the same codebase:
+Dapps using it (send the links if you used it, use issues here on GitHub):
 
-- [elven-tools-dapp](https://github.com/ElvenTools/elven-tools-dapp)
+- [Elven Tools Dapp](https://dapp-demo.elven.tools/)
+- [Elrond ESDT Faucet Dapp](https://devnet-elrond-esdt-faucet.netlify.app/)
 
 ### Contact
 
