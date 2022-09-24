@@ -308,6 +308,10 @@ Dapps using it (send the links if you used it, use issues here on GitHub):
 - [Elven Tools Dapp](https://dapp-demo.elven.tools/)
 - [Elrond ESDT Faucet Dapp](https://devnet-elrond-esdt-faucet.netlify.app/)
 
+Compact Elrond SDK for browsers (no build steps required)
+
+- [Elven.js](https://www.elvenjs.com)
+
 ### Contact
 
 - [Elrond's Dev Guild](https://github.com/ElrondDevGuild)
