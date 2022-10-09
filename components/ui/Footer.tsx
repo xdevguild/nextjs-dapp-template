@@ -1,4 +1,4 @@
-import { Container, Box, Text } from '@chakra-ui/react';
+import { Container, Box, Text, Stack } from '@chakra-ui/react';
 import packageJson from '../../package.json';
 
 export const Footer = () => {
@@ -22,7 +22,12 @@ export const Footer = () => {
           world about it. Attribution is not required but welcomed in the form
           of a backlink.
         </Box>
-        <Box fontSize="xs" fontWeight="bold">
+        <Stack
+          direction="row"
+          justifyContent="center"
+          fontSize="xs"
+          fontWeight="bold"
+        >
           <Text
             as="a"
             color="dappTemplate.color3.base"
@@ -32,7 +37,20 @@ export const Footer = () => {
           >
             {"Elrond's Dev Guild"}
           </Text>
-        </Box>
+          <Text ml={2} mr={2}>
+            {' '}
+            |{' '}
+          </Text>
+          <Text
+            as="a"
+            color="dappTemplate.color3.base"
+            href="https://www.julian.io"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            {'julian.io'}
+          </Text>
+        </Stack>
       </Container>
     </Box>
   );

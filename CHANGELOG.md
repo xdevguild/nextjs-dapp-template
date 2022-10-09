@@ -1,3 +1,6 @@
+### [2.2.0](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.2.0) (2022-10-09)
+- dependencies updates (Next, erdjs, etc.)
+
 ### [2.1.0](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.1.0) (2022-09-04)
 - new `useApiCall` hook, check the readme for more info
 
