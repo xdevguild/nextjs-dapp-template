@@ -1,3 +1,6 @@
+### [2.2.1](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.2.1) (2022-10-10)
+- bugfix for the wrong usage of the Chakra Factory on CardWrapper and FlexCardWrapper components. Thanks to @janniksam for reporting that
+
 ### [2.2.0](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.2.0) (2022-10-09)
 - dependencies updates (Next, erdjs, etc.)
 
