@@ -1,3 +1,6 @@
+### [2.2.2](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.2.2) (2022-10-30)
+- dependencies updates, also Next 13, changes in the routing will be introduced later. Waits for new Next 13 docs to be completed.
+
 ### [2.2.1](https://github.com/ElrondDevGuild/nextjs-dapp-template/releases/tag/v2.2.1) (2022-10-10)
 - bugfix for the wrong usage of the Chakra Factory on CardWrapper and FlexCardWrapper components. Thanks to @janniksam for reporting that
 
