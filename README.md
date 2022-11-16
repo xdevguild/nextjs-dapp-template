@@ -1,6 +1,6 @@
 ### NextJS Dapp Template
 
-- [elrond-nextjs-dapp.netlify.com](https://elrond-nextjs-dapp.netlify.com)
+- [multiversx-nextjs-dapp.netlify.com](https://multiversx-nextjs-dapp.netlify.com)
 
 Nextjs alternative to the [dapp-core](https://github.com/ElrondNetwork/dapp-core).
 Based on [Elven Tools Dapp](https://www.elven.tools/docs/minter-dapp-introduction.html).
@@ -12,7 +12,7 @@ It has straightforward and complete functionality.
 
 - it works on Nextjs
 - it uses erdjs 11.* without the dapp-core library.
-- it uses backed side redirections to hide the API endpoint. The only exposed one is `/api/elrond` and it is used only be the dapp internally
+- it uses backed side redirections to hide the API endpoint. The only exposed one is `/api/multiversx` and it is used only be the dapp internally
 - it uses the .env file - there is an example in the repo (for all configuration, also for the demo config)
 - it uses chakra-ui
 
@@ -35,7 +35,7 @@ There are much more hooks and tools, but most of them are already used in the on
 
 The code samples are not ready to copy and paste. Please search them in the code.
 
-#### useElrondNetworkSync()
+#### useNetworkSync()
 
 The hook is responsible for synchronizing the network on each refresh. It should be used in the root component. Here is the `_app.tsx`.
 
@@ -44,10 +44,10 @@ Why not the context wrapper? Because context wrappers with auth state data check
 This way, you can check the auth state in chosen places. You are not forced to do this constantly for the whole document tree.
 
 ```jsx
-import { useElrondNetworkSync } from '../hooks/auth/useElrondNetworkSync';
+import { useNetworkSync } from '../hooks/auth/useNetworkSync';
 
 const NextJSDappTemplate = ({ Component, pageProps }: AppProps) => {
-  useElrondNetworkSync();
+  useNetworkSync();
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
@@ -186,7 +186,7 @@ const { loginMethod, expires, loginToken, signature } = useLoginInfo();
 
 #### useApiCall()
 
-The hook provides a convenient way of doing custom API calls unrelated to transactions or smart contract queries. By default it will use Elrond API endpoint. But it can be any type of API, not only Elrond API. In that case you would need to pass the `{ baseEndpoint: "https://some-api.com" }` in options
+The hook provides a convenient way of doing custom API calls unrelated to transactions or smart contract queries. By default it will use MultiversX API endpoint. But it can be any type of API, not only MultiversX API. In that case you would need to pass the `{ baseEndpoint: "https://some-api.com" }` in options
 
 ```jsx
 const { data, isLoading, isValidating, fetch, error } = useApiCall<Token[]>({
@@ -203,9 +203,9 @@ The hook uses `swr` and native `fetch` under the hood.
 
 ### Working with the API
 
-The API endpoint is proxied on the backend side. The only public API endpoint is `/api/elrond`. This is useful when you don't want to show the API endpoint because, for example, you use the paid ones. Also, there is an option to block the `/api/elrond` endpoint to be used only within the Dapp, even previewing it in the browser won't be possible.
+The API endpoint is proxied on the backend side. The only public API endpoint is `/api/multiversx`. This is useful when you don't want to show the API endpoint because, for example, you use the paid ones. Also, there is an option to block the `/api/multiversx` endpoint to be used only within the Dapp, even previewing it in the browser won't be possible.
 
-You can use `API_ALLOWED_DAPP_HOST` in the .env file to enable `/api/elrond` restrictions. If you don't want to restrict it, you can remove that variable.
+You can use `API_ALLOWED_DAPP_HOST` in the .env file to enable `/api/multiversx` restrictions. If you don't want to restrict it, you can remove that variable.
 
 In the `middleware.ts`, you'll find the logic for the API restrictions. And in the `next.config.js`, you'll find the configuration for rewrites of the API.
 
@@ -224,12 +224,12 @@ Here are all variables:
 # Public variables (exposed on the frontend)
 # =============================================
 
-# Elrond chain (can be devnet, testnet, mainnet)
-NEXT_PUBLIC_ELROND_CHAIN = devnet
+# MultiversX chain (can be devnet, testnet, mainnet)
+NEXT_PUBLIC_MULTIVERSX_CHAIN = devnet
 
 # This is the masked/proxied public API endpoint
 # only current instance of the Dapp can use it if only API_ALLOWED_DAPP_HOST is set
-NEXT_PUBLIC_ELROND_API = /api/elrond
+NEXT_PUBLIC_MULTIVERSX_API = /api/multiversx
 
 # This is basically the main domain of your dapp
 NEXT_PUBLIC_DAPP_HOST = http://localhost:3000
@@ -238,9 +238,9 @@ NEXT_PUBLIC_DAPP_HOST = http://localhost:3000
 # Private variables (used on the backend)
 # =============================================
 
-# Your main Elrond API can be a custom one. There won't be a possibility
-# to reveal this endpoint, it will be masked by NEXT_PUBLIC_ELROND_API
-ELROND_CUSTOM_API = https://devnet-api.elrond.com
+# Your main MultiversX API can be a custom one. There won't be a possibility
+# to reveal this endpoint, it will be masked by NEXT_PUBLIC_MULTIVERSX_API
+MULTIVERSX_CUSTOM_API = https://devnet-api.elrond.com
 
 # Only this host will be allowed to consume the API (optional)
 # It will work only inside the Dapp, no one will be able to use the endpoint, even in browser
@@ -272,7 +272,7 @@ NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT = 0.001
 
 All variables which start with `NEXT_PUBLIC_` will be readable on the frontend side of the dapp. So please don't use them for any secret keys and data. If you need something to be available only on the backend side, don't use the `NEXT_PUBLIC_` prefix.
 
-You can set up the chain type here. Use `NEXT_PUBLIC_ELROND_CHAIN` to set devnet, testnet or mainnet.
+You can set up the chain type here. Use `NEXT_PUBLIC_MULTIVERSX_CHAIN` to set devnet, testnet or mainnet.
 
 Each hosting provider will have a different way of doing that. We will take a look at how Netlify is doing that below.
 
@@ -306,12 +306,12 @@ If you would like to test other templates:
 Dapps using it (send the links if you used it, use issues here on GitHub):
 
 - [Elven Tools Dapp](https://dapp-demo.elven.tools/)
-- [Elrond ESDT Faucet Dapp](https://devnet-elrond-esdt-faucet.netlify.app/)
+- [MultiversX ESDT Faucet Dapp](https://devnet-elrond-esdt-faucet.netlify.app/)
 
-Compact Elrond SDK for browsers (no build steps required)
+Compact MultiversX SDK for browsers (no build steps required)
 
 - [Elven.js](https://www.elvenjs.com)
 
 ### Contact
 
-- [Elrond's Dev Guild](https://github.com/ElrondDevGuild)
+- [xDevGuild](https://github.com/xdevguild)

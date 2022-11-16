@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-server-import-in-page */
-
 // This middleware is to protect the proxied api to be called only by the same host
 // In the future it could get more logic, for example JWT tokens, etc.
 
@@ -17,9 +15,9 @@ interface CustomNextRequest extends NextRequest {
 export function middleware(req: CustomNextRequest) {
   const res = NextResponse.next();
 
-  if (!process.env.NEXT_PUBLIC_ELROND_API) return res;
+  if (!process.env.NEXT_PUBLIC_MULTIVERSX_API) return res;
 
-  if (req.nextUrl.pathname.startsWith(process.env.NEXT_PUBLIC_ELROND_API)) {
+  if (req.nextUrl.pathname.startsWith(process.env.NEXT_PUBLIC_MULTIVERSX_API)) {
     const definedHost = process.env.API_ALLOWED_DAPP_HOST;
 
     if (!definedHost) return res;

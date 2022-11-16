@@ -18,7 +18,7 @@ export const MetaHead: FC<MetaHeadProps> = memo(
           name="description"
           content={metaDescription || defaultMetaTags.description}
         />
-        <meta name="author" content="Elrond NextJS Dapp Template"></meta>
+        <meta name="author" content="MultiversX NextJS Dapp Template"></meta>
         <meta property="og:type" content="website" />
         <meta
           property="og:title"

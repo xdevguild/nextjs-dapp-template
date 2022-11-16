@@ -16,8 +16,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: `${process.env.NEXT_PUBLIC_ELROND_API}/:path*`,
-        destination: `${process.env.ELROND_CUSTOM_API}/:path*`,
+        source: `${process.env.NEXT_PUBLIC_MULTIVERSX_API}/:path*`,
+        destination: `${process.env.MULTIVERSX_CUSTOM_API}/:path*`,
       },
     ];
   },

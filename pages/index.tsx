@@ -26,7 +26,7 @@ const Home: NextPage = () => {
       </HeaderMenu>
       <CardWrapper mb={4}>
         <Text mb={4}>
-          Here is the demo of an Elrond dapp for interactions with the
+          Here is the demo of an MultiversX dapp for interactions with the
           blockchain and smart contracts. It provides four different ways of
           authentication and also a couple of React-based helpers/hooks. It is
           based on NextJS and uses erdjs SDK. It also uses Chakra UI. Heavily
@@ -124,10 +124,10 @@ const Home: NextPage = () => {
           <Text>
             Check the{' '}
             <Link
-              href="https://github.com/ElrondDevGuild"
+              href="https://github.com/xdevguild"
               textDecoration="underline"
             >
-              Elrond&apos;s Dev Guild
+              xDevGuild
             </Link>
           </Text>
         </CardWrapper>

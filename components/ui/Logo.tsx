@@ -19,7 +19,7 @@ export const Logo = () => {
           fontWeight="black"
           color="dappTemplate.white"
         >
-          Elrond Dapp Template
+          MultiversX Dapp Template
         </Text>
       </Box>
     </NextLink>

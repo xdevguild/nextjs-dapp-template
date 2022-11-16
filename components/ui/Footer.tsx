@@ -16,7 +16,7 @@ export const Footer = () => {
         fontWeight="normal"
         textAlign="center"
       >
-        <Box>Elrond NextJS Dapp Template (v{`${packageJson.version}`})</Box>
+        <Box>MultiversX NextJS Dapp Template (v{`${packageJson.version}`})</Box>
         <Box fontSize="xs" fontWeight="hairline">
           All for free. Please support the project. Give it credit and tell the
           world about it. Attribution is not required but welcomed in the form
@@ -31,11 +31,11 @@ export const Footer = () => {
           <Text
             as="a"
             color="dappTemplate.color3.base"
-            href="https://github.com/ElrondDevGuild"
+            href="https://github.com/zdevguild"
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
-            {"Elrond's Dev Guild"}
+            {'xDevGuild'}
           </Text>
           <Text ml={2} mr={2}>
             {' '}

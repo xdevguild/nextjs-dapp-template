@@ -1,7 +1,7 @@
 // Usefull for the api calls on the backend side, but not only. It is also used as fetcher in hooks
 
 export const apiCall = {
-  baseEndpoint: `${process.env.NEXT_PUBLIC_ELROND_API}`,
+  baseEndpoint: `${process.env.NEXT_PUBLIC_MULTIVERSX_API}`,
 
   async get(endpoint: string, options?: Record<string, unknown>) {
     if (typeof fetch !== 'undefined') {
