@@ -31,7 +31,7 @@ export const Footer = () => {
           <Text
             as="a"
             color="dappTemplate.color3.base"
-            href="https://github.com/zdevguild"
+            href="https://github.com/xdevguild"
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
