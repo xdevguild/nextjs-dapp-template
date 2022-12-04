@@ -92,6 +92,8 @@ export function useScQuery<T extends number | string | boolean | unknown>({
   });
 
   const parseData = (data: string | number | undefined | unknown) => {
+    if (data === undefined || data === null) return;
+    
     if (type === SCQueryType.COMPLEX && !abiJSON) {
       throw new Error(
         'Please provide the ABI JSON contents if you want to use the COMPLEX queries in useScQuery! Check README.md for more info.'
