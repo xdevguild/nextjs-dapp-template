@@ -1,4 +1,12 @@
 import useSWR, { Fetcher } from 'swr';
+import {
+  ResultsParser,
+  SmartContractAbi,
+  SmartContract,
+  Address,
+  AbiRegistry,
+} from '@elrondnetwork/erdjs';
+import { ContractQueryResponse } from '@elrondnetwork/erdjs-network-providers';
 import useSwrMutation from 'swr/mutation';
 import { apiCall } from '../../utils/apiCall';
 
@@ -6,6 +14,7 @@ export enum SCQueryType {
   NUMBER = 'number',
   STRING = 'string',
   BOOLEAN = 'boolean',
+  COMPLEX = 'complex',
 }
 
 interface SCQueryData {
@@ -13,6 +22,11 @@ interface SCQueryData {
   payload?: Record<string, unknown>;
   options?: Record<string, unknown>;
   autoInit?: boolean;
+  abiJSON?: {
+    name: string;
+    endpoints: unknown[];
+    types: unknown;
+  };
 }
 
 interface FetcherArgs {
@@ -31,11 +45,12 @@ export const fetcher: Fetcher<VMOutput, FetcherArgs> = async ({
   payload,
 }) => await apiCall.post(url, payload || {});
 
-export function useScQuery<T extends number | string | boolean>({
+export function useScQuery<T extends number | string | boolean | unknown>({
   type,
   payload,
   options,
   autoInit = true,
+  abiJSON,
 }: SCQueryData) {
   let url = '';
 
@@ -48,6 +63,10 @@ export function useScQuery<T extends number | string | boolean>({
       break;
     case SCQueryType.BOOLEAN:
       url = '/vm-values/int';
+      break;
+    // You need to provide ABI JSON for proper results parsing
+    case SCQueryType.COMPLEX:
+      url = '/vm-values/query';
       break;
   }
 
@@ -72,13 +91,46 @@ export function useScQuery<T extends number | string | boolean>({
     revalidate: true,
   });
 
-  const parseData = (data: string | number | undefined) => {
+  const parseData = (data: string | number | undefined | unknown) => {
+    if (type === SCQueryType.COMPLEX && !abiJSON) {
+      throw new Error(
+        'Please provide the ABI JSON contents if you want to use the COMPLEX queries in useScQuery! Check README.md for more info.'
+      );
+    }
+
+    if (
+      type === SCQueryType.COMPLEX &&
+      abiJSON &&
+      (data as Record<string, unknown>)?.returnData &&
+      payload?.scAddress &&
+      payload?.funcName
+    ) {
+      const parser = new ResultsParser();
+      const abiRegistry = AbiRegistry.create(abiJSON);
+      const abi = new SmartContractAbi(abiRegistry, [abiJSON.name]);
+      const contract = new SmartContract({
+        address: new Address(payload.scAddress as string),
+        abi: abi,
+      });
+      const endpointDefinition = contract.getEndpoint(
+        payload.funcName as string
+      );
+      const smResponse = ContractQueryResponse.fromHttpResponse(data);
+      const parsedResponse = parser.parseQueryResponse(
+        smResponse,
+        endpointDefinition
+      );
+      return parsedResponse;
+    }
+
     if (type === SCQueryType.BOOLEAN) {
       return Boolean(Number(data));
     }
+
     if (type === SCQueryType.NUMBER) {
       return Number(data);
     }
+
     return data;
   };
 

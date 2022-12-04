@@ -3,7 +3,7 @@
 - [multiversx-nextjs-dapp.netlify.com](https://multiversx-nextjs-dapp.netlify.com)
 
 Nextjs alternative to the [dapp-core](https://github.com/ElrondNetwork/dapp-core).
-Based on [Elven Tools Dapp](https://www.elven.tools/docs/minter-dapp-introduction.html).
+Based on [Elven Tools Dapp](https://www.elven.tools/docs/minter-dapp-introduction.html), (It is developed simultaneously, and at some stages, it will have more core functionality)
 
 The Dapp is built using Nextjs and a couple of helpful tools.
 It has straightforward and complete functionality.
@@ -12,8 +12,8 @@ It has straightforward and complete functionality.
 
 - it works on Nextjs
 - it uses erdjs 11.* without the dapp-core library.
-- it uses backed side redirections to hide the API endpoint. The only exposed one is `/api/multiversx` and it is used only be the dapp internally
-- it uses the .env file - there is an example in the repo (for all configuration, also for the demo config)
+it uses backed-side redirections to hide the API endpoint. The only exposed one is `/api/multiversx` and it is used only by the dapp internally
+- it uses the .env file - there is an example in the repo (for all configurations, also for the demo config)
 - it uses chakra-ui
 
 ### How to start it locally:
@@ -25,7 +25,7 @@ It has straightforward and complete functionality.
 5. `npm run dev` -> for development
 6. `npm run build` -> `npm start` for production
 
-Check how to deploy very similar dapp using the Netlify services: https://www.elven.tools/docs/dapp-deployment.html
+Check how to deploy a very similar dapp using the Netlify services: https://www.elven.tools/docs/dapp-deployment.html
 
 ### Howto
 
@@ -33,7 +33,7 @@ For simplicity, the template uses the main index page with demo components built
 
 There are much more hooks and tools, but most of them are already used in the ones listed below.
 
-The code samples are not ready to copy and paste. Please search them in the code.
+The code samples are not ready to copy and paste. Please search for them in the code.
 
 #### useNetworkSync()
 
@@ -140,7 +140,7 @@ const handleSendTx = useCallback(() => {
 
 #### useScQuery()
 
-The hook uses useSWR under the hood and can be triggered on a component mount or remotely on some action. It has two different states for the pending action. For initial load and on revalidate. It also takes one of three return data types: 'number', 'string', 'boolean'. For now, it assumes that you know what data type will be returned by a smart contract. Later it will get more afvanced functionality.
+The hook uses useSWR under the hood and can be triggered on a component mount or remotely on some action. It has two different states for the pending action. For initial load and on revalidate. It also takes one of three return data types: 'number', 'string', 'boolean'. For now, it assumes that you know what data type will be returned by a smart contract. Later it will get more advanced functionality.
 
 ```jsx
 const {
@@ -150,15 +150,50 @@ const {
   isValidating, // pending state for each revalidation of the data, for example using the mutate
   error,
 } = useScQuery<number>({
-  type: SCQueryType.NUMBER, // can be number, string or boolean
+  type: SCQueryType.NUMBER, // can be NUMBER, STRING, BOOLEAN or COMPLEX
   payload: {
     scAddress: process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS,
     funcName: process.env.NEXT_PUBLIC_QUERY_FUNCTION_NAME,
-    args: [],
+    args: [], // arguments for the query in hex format, you can use erdjs for that, for example: args: [ new Address('erd1....').hex() ] etc. It will be also simplified in the future.
   },
   autoInit: false, // you can enable or disable the trigger of the query on the component mount
+  abiJSON: yourImportedAbiJSONObject // required for SCQueryType.COMPLEX type
 });
 ```
+
+**Example** with `SCQueryType.COMPLEX`. This type uses `/vm-values/query`, ABI and ResultParser. The ABI JSON contents are required here. You can copy abi.json and import it in the same place you use useScQuery. Put the abi JSON file wherever you like in the codebase. I chose the `config` directory. See the example below:
+
+```jsx
+import { TypedOutcomeBundle } from '@elrondnetwork/erdjs';
+import abiJSON from '../config/abi.json';
+
+const { data } = useScQuery<TypedOutcomeBundle>({
+  type: SCQueryType.COMPLEX,
+  payload: {
+    scAddress: 'erd1qqq...',
+    funcName: 'yourScFunction',
+    args: [], // args in hex format, use erdjs for conversion, see above
+  },
+  autoInit: true,
+  abiJSON,
+});
+```
+
+The `data` here will be a `TypedOutcomeBundle`. Which is:
+
+```typescript
+interface TypedOutcomeBundle {
+  returnCode: ReturnCode;
+  returnMessage: string;
+  values: TypedValue[];
+  firstValue?: TypedValue;
+  secondValue?: TypedValue;
+  thirdValue?: TypedValue;
+  lastValue?: TypedValue;
+}
+```
+
+You can then process the data. For example `data.firstValue.valueOf()` or `data.firstValue.toString()` if applicable. The returned type can be further processed using erdjs.
 
 #### useLoggingIn()
 
@@ -178,7 +213,7 @@ const { address, nonce, balance } = useAccount();
 
 #### useLoginInfo()
 
-The hook will provide the information about the user's auth data state. The data: loginMethod, expires, loginToken, signature. Login token and signature won't always be there. It depends if you'll use the token. Check [Elven Tools Dapp backend integration article](https://www.elven.tools/docs/dapp-backend-integration.html) for more info.
+The hook will provide information about the user's auth data state. The data: loginMethod, expires, loginToken, signature. Login token and signature won't always be there. It depends if you'll use the token. Check [Elven Tools Dapp backend integration article](https://www.elven.tools/docs/dapp-backend-integration.html) for more info.
 
 ```jsx
 const { loginMethod, expires, loginToken, signature } = useLoginInfo();
@@ -186,7 +221,7 @@ const { loginMethod, expires, loginToken, signature } = useLoginInfo();
 
 #### useApiCall()
 
-The hook provides a convenient way of doing custom API calls unrelated to transactions or smart contract queries. By default it will use MultiversX API endpoint. But it can be any type of API, not only MultiversX API. In that case you would need to pass the `{ baseEndpoint: "https://some-api.com" }` in options
+The hook provides a convenient way of doing custom API calls unrelated to transactions or smart contract queries. By default, it will use MultiversX API endpoint. But it can be any type of API, not only MultiversX API. In that case, you would need to pass the `{ baseEndpoint: "https://some-api.com" }` in options
 
 ```jsx
 const { data, isLoading, isValidating, fetch, error } = useApiCall<Token[]>({

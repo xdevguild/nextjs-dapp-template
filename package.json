@@ -1,6 +1,6 @@
 {
   "name": "nextjs-dapp-template",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": "Julian Ćwirko <julian.io>",
   "license": "MIT",
   "homepage": "https://github.com/xdevguild/nextjs-dapp-template",
@@ -17,10 +17,10 @@
     "format": "prettier --write '**/*.{js,ts,tsx,json}'"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.4.1",
-    "@elrondnetwork/erdjs": "11.1.1",
+    "@chakra-ui/react": "2.4.2",
+    "@elrondnetwork/erdjs": "11.1.2",
     "@elrondnetwork/erdjs-extension-provider": "2.0.5",
-    "@elrondnetwork/erdjs-hw-provider": "2.0.4",
+    "@elrondnetwork/erdjs-hw-provider": "2.1.0",
     "@elrondnetwork/erdjs-network-providers": "1.1.3",
     "@elrondnetwork/erdjs-wallet-connect-provider": "2.0.3",
     "@elrondnetwork/erdjs-web-wallet-provider": "2.1.1",
@@ -34,7 +34,7 @@
     "deep-equal": "2.1.0",
     "events": "3.3.0",
     "lodash.clonedeep": "4.5.0",
-    "next": "13.0.3",
+    "next": "13.0.6",
     "path-browserify": "1.0.1",
     "process": "0.11.10",
     "qrcode": "1.5.1",
@@ -43,20 +43,20 @@
     "react-social-icons": "5.15.0",
     "stream-browserify": "3.0.0",
     "swr": "2.0.0-rc.0",
-    "valtio": "1.7.5"
+    "valtio": "1.7.6"
   },
   "devDependencies": {
     "@types/deep-equal": "1.0.1",
     "@types/lodash.clonedeep": "4.5.7",
-    "@types/node": "18.11.9",
+    "@types/node": "18.11.10",
     "@types/qrcode": "1.5.0",
-    "@types/react": "18.0.25",
-    "@typescript-eslint/eslint-plugin": "5.43.0",
-    "eslint": "8.27.0",
-    "eslint-config-next": "13.0.3",
+    "@types/react": "18.0.26",
+    "@typescript-eslint/eslint-plugin": "5.45.0",
+    "eslint": "8.29.0",
+    "eslint-config-next": "13.0.6",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-valtio": "0.6.1",
-    "prettier": "2.7.1",
+    "prettier": "2.8.0",
     "typescript": "4.9.3"
   }
 }

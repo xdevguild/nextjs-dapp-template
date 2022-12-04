@@ -32,7 +32,7 @@ export const SimpleScQeryDemo = ({
   });
 
   useEffect(() => {
-    if (queryResult) {
+    if (queryResult !== undefined && queryResult !== null) {
       cb?.(queryResult.toString(), isLoading || isValidating, error);
     }
   }, [cb, error, isLoading, isValidating, queryResult]);
