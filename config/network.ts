@@ -66,3 +66,7 @@ export const networkConfig: Record<string, NetworkType> = {
     apiTimeout: '4000',
   },
 };
+
+export const getActiveNetworkConfiguration = () => {
+  return networkConfig[chainType];
+};

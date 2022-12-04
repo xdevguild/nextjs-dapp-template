@@ -11,7 +11,7 @@ import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { useSnapshot } from 'valtio';
 import { accountState, loginInfoState } from '../../store/auth';
 import { getNetworkState } from '../../store/network';
-import { chainType, networkConfig } from '../../config/network';
+import { getActiveNetworkConfiguration } from '../../config/network';
 import { DappProvider } from '../../types/network';
 import { useState } from 'react';
 import {
@@ -81,7 +81,7 @@ export function useScTransaction(
         data,
         gasLimit,
         ...(value ? { value: TokenPayment.egldFromAmount(value) } : {}),
-        chainID: networkConfig[chainType].shortId,
+        chainID: getActiveNetworkConfiguration().shortId,
         receiver: new Address(smartContractAddress),
         sender: new Address(accountSnap.address),
       });

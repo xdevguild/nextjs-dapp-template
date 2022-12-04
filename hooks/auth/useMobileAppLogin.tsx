@@ -3,7 +3,7 @@ import { Account, Address } from '@elrondnetwork/erdjs';
 import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
 import { useState, useRef } from 'react';
-import { networkConfig, chainType } from '../../config/network';
+import { getActiveNetworkConfiguration } from '../../config/network';
 import { LoginMethodsEnum } from '../../types/enums';
 import {
   setAccountState,
@@ -40,7 +40,7 @@ export const useMobileAppLogin = (params?: Login) => {
 
   const login = async () => {
     const bridgeAddress = getBridgeAddressFromNetwork(
-      networkConfig[chainType].walletConnectBridgeAddresses
+      getActiveNetworkConfiguration().walletConnectBridgeAddresses
     );
 
     if (!bridgeAddress || !apiNetworkProvider) {
