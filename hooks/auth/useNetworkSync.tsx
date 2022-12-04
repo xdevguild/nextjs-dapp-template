@@ -16,9 +16,8 @@ import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider';
 import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { HWProvider } from '@elrondnetwork/erdjs-hw-provider';
 import {
-  networkConfig,
-  chainType,
   DAPP_INIT_ROUTE,
+  getActiveNetworkConfiguration,
 } from '../../config/network';
 import { getBridgeAddressFromNetwork } from '../../utils/bridgeAddress';
 import { getParamFromUrl } from '../../utils/getParamFromUrl';
@@ -100,10 +99,11 @@ export const useNetworkSync = () => {
     const askForApiNetworkProvider = async () => {
       let apiNetworkProvider = apiNetworkProviderRef?.current;
       if (!apiNetworkProvider) {
-        const publicApiEndpoint = process.env.NEXT_PUBLIC_MULTIVERSX_API;
+        const activeConfiguration = getActiveNetworkConfiguration();
+        const publicApiEndpoint = activeConfiguration.apiAddress;
         if (publicApiEndpoint) {
           apiNetworkProvider = new ApiNetworkProvider(publicApiEndpoint, {
-            timeout: Number(networkConfig[chainType].apiTimeout),
+            timeout: Number(activeConfiguration.apiTimeout),
           });
           apiNetworkProviderRef.current = apiNetworkProvider;
           network.setNetworkState('apiNetworkProvider', apiNetworkProvider);
@@ -133,6 +133,7 @@ export const useNetworkSync = () => {
       }
 
       if (!dappProvider) {
+        const networkConfiguration = getActiveNetworkConfiguration();
         switch (loginMethod) {
           // Browser extension auth (Maiar defi wallet)
           case LoginMethodsEnum.extension:
@@ -166,7 +167,7 @@ export const useNetworkSync = () => {
             };
 
             const bridgeAddress = getBridgeAddressFromNetwork(
-              networkConfig[chainType].walletConnectBridgeAddresses
+              networkConfiguration.walletConnectBridgeAddresses
             );
             dappProvider = new WalletConnectProvider(
               bridgeAddress,
@@ -195,7 +196,7 @@ export const useNetworkSync = () => {
             }
             if (address) {
               dappProvider = new WalletProvider(
-                `${networkConfig[chainType].walletAddress}${DAPP_INIT_ROUTE}`
+                `${networkConfiguration.walletAddress}${DAPP_INIT_ROUTE}`
               );
               dappProviderRef.current = dappProvider;
               network.setNetworkState('dappProvider', dappProvider);

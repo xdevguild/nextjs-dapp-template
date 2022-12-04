@@ -2,9 +2,8 @@ import { WalletProvider } from '@elrondnetwork/erdjs-web-wallet-provider';
 import { LoginMethodsEnum } from '../../types/enums';
 import { getNewLoginExpiresTimestamp } from '../../utils/expiresAt';
 import {
-  chainType,
   DAPP_INIT_ROUTE,
-  networkConfig,
+  getActiveNetworkConfiguration,
 } from '../../config/network';
 import { setLoginInfoState, setLoggingInState } from '../../store/auth';
 import { useLogout } from './useLogout';
@@ -20,7 +19,7 @@ export const useWebWalletLogin = (params?: Login) => {
     setLoggingInState('pending', true);
 
     const providerInstance = new WalletProvider(
-      `${networkConfig[chainType].walletAddress}${DAPP_INIT_ROUTE}`
+      `${getActiveNetworkConfiguration().walletAddress}${DAPP_INIT_ROUTE}`
     );
 
     const callbackUrl: string =

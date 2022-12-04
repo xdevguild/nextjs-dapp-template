@@ -1,9 +1,11 @@
 // Usefull for the api calls on the backend side, but not only. It is also used as fetcher in hooks
 
-export const apiCall = {
-  baseEndpoint: `${process.env.NEXT_PUBLIC_MULTIVERSX_API}`,
+import { getActiveNetworkConfiguration } from '../config/network';
 
+export const apiCall = {
   async get(endpoint: string, options?: Record<string, unknown>) {
+    const baseEndpoint =
+      options?.baseEndpoint || getActiveNetworkConfiguration().apiAddress;
     if (typeof fetch !== 'undefined') {
       const defaultOptions = {
         method: 'GET',
@@ -14,7 +16,7 @@ export const apiCall = {
       };
 
       const response = await fetch(
-        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
+        baseEndpoint + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 
@@ -44,8 +46,10 @@ export const apiCall = {
         body: JSON.stringify(payload || {}),
       };
 
+      const baseEndpoint =
+        options?.baseEndpoint || getActiveNetworkConfiguration().apiAddress;
       const response = await fetch(
-        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
+        baseEndpoint + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 
@@ -74,8 +78,10 @@ export const apiCall = {
         body: JSON.stringify(payload || {}),
       };
 
+      const baseEndpoint =
+        options?.baseEndpoint || getActiveNetworkConfiguration().apiAddress;
       const response = await fetch(
-        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
+        baseEndpoint + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 
@@ -99,8 +105,10 @@ export const apiCall = {
         },
       };
 
+      const baseEndpoint =
+        options?.baseEndpoint || getActiveNetworkConfiguration().apiAddress;
       const response = await fetch(
-        (options?.baseEndpoint || this.baseEndpoint) + endpoint,
+        baseEndpoint + endpoint,
         Object.assign(defaultOptions, options || {})
       );
 

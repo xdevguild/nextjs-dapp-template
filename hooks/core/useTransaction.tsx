@@ -10,7 +10,7 @@ import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
 import { useSnapshot } from 'valtio';
 import { accountState, loginInfoState } from '../../store/auth';
 import { getNetworkState } from '../../store/network';
-import { chainType, networkConfig } from '../../config/network';
+import { getActiveNetworkConfiguration } from '../../config/network';
 import { DappProvider } from '../../types/network';
 import { useState } from 'react';
 import { useWebWalletTxSend } from './common-helpers/useWebWalletTxSend';
@@ -73,7 +73,7 @@ export function useTransaction(
         nonce: currentNonce,
         receiver: new Address(address),
         gasLimit,
-        chainID: networkConfig[chainType].shortId,
+        chainID: getActiveNetworkConfiguration().shortId,
         data,
         ...(value ? { value: TokenPayment.egldFromAmount(value) } : {}),
         sender: new Address(accountSnap.address),
