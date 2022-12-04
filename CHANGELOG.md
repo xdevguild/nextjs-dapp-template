@@ -1,4 +1,8 @@
-### [3.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v2.3.0) (2022-11-16)
+### [3.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v3.1.0) (2022-12-03)
+- rewritten useScQuery, but it keeps backward compatibility, you can still use simple data types like number, string and boolan as the results without ABI, if you need to catch more complex data types, you need to provide the ABI file, check for more info in the README.md file
+- dependencies updates
+
+### [3.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v3.0.0) (2022-11-16)
 - dependencies updates
 - first phase of 'rebranding' into MultiversX ;)
 - **Breaking**: `useElrondNetworkSync` is now `useNetworkSync`
