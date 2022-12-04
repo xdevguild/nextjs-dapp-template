@@ -128,6 +128,7 @@ export const SimpleDemo = () => {
                 fontSize="large"
                 textDecoration="underline"
                 href={`${networkConfig[chainType].explorerAddress}/transactions/${result.content}`}
+                isExternal
               >
                 {shortenHash(result.content, 10)}
               </Link>
