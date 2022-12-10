@@ -354,12 +354,16 @@ Here are other deployment solutions: [NextJS Deployment](https://nextjs.org/docs
 
 ### Other solutions
 
-If you would like to test other templates:
+The same dapp, but with Tailwind instead Chakra UI:
+
+- [nextjs-dapp-template-tw](https://github.com/xdevguild/nextjs-dapp-template-tw)
+
+If you would like to test other templates check:
 
 - [erd-next-starter](https://github.com/Elrond-Giants/erd-next-starter)
 - [dapp-template](https://github.com/ElrondNetwork/dapp-template)
 
-Dapps using it (send the links if you used it, use issues here on GitHub):
+Dapps using the template (send the links if you used it, use issues here on GitHub):
 
 - [Elven Tools Dapp](https://dapp-demo.elven.tools/)
 - [MultiversX ESDT Faucet Dapp](https://devnet-elrond-esdt-faucet.netlify.app/)
