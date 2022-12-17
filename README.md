@@ -221,20 +221,40 @@ const { loginMethod, expires, loginToken, signature } = useLoginInfo();
 
 #### useApiCall()
 
-The hook provides a convenient way of doing custom API calls unrelated to transactions or smart contract queries. By default, it will use MultiversX API endpoint. But it can be any type of API, not only MultiversX API. In that case, you would need to pass the `{ baseEndpoint: "https://some-api.com" }` in options
+The hook provides a convenient way of doing custom API calls unrelated to transactions or smart contract queries. By default, it will use MultiversX API endpoint. But it can be any type of API, not only MultiversX API. In that case, you would need to pass the `{ baseEndpoint: "https://some-api.com" }`
 
 ```jsx
 const { data, isLoading, isValidating, fetch, error } = useApiCall<Token[]>({
-  url: `/accounts/<some_erd_address_here>/tokens`, // can be any API endpoint without the host, because it is already handled internally
+  url: `/accounts/<some_erd_address_here>/tokens`, // can be any API path without the host, because the host is already handled internally
   autoInit: true, // similar to useScQuery
   type: 'get', // can be get, post, delete, put
   payload: {},
   options: {}
+  baseEndpoint: undefined, // any custom API endpoint, by default MultiversX API
 });
 ```
 
 You can pass the response type. Returned object is the same as in `useScQuery`
 The hook uses `swr` and native `fetch` under the hood.
+
+### ProtectedPageWrapper
+
+The component wraps your page contents and will display them only for logged-in users. Otherwise, it will redirect to a defined path. Remember that this is only a client-side check. So don't rely on it with the data that should be private and secured.
+
+```jsx
+import { ProtectedPageWrapper } from './components/tools/ProtectedPageWrapper';
+
+const Profile = () => {
+  return (
+    <ProtectedPageWrapper>
+      <Text>The content for logged-in only!</Text>
+      <Text>For example the profile page or any other that should be accessible only for logged-in users</Text>
+    </ProtectedPageWrapper>
+  );
+};
+
+export default Profile;
+```
 
 ### Working with the API
 

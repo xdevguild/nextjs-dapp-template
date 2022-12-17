@@ -8,25 +8,32 @@ interface ApiCallData {
   payload?: Record<string, unknown>;
   options?: Record<string, unknown>;
   autoInit?: boolean;
+  baseEndpoint?: string;
 }
 
 interface FetcherArgs {
   url: string;
-  type?: string;
   payload: Record<string, unknown> | undefined;
+  type?: string;
+  baseEndpoint?: string;
 }
 
-export async function fetcher({ url, type, payload }: FetcherArgs) {
+export async function fetcher({
+  url,
+  type,
+  payload,
+  baseEndpoint,
+}: FetcherArgs) {
   if (type === 'post') {
-    return await apiCall.post(url, payload || {});
+    return await apiCall.post(url, payload || {}, { baseEndpoint });
   }
   if (type === 'put') {
-    return await apiCall.put(url, payload || {});
+    return await apiCall.put(url, payload || {}, { baseEndpoint });
   }
   if (type === 'delete') {
-    return await apiCall.delete(url);
+    return await apiCall.delete(url, { baseEndpoint });
   }
-  return await apiCall.get(url);
+  return await apiCall.get(url, { baseEndpoint });
 }
 
 export function useApiCall<T>({
@@ -35,9 +42,10 @@ export function useApiCall<T>({
   payload,
   options,
   autoInit = true,
+  baseEndpoint,
 }: ApiCallData) {
   const { data, error, mutate, isValidating, isLoading } = useSWR(
-    autoInit ? { url, payload, type } : null,
+    autoInit ? { url, payload, type, baseEndpoint } : null,
     fetcher,
     {
       revalidateIfStale: true,

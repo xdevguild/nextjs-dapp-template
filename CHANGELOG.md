@@ -1,3 +1,8 @@
+### [4.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v4.1.0) (2022-12-17)
+- added `ProtectedPageWrapper` component - client side only 'gate keeper', check README.md for more info
+- fix for the `useApiCall` hook
+- npm dependencies updates
+
 ### [4.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v4.0.0) (2022-12-04)
 - changes in how the API proxy work
 - renamed env variables
