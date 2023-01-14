@@ -2,14 +2,14 @@ import { useEffect, Dispatch, SetStateAction } from 'react';
 import {
   WALLET_PROVIDER_CALLBACK_PARAM,
   WALLET_PROVIDER_CALLBACK_PARAM_TX_SIGNED,
-} from '@elrondnetwork/erdjs-web-wallet-provider';
-import { Transaction } from '@elrondnetwork/erdjs';
+} from '@multiversx/sdk-web-wallet-provider';
+import { Transaction } from '@multiversx/sdk-core';
 import { useSnapshot } from 'valtio';
 import { getParamFromUrl } from '../../../utils/getParamFromUrl';
 import { getNetworkState } from '../../../store/network';
 import { DappProvider } from '../../../types/network';
 import { accountState } from '../../../store/auth';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { postSendTxOperations, TransactionCb } from './sendTxOperations';
 import { errorParse } from '../../../utils/errorParse';
 

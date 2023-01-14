@@ -2,7 +2,7 @@
 
 - [multiversx-nextjs-dapp.netlify.com](https://multiversx-nextjs-dapp.netlify.com)
 
-Nextjs alternative to the [dapp-core](https://github.com/ElrondNetwork/dapp-core).
+Nextjs alternative to the [sdk-dapp](https://github.com/multiversx/mx-sdk-dapp).
 Based on [Elven Tools Dapp](https://www.elven.tools/docs/minter-dapp-introduction.html), (It is developed simultaneously, and at some stages, it will have more core functionality)
 
 The Dapp is built using Nextjs and a couple of helpful tools.
@@ -58,7 +58,7 @@ const NextJSDappTemplate = ({ Component, pageProps }: AppProps) => {
 
 #### LoginModalButton
 
-The component provides the `Connect` button with the modal, which will contain another three buttons for four different authentication possibilities (Maiar Mobile App, Maiar Defi Wallet - browser extension, Elrond Web Wallet). You should be able to use it in any place on the website.
+The component provides the `Connect` button with the modal, which will contain another three buttons for four different authentication possibilities (Maiar Mobile App, Maiar Defi Wallet - browser extension, MultiversX Web Wallet). You should be able to use it in any place on the website.
 
 ```jsx
 import { LoginModalButton } from '../tools/LoginModalButton';
@@ -164,7 +164,7 @@ const {
 **Example** with `SCQueryType.COMPLEX`. This type uses `/vm-values/query`, ABI and ResultParser. The ABI JSON contents are required here. You can copy abi.json and import it in the same place you use useScQuery. Put the abi JSON file wherever you like in the codebase. I chose the `config` directory. See the example below:
 
 ```jsx
-import { TypedOutcomeBundle } from '@elrondnetwork/erdjs';
+import { TypedOutcomeBundle } from '@multiversx/sdk-core';
 import abiJSON from '../config/abi.json';
 
 const { data } = useScQuery<TypedOutcomeBundle>({
@@ -289,7 +289,7 @@ NEXT_PUBLIC_MULTIVERSX_CHAIN = devnet
 # You have three options:
 #
 # 1. By commenting this out the dapp will use the default
-#    MultiversX api endpoint (e.g. https://devnet-api.elrond.com)
+#    MultiversX api endpoint (e.g. https://devnet-api.multiversx.com)
 #
 #    Note: MULTIVERSX_PRIVATE_API needs to be removed/commented out.
 #
@@ -316,7 +316,7 @@ NEXT_PUBLIC_DAPP_HOST = http://localhost:3000
 # This can be either a custom api endpoint or the default MultiversX api endpoint.
 # You will have to delete this or comment this out, if you don't wanna
 # mask / proxy your MultiversX api endpoint.
-MULTIVERSX_PRIVATE_API = https://devnet-api.elrond.com
+MULTIVERSX_PRIVATE_API = https://devnet-api.multiversx.com
 
 # Only this host will be allowed to consume the API (optional)
 # It will work only inside the Dapp, no one will be able to use the endpoint, even in browser
@@ -381,12 +381,12 @@ The same dapp, but with Tailwind instead Chakra UI:
 If you would like to test other templates check:
 
 - [erd-next-starter](https://github.com/Elrond-Giants/erd-next-starter)
-- [dapp-template](https://github.com/ElrondNetwork/dapp-template)
+- [dapp-template]https://github.com/multiversx/mx-template-dapp)
 
 Dapps using the template (send the links if you used it, use issues here on GitHub):
 
 - [Elven Tools Dapp](https://dapp-demo.elven.tools/)
-- [MultiversX ESDT Faucet Dapp](https://devnet-elrond-esdt-faucet.netlify.app/)
+- [MultiversX ESDT Faucet Dapp](https://devnet-multiversx-esdt-faucet.netlify.app/)
 
 Compact MultiversX SDK for browsers (no build steps required)
 

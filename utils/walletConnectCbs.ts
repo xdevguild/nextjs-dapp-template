@@ -1,6 +1,6 @@
-import { Address, Account } from '@elrondnetwork/erdjs';
-import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { Address, Account } from '@multiversx/sdk-core';
+import { WalletConnectProvider } from '@multiversx/sdk-wallet-connect-provider';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { setAccountState, setLoginInfoState } from '../store/auth';
 import { LoginMethodsEnum } from '../types/enums';
 import { optionalRedirect } from '../utils/optionalRedirect';

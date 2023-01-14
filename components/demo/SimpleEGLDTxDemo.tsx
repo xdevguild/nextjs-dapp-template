@@ -1,5 +1,5 @@
 import { Link, Text } from '@chakra-ui/react';
-import { TransactionPayload } from '@elrondnetwork/erdjs';
+import { TransactionPayload } from '@multiversx/sdk-core';
 import { useTransaction } from '../../hooks/core/useTransaction';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';

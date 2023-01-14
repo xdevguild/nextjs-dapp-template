@@ -1,5 +1,5 @@
 import { Link, Text } from '@chakra-ui/react';
-import { U32Value, ContractFunction } from '@elrondnetwork/erdjs';
+import { U32Value, ContractFunction } from '@multiversx/sdk-core';
 import { useScTransaction } from '../../hooks/core/useScTransaction';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';

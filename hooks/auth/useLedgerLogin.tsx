@@ -1,6 +1,6 @@
-import { Address, Account } from '@elrondnetwork/erdjs';
-import { HWProvider } from '@elrondnetwork/erdjs-hw-provider';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { Address, Account } from '@multiversx/sdk-core';
+import { HWProvider } from '@multiversx/sdk-hw-provider';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { LoginMethodsEnum } from '../../types/enums';
 import { optionalRedirect } from '../../utils/optionalRedirect';
 import {

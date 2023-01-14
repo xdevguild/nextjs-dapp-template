@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Account, Address } from '@elrondnetwork/erdjs';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
-import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
+import { Account, Address } from '@multiversx/sdk-core';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
+import { WalletConnectProvider } from '@multiversx/sdk-wallet-connect-provider';
 import { useState, useRef } from 'react';
 import { getActiveNetworkConfiguration } from '../../config/network';
 import { LoginMethodsEnum } from '../../types/enums';

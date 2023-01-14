@@ -5,8 +5,8 @@ import {
   ITransactionPayload,
   IGasLimit,
   TokenPayment,
-} from '@elrondnetwork/erdjs';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+} from '@multiversx/sdk-core';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { useSnapshot } from 'valtio';
 import { accountState, loginInfoState } from '../../store/auth';
 import { getNetworkState } from '../../store/network';

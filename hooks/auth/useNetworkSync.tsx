@@ -9,12 +9,12 @@ import {
   setLoginInfoState,
 } from '../../store/auth';
 import * as network from '../../store/network';
-import { Address, Account } from '@elrondnetwork/erdjs';
-import { WalletProvider } from '@elrondnetwork/erdjs-web-wallet-provider';
-import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
-import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
-import { HWProvider } from '@elrondnetwork/erdjs-hw-provider';
+import { Address, Account } from '@multiversx/sdk-core';
+import { WalletProvider } from '@multiversx/sdk-web-wallet-provider';
+import { WalletConnectProvider } from '@multiversx/sdk-wallet-connect-provider';
+import { ExtensionProvider } from '@multiversx/sdk-extension-provider';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
+import { HWProvider } from '@multiversx/sdk-hw-provider';
 import {
   DAPP_INIT_ROUTE,
   getActiveNetworkConfiguration,

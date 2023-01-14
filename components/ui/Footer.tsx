@@ -37,10 +37,37 @@ export const Footer = () => {
           >
             {'xDevGuild'}
           </Text>
-          <Text ml={2} mr={2}>
-            {' '}
-            |{' '}
+          <Text fontWeight="hairline"> | </Text>
+          <Text
+            as="a"
+            color="dappTemplate.color3.base"
+            href="https://github.com/ElvenTools"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            {'Elven Tools'}
           </Text>
+          <Text fontWeight="hairline"> | </Text>
+          <Text
+            as="a"
+            color="dappTemplate.color3.base"
+            href="https://github.com/juliancwirko/elven.js"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            {'Elven.js'}
+          </Text>
+          <Text fontWeight="hairline"> | </Text>
+          <Text
+            as="a"
+            color="dappTemplate.color3.base"
+            href="https://github.com/xdevguild/buildo-begins"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            {'Buildo Begins'}
+          </Text>
+          <Text fontWeight="hairline"> | </Text>
           <Text
             as="a"
             color="dappTemplate.color3.base"

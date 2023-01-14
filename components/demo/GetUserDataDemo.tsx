@@ -1,4 +1,4 @@
-import { TokenPayment } from '@elrondnetwork/erdjs';
+import { TokenPayment } from '@multiversx/sdk-core';
 import { Text, Link } from '@chakra-ui/react';
 import { shortenHash } from '../../utils/shortenHash';
 import { useAccount } from '../../hooks/auth/useAccount';

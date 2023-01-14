@@ -1,3 +1,9 @@
+### [4.2.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v4.2.0) (2023-01-14)
+- rebrand to multiversx (continuation)
+    - npm packages are replaced
+    - public api/explorer endpoints are replaced
+- update dependencies
+
 ### [4.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v4.1.0) (2022-12-17)
 - added `ProtectedPageWrapper` component - client side only 'gate keeper', check README.md for more info
 - fix for the `useApiCall` hook

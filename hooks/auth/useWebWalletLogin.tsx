@@ -1,4 +1,4 @@
-import { WalletProvider } from '@elrondnetwork/erdjs-web-wallet-provider';
+import { WalletProvider } from '@multiversx/sdk-web-wallet-provider';
 import { LoginMethodsEnum } from '../../types/enums';
 import { getNewLoginExpiresTimestamp } from '../../utils/expiresAt';
 import {

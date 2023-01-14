@@ -1,13 +1,13 @@
 // Tools used internally by sent transactions hooks
-import { Account, TransactionWatcher, Transaction } from '@elrondnetwork/erdjs';
-import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider';
-import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
-import { HWProvider } from '@elrondnetwork/erdjs-hw-provider';
+import { Account, TransactionWatcher, Transaction } from '@multiversx/sdk-core';
+import { ExtensionProvider } from '@multiversx/sdk-extension-provider';
+import { WalletConnectProvider } from '@multiversx/sdk-wallet-connect-provider';
+import { HWProvider } from '@multiversx/sdk-hw-provider';
 import { Dispatch, SetStateAction } from 'react';
 import { setAccountState, LoginInfoState } from '../../../store/auth';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { LoginMethodsEnum } from '../../../types/enums';
-import { WalletProvider } from '@elrondnetwork/erdjs-web-wallet-provider';
+import { WalletProvider } from '@multiversx/sdk-web-wallet-provider';
 import { DappProvider } from '../../../types/network';
 import { errorParse } from '../../../utils/errorParse';
 

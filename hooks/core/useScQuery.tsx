@@ -5,8 +5,8 @@ import {
   SmartContract,
   Address,
   AbiRegistry,
-} from '@elrondnetwork/erdjs';
-import { ContractQueryResponse } from '@elrondnetwork/erdjs-network-providers';
+} from '@multiversx/sdk-core';
+import { ContractQueryResponse } from '@multiversx/sdk-network-providers';
 import useSwrMutation from 'swr/mutation';
 import { apiCall } from '../../utils/apiCall';
 

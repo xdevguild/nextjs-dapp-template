@@ -1,9 +1,8 @@
-import { WalletProvider } from '@elrondnetwork/erdjs-web-wallet-provider';
-import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
-import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
-import { HWProvider } from '@elrondnetwork/erdjs-hw-provider';
-import { ProxyNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { WalletProvider } from '@multiversx/sdk-web-wallet-provider';
+import { WalletConnectProvider } from '@multiversx/sdk-wallet-connect-provider';
+import { ExtensionProvider } from '@multiversx/sdk-extension-provider';
+import { ApiNetworkProvider, ProxyNetworkProvider } from '@multiversx/sdk-network-providers';
+import { HWProvider } from '@multiversx/sdk-hw-provider';
 
 export interface BaseNetworkType {
   id: string;

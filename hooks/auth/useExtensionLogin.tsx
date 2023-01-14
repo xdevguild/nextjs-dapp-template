@@ -1,5 +1,5 @@
-import { Address, Account } from '@elrondnetwork/erdjs';
-import { ExtensionProvider } from '@elrondnetwork/erdjs-extension-provider';
+import { Address, Account } from '@multiversx/sdk-core';
+import { ExtensionProvider } from '@multiversx/sdk-extension-provider';
 import { LoginMethodsEnum } from '../../types/enums';
 import { optionalRedirect } from '../../utils/optionalRedirect';
 import {
@@ -12,7 +12,7 @@ import { getNewLoginExpiresTimestamp } from '../../utils/expiresAt';
 import { useLogout } from './useLogout';
 import { Login } from '../../types/account';
 import { useLoggingIn } from './useLoggingIn';
-import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { errorParse } from '../../utils/errorParse';
 
 export const useExtensionLogin = (params?: Login) => {

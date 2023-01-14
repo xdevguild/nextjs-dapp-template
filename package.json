@@ -1,6 +1,6 @@
 {
   "name": "nextjs-dapp-template",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "author": "Julian Ćwirko <julian.io>",
   "license": "MIT",
   "homepage": "https://github.com/xdevguild/nextjs-dapp-template",
@@ -17,13 +17,13 @@
     "format": "prettier --write '**/*.{js,ts,tsx,json}'"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.4.4",
-    "@elrondnetwork/erdjs": "11.1.2",
-    "@elrondnetwork/erdjs-extension-provider": "2.0.5",
-    "@elrondnetwork/erdjs-hw-provider": "2.1.0",
-    "@elrondnetwork/erdjs-network-providers": "1.1.3",
-    "@elrondnetwork/erdjs-wallet-connect-provider": "2.0.3",
-    "@elrondnetwork/erdjs-web-wallet-provider": "2.1.2",
+    "@chakra-ui/react": "2.4.8",
+    "@multiversx/sdk-core": "11.2.0",
+    "@multiversx/sdk-extension-provider": "2.0.7",
+    "@multiversx/sdk-hw-provider": "3.0.1",
+    "@multiversx/sdk-network-providers": "1.2.1",
+    "@multiversx/sdk-wallet-connect-provider": "3.0.1",
+    "@multiversx/sdk-web-wallet-provider": "2.1.4",
     "@emotion/react": "11.10.5",
     "@emotion/styled": "11.10.5",
     "@fontsource/poppins": "4.5.10",
@@ -31,10 +31,9 @@
     "buffer": "6.0.3",
     "crypto-browserify": "3.12.0",
     "date-fns": "2.29.3",
-    "deep-equal": "2.1.0",
     "events": "3.3.0",
     "lodash.clonedeep": "4.5.0",
-    "next": "13.0.7",
+    "next": "13.1.2",
     "path-browserify": "1.0.1",
     "process": "0.11.10",
     "qrcode": "1.5.1",
@@ -43,20 +42,19 @@
     "react-social-icons": "5.15.0",
     "stream-browserify": "3.0.0",
     "swr": "2.0.0",
-    "valtio": "1.7.6"
+    "valtio": "1.8.2"
   },
   "devDependencies": {
-    "@types/deep-equal": "1.0.1",
     "@types/lodash.clonedeep": "4.5.7",
-    "@types/node": "18.11.16",
+    "@types/node": "18.11.18",
     "@types/qrcode": "1.5.0",
     "@types/react": "18.0.26",
-    "@typescript-eslint/eslint-plugin": "5.46.1",
-    "eslint": "8.30.0",
-    "eslint-config-next": "13.0.7",
-    "eslint-config-prettier": "8.5.0",
+    "@typescript-eslint/eslint-plugin": "5.48.1",
+    "eslint": "8.31.0",
+    "eslint-config-next": "13.1.2",
+    "eslint-config-prettier": "8.6.0",
     "eslint-plugin-valtio": "0.6.1",
-    "prettier": "2.8.1",
+    "prettier": "2.8.3",
     "typescript": "4.9.4"
   }
 }
