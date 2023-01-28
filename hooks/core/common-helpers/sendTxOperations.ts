@@ -1,5 +1,10 @@
 // Tools used internally by sent transactions hooks
-import { Account, TransactionWatcher, Transaction } from '@multiversx/sdk-core';
+import {
+  Account,
+  TransactionWatcher,
+  Transaction,
+  ITransactionOnNetwork,
+} from '@multiversx/sdk-core';
 import { ExtensionProvider } from '@multiversx/sdk-extension-provider';
 import { WalletConnectProvider } from '@multiversx/sdk-wallet-connect-provider';
 import { HWProvider } from '@multiversx/sdk-hw-provider';
@@ -15,18 +20,21 @@ export interface TransactionCb {
   transaction?: Transaction | null;
   error?: string;
   pending?: boolean;
+  txResult?: ITransactionOnNetwork | null;
 }
 
 export const postSendTxOperations = async (
   tx: Transaction,
   setTransaction: Dispatch<SetStateAction<Transaction | null>>,
+  setTxResult: Dispatch<SetStateAction<ITransactionOnNetwork | null>>,
   apiNetworkProvider: ApiNetworkProvider,
   cb?: (params: TransactionCb) => void
 ) => {
   const transactionWatcher = new TransactionWatcher(apiNetworkProvider);
-  await transactionWatcher.awaitCompleted(tx);
+  const txResult = await transactionWatcher.awaitCompleted(tx);
   setTransaction(tx);
-  cb?.({ transaction: tx, pending: false });
+  setTxResult(txResult);
+  cb?.({ transaction: tx, pending: false, txResult });
   const sender = tx.getSender();
   const senderAccount = new Account(sender);
   const userAccountOnNetwork = await apiNetworkProvider.getAccount(sender);
@@ -42,6 +50,7 @@ export const sendTxOperations = async (
   loginInfoSnap: LoginInfoState,
   apiNetworkProvider: ApiNetworkProvider,
   setTransaction: Dispatch<SetStateAction<Transaction | null>>,
+  setTxResult: Dispatch<SetStateAction<ITransactionOnNetwork | null>>,
   setError: Dispatch<SetStateAction<string>>,
   setPending: Dispatch<SetStateAction<boolean>>,
   webWalletRedirectUrl?: string,
@@ -65,7 +74,13 @@ export const sendTxOperations = async (
     }
     if (loginInfoSnap.loginMethod !== LoginMethodsEnum.wallet) {
       await apiNetworkProvider.sendTransaction(tx);
-      await postSendTxOperations(tx, setTransaction, apiNetworkProvider, cb);
+      await postSendTxOperations(
+        tx,
+        setTransaction,
+        setTxResult,
+        apiNetworkProvider,
+        cb
+      );
     }
   } catch (e) {
     const err = errorParse(e);

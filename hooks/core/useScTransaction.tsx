@@ -1,3 +1,6 @@
+// This hook is an abstraction for standard useTransaction, it hides the payload preparation for smart contract
+// In the future both will be merged in one
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   ContractFunction,
@@ -6,6 +9,7 @@ import {
   TypedValue,
   TokenPayment,
   ContractCallPayloadBuilder,
+  ITransactionOnNetwork,
 } from '@multiversx/sdk-core';
 import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { useSnapshot } from 'valtio';
@@ -42,6 +46,7 @@ export function useScTransaction(
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const [transaction, setTransaction] = useState<Transaction | null>(null);
+  const [txResult, setTxResult] = useState<ITransactionOnNetwork | null>(null);
   const accountSnap = useSnapshot(accountState);
   const loginInfoSnap = useSnapshot(loginInfoState);
 
@@ -50,7 +55,7 @@ export function useScTransaction(
     getNetworkState<ApiNetworkProvider>('apiNetworkProvider');
   const currentNonce = accountSnap.nonce;
 
-  useWebWalletTxSend({ setPending, setTransaction, setError, cb });
+  useWebWalletTxSend({ setPending, setTransaction, setTxResult, setError, cb });
 
   const triggerTx = async ({
     smartContractAddress,
@@ -60,6 +65,7 @@ export function useScTransaction(
     value,
   }: ScTransactionParams) => {
     setTransaction(null);
+    setTxResult(null);
     setError('');
     if (
       dappProvider &&
@@ -94,6 +100,7 @@ export function useScTransaction(
         loginInfoSnap,
         apiNetworkProvider,
         setTransaction,
+        setTxResult,
         setError,
         setPending,
         webWalletRedirectUrl,
@@ -110,6 +117,7 @@ export function useScTransaction(
     pending,
     triggerTx,
     transaction,
+    txResult,
     error,
   };
 }

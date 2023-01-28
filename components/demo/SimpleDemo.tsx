@@ -100,7 +100,7 @@ export const SimpleDemo = () => {
           </Box>
           {loginMethod === LoginMethodsEnum.walletconnect && (
             <Box>
-              Confirm it on the Maiar mobile app and wait till it finishes.
+              Confirm it on the xPortal mobile app and wait till it finishes.
             </Box>
           )}
           {loginMethod === LoginMethodsEnum.ledger && (
@@ -143,7 +143,7 @@ export const SimpleDemo = () => {
                 <Text fontWeight="black" fontSize="xl" display="inline-block">
                   {result.content}
                 </Text>{' '}
-                NFTs to mint left!
+                NFTs left to mint!
               </Box>
             </>
           )}

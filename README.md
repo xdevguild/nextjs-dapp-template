@@ -11,7 +11,7 @@ It has straightforward and complete functionality.
 ### Main assumption for the dapp:
 
 - it works on Nextjs
-- it uses erdjs 11.* without the dapp-core library.
+- it uses sdk-core 11.* without the dapp-core library.
 it uses backed-side redirections to hide the API endpoint. The only exposed one is `/api/multiversx` and it is used only by the dapp internally
 - it uses the .env file - there is an example in the repo (for all configurations, also for the demo config)
 - it uses chakra-ui
@@ -58,7 +58,7 @@ const NextJSDappTemplate = ({ Component, pageProps }: AppProps) => {
 
 #### LoginModalButton
 
-The component provides the `Connect` button with the modal, which will contain another three buttons for four different authentication possibilities (Maiar Mobile App, Maiar Defi Wallet - browser extension, MultiversX Web Wallet). You should be able to use it in any place on the website.
+The component provides the `Connect` button with the modal, which will contain another three buttons for four different authentication possibilities (xPortal Mobile App, MultiversX Defi Wallet - browser extension, MultiversX Web Wallet). You should be able to use it in any place on the website.
 
 ```jsx
 import { LoginModalButton } from '../tools/LoginModalButton';
@@ -107,7 +107,7 @@ It can display the spinner and also the fallback React element.
 The hook provides all that is required for triggering transactions. useTransaction can also take a callback function as an argument.
 
 ```jsx
-const { pending, triggerTx, transaction, error } = useTransaction({ cb });
+const { pending, triggerTx, transaction, txResult, error } = useTransaction({ cb });
 
 const handleSendTx = useCallback(() => {
   const demoMessage = 'Transaction demo!';
@@ -125,7 +125,7 @@ const handleSendTx = useCallback(() => {
 The hook provides all that is required for triggering smart contract transactions. useScTransaction can also take a callback function as an argument.
 
 ```jsx
-const { pending, triggerTx, transaction, error } = useScTransaction({ cb });
+const { pending, triggerTx, transaction, txResult, error } = useScTransaction({ cb });
 
 const handleSendTx = useCallback(() => {
   triggerTx({
@@ -154,7 +154,7 @@ const {
   payload: {
     scAddress: process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS,
     funcName: process.env.NEXT_PUBLIC_QUERY_FUNCTION_NAME,
-    args: [], // arguments for the query in hex format, you can use erdjs for that, for example: args: [ new Address('erd1....').hex() ] etc. It will be also simplified in the future.
+    args: [], // arguments for the query in hex format, you can use sdk-core for that, for example: args: [ new Address('erd1....').hex() ] etc. It will be also simplified in the future.
   },
   autoInit: false, // you can enable or disable the trigger of the query on the component mount
   abiJSON: yourImportedAbiJSONObject // required for SCQueryType.COMPLEX type
@@ -172,7 +172,7 @@ const { data } = useScQuery<TypedOutcomeBundle>({
   payload: {
     scAddress: 'erd1qqq...',
     funcName: 'yourScFunction',
-    args: [], // args in hex format, use erdjs for conversion, see above
+    args: [], // args in hex format, use sdk-core for conversion, see above
   },
   autoInit: true,
   abiJSON,
@@ -193,7 +193,7 @@ interface TypedOutcomeBundle {
 }
 ```
 
-You can then process the data. For example `data.firstValue.valueOf()` or `data.firstValue.toString()` if applicable. The returned type can be further processed using erdjs.
+You can then process the data. For example `data.firstValue.valueOf()` or `data.firstValue.toString()` if applicable. The returned type can be further processed using sdk-core.
 
 #### useLoggingIn()
 

@@ -1,3 +1,7 @@
+### [4.3.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v4.3.0) (2023-01-28)
+- `txResults` is now returned in `useTransaction` and `useScTransaction` hooks (it is ITransactionOnNetwork in sdk-core)
+- dependencies updates
+
 ### [4.2.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v4.2.0) (2023-01-14)
 - rebrand to multiversx (continuation)
     - npm packages are replaced

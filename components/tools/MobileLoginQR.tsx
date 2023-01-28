@@ -64,7 +64,7 @@ export const MobileLoginQR: FunctionComponent<MobileLoginQRProps> = ({
             rel="noopener noreferrer nofollow"
             target="_blank"
           >
-            Maiar Login
+            xPortal Login
           </Box>
         </Flex>
       ) : null}

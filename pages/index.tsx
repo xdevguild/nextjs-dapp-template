@@ -29,8 +29,8 @@ const Home: NextPage = () => {
           Here is the demo of an MultiversX dapp for interactions with the
           blockchain and smart contracts. It provides four different ways of
           authentication and also a couple of React-based helpers/hooks. It is
-          based on NextJS and uses erdjs SDK. It also uses Chakra UI. Heavily
-          based on the{' '}
+          based on NextJS and uses JS SDK (sdk-core). It also uses Chakra UI.
+          Heavily based on the{' '}
           <Link
             textDecoration="underline"
             href="https://www.elven.tools/docs/minter-dapp-introduction.html"
@@ -101,7 +101,10 @@ const Home: NextPage = () => {
             <ListItem>
               Authenticated component - wrapper to check the auth state
             </ListItem>
-            <ListItem>ActionButton component - styled action button</ListItem>
+            <ListItem>
+              ActionButton component - styled action button (don&apos;t use it
+              for in-app navigation)
+            </ListItem>
             <ListItem>LoginComponent - component with 3 auth options</ListItem>
             <ListItem>
               LoginModalButton component - ready to use modal with

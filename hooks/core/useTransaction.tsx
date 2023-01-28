@@ -5,6 +5,7 @@ import {
   ITransactionPayload,
   IGasLimit,
   TokenPayment,
+  ITransactionOnNetwork,
 } from '@multiversx/sdk-core';
 import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import { useSnapshot } from 'valtio';
@@ -40,6 +41,7 @@ export function useTransaction(
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const [transaction, setTransaction] = useState<Transaction | null>(null);
+  const [txResult, setTxResult] = useState<ITransactionOnNetwork | null>(null);
   const accountSnap = useSnapshot(accountState);
   const loginInfoSnap = useSnapshot(loginInfoState);
 
@@ -48,7 +50,7 @@ export function useTransaction(
     getNetworkState<ApiNetworkProvider>('apiNetworkProvider');
   const currentNonce = accountSnap.nonce;
 
-  useWebWalletTxSend({ setPending, setTransaction, setError, cb });
+  useWebWalletTxSend({ setPending, setTransaction, setTxResult, setError, cb });
 
   const triggerTx = async ({
     address,
@@ -57,6 +59,7 @@ export function useTransaction(
     value,
   }: TransactionParams) => {
     setTransaction(null);
+    setTxResult(null);
     setError('');
 
     if (
@@ -87,6 +90,7 @@ export function useTransaction(
         loginInfoSnap,
         apiNetworkProvider,
         setTransaction,
+        setTxResult,
         setError,
         setPending,
         webWalletRedirectUrl,
@@ -103,6 +107,7 @@ export function useTransaction(
     pending,
     triggerTx,
     transaction,
+    txResult,
     error,
   };
 }

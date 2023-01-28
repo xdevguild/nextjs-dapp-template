@@ -24,7 +24,8 @@ export const networkConfig: Record<string, NetworkType> = {
     walletConnectBridgeAddresses: ['https://bridge.walletconnect.org'],
     walletAddress: 'https://devnet-wallet.multiversx.com',
     apiAddress:
-      process.env.NEXT_PUBLIC_MULTIVERSX_API || 'https://devnet-api.multiversx.com',
+      process.env.NEXT_PUBLIC_MULTIVERSX_API ||
+      'https://devnet-api.multiversx.com',
     explorerAddress: 'https://devnet-explorer.multiversx.com',
     apiTimeout: '4000',
   },

@@ -3,7 +3,7 @@ import {
   WALLET_PROVIDER_CALLBACK_PARAM,
   WALLET_PROVIDER_CALLBACK_PARAM_TX_SIGNED,
 } from '@multiversx/sdk-web-wallet-provider';
-import { Transaction } from '@multiversx/sdk-core';
+import { Transaction, ITransactionOnNetwork } from '@multiversx/sdk-core';
 import { useSnapshot } from 'valtio';
 import { getParamFromUrl } from '../../../utils/getParamFromUrl';
 import { getNetworkState } from '../../../store/network';
@@ -16,6 +16,7 @@ import { errorParse } from '../../../utils/errorParse';
 interface UseWebWalletTxSendProps {
   setPending: Dispatch<SetStateAction<boolean>>;
   setTransaction: Dispatch<SetStateAction<Transaction | null>>;
+  setTxResult: Dispatch<SetStateAction<ITransactionOnNetwork | null>>;
   setError: Dispatch<SetStateAction<string>>;
   cb?: (params: TransactionCb) => void;
 }
@@ -23,6 +24,7 @@ interface UseWebWalletTxSendProps {
 export const useWebWalletTxSend = ({
   setPending,
   setTransaction,
+  setTxResult,
   cb,
   setError,
 }: UseWebWalletTxSendProps) => {
@@ -56,6 +58,7 @@ export const useWebWalletTxSend = ({
           await postSendTxOperations(
             transaction,
             setTransaction,
+            setTxResult,
             apiNetworkProvider,
             cb
           );

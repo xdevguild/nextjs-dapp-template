@@ -135,7 +135,7 @@ export const useNetworkSync = () => {
       if (!dappProvider) {
         const networkConfiguration = getActiveNetworkConfiguration();
         switch (loginMethod) {
-          // Browser extension auth (Maiar defi wallet)
+          // Browser extension auth (MultiversX defi wallet)
           case LoginMethodsEnum.extension:
             dappProvider = ExtensionProvider.getInstance();
             try {
@@ -154,7 +154,7 @@ export const useNetworkSync = () => {
               console.warn("Can't initialize the Dapp Provider!");
             }
             break;
-          // Maiar mobile app auth
+          // xPortal mobile app auth
           case LoginMethodsEnum.walletconnect:
             const providerHandlers = {
               onClientLogin: () =>
@@ -178,7 +178,7 @@ export const useNetworkSync = () => {
               await dappProvider.init();
               if (!dappProvider.isInitialized()) {
                 console.warn(
-                  'Something went wrong trying to sync with the Maiar app!'
+                  'Something went wrong trying to sync with the xPortal app!'
                 );
               } else {
                 network.setNetworkState('dappProvider', dappProvider);
