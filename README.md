@@ -109,7 +109,7 @@ The hook provides all that is required for triggering transactions. useTransacti
 ```jsx
 const { pending, triggerTx, transaction, txResult, error } = useTransaction({ cb });
 
-const handleSendTx = useCallback(() => {
+const handleSendTx = () => {
   const demoMessage = 'Transaction demo!';
   triggerTx({
     address: process.env.NEXT_PUBLIC_EGLD_TRANSFER_ADDRESS,
@@ -117,25 +117,29 @@ const handleSendTx = useCallback(() => {
     data: new TransactionPayload(demoMessage),
     value: process.env.NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT,
   });
-}, [triggerTx]);
+};
 ```
 
-#### useScTransaction()
-
-The hook provides all that is required for triggering smart contract transactions. useScTransaction can also take a callback function as an argument.
+Example with Smart Contract data payload. For example, when you want to call an endpoint on a custom smart contract.
 
 ```jsx
-const { pending, triggerTx, transaction, txResult, error } = useScTransaction({ cb });
+import { U32Value, ContractFunction, ContractCallPayloadBuilder } from '@multiversx/sdk-core';
 
-const handleSendTx = useCallback(() => {
+const { triggerTx } = useTransaction();
+
+const handleSendTx = () => {
+  const data = new ContractCallPayloadBuilder()
+    .setFunction(new ContractFunction(mintFunctionName))
+    .setArgs([new U32Value(1)])
+    .build();
+
   triggerTx({
-    smartContractAddress: process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS,
-    func: process.env.NEXT_PUBLIC_MINT_FUNCTION_NAME,
+    address: mintSmartContractAddress,
     gasLimit: 14000000,
-    args: [new U32Value(1)],
-    value: process.env.NEXT_PUBLIC_MINT_PAYMENT_PER_TOKEN,
+    value: Number(mintPaymentPerToken),
+    data
   });
-}, [triggerTx]);
+};
 ```
 
 #### useScQuery()

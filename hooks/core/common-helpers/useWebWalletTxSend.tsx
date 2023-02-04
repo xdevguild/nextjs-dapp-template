@@ -4,7 +4,7 @@ import {
   WALLET_PROVIDER_CALLBACK_PARAM_TX_SIGNED,
 } from '@multiversx/sdk-web-wallet-provider';
 import { Transaction, ITransactionOnNetwork } from '@multiversx/sdk-core';
-import { useSnapshot } from 'valtio';
+import { useProxy } from '../../tools/useProxy';
 import { getParamFromUrl } from '../../../utils/getParamFromUrl';
 import { getNetworkState } from '../../../store/network';
 import { DappProvider } from '../../../types/network';
@@ -29,7 +29,7 @@ export const useWebWalletTxSend = ({
   setError,
 }: UseWebWalletTxSendProps) => {
   const dappProvider = getNetworkState<DappProvider>('dappProvider');
-  const accountSnap = useSnapshot(accountState);
+  const accountSnap = useProxy(accountState);
   const currentNonce = accountSnap.nonce;
   const apiNetworkProvider =
     getNetworkState<ApiNetworkProvider>('apiNetworkProvider');

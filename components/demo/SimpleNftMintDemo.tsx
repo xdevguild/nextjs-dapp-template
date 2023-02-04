@@ -1,6 +1,6 @@
 import { Link, Text } from '@chakra-ui/react';
-import { U32Value, ContractFunction } from '@multiversx/sdk-core';
-import { useScTransaction } from '../../hooks/core/useScTransaction';
+import { U32Value, ContractFunction, ContractCallPayloadBuilder } from '@multiversx/sdk-core';
+import { useTransaction } from '../../hooks/core/useTransaction';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';
 import { networkConfig, chainType } from '../../config/network';
@@ -19,15 +19,21 @@ export const SimpleNftMintDemo = ({
 }: {
   cb: (params: TransactionCb) => void;
 }) => {
-  const { pending, triggerTx } = useScTransaction({ cb });
+  const { pending, triggerTx } = useTransaction({ cb });
 
   const handleSendTx = useCallback(() => {
+
+    // Prepare data payload for smart contract using MultiversX JS SDK core tools
+    const data = new ContractCallPayloadBuilder()
+      .setFunction(new ContractFunction(mintFunctionName))
+      .setArgs([new U32Value(1)])
+      .build();
+
     triggerTx({
-      smartContractAddress: mintSmartContractAddress,
-      func: new ContractFunction(mintFunctionName),
+      address: mintSmartContractAddress,
       gasLimit: 14000000,
-      args: [new U32Value(1)],
       value: Number(mintPaymentPerToken),
+      data
     });
   }, [triggerTx]);
 

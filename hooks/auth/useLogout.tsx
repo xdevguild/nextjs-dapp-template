@@ -1,5 +1,5 @@
 import { getNetworkState, clearDappProvider } from '../../store/network';
-import { useSnapshot } from 'valtio';
+import { useProxy } from '../tools/useProxy';
 import {
   clearAuthStates,
   loggingInState,
@@ -15,7 +15,7 @@ interface Logout {
 }
 
 export const useLogout = () => {
-  const loggingInSnap = useSnapshot(loggingInState);
+  const loggingInSnap = useProxy(loggingInState);
   const dappProviderInstance = getNetworkState<DappProvider>('dappProvider');
 
   const logout = async (params?: Logout) => {

@@ -1,3 +1,8 @@
+### [5.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v5.0.0) (2023-02-04)
+- **Breaking:** There is no more `useScTransaction` hook. You can use `useTransaction` for all cases. You would need to prepare a proper data payload for custom smart contracts. Check the example in the Readme and code
+- switch to `useProxy` from `valtio`
+- enable React strict mode
+
 ### [4.3.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v4.3.0) (2023-01-28)
 - `txResults` is now returned in `useTransaction` and `useScTransaction` hooks (it is ITransactionOnNetwork in sdk-core)
 - dependencies updates

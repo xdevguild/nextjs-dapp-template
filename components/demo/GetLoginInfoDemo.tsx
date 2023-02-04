@@ -2,6 +2,7 @@ import { Text, Tooltip } from '@chakra-ui/react';
 import { FlexCardWrapper } from '../ui/CardWrapper';
 import { useLoginInfo } from '../../hooks/auth/useLoginInfo';
 import { shortenHash } from '../../utils/shortenHash';
+import { CardItemWrapper } from './CardItemWrapper';
 
 export const GetLoginInfoDemo = () => {
   const { loginMethod, expires, loginToken, signature } = useLoginInfo();
@@ -11,31 +12,31 @@ export const GetLoginInfoDemo = () => {
       <Text fontSize="xl" mb={2} fontWeight="black">
         Login info state:
       </Text>
-      <Text>
+      <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
           loginMethod:
         </Text>{' '}
         {loginMethod}
-      </Text>
-      <Text>
+      </CardItemWrapper>
+      <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
           expires:
         </Text>{' '}
         {expires}
-      </Text>
-      <Text>
+      </CardItemWrapper>
+      <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
           loginToken:
         </Text>{' '}
         {loginToken || '-'}
-      </Text>
+      </CardItemWrapper>
       <Tooltip label={signature}>
-        <Text>
+        <CardItemWrapper>
           <Text as="span" display="inline-block" fontWeight="bold">
             signature:
           </Text>{' '}
           {signature ? shortenHash(signature, 8) : '-'}
-        </Text>
+        </CardItemWrapper>
       </Tooltip>
     </FlexCardWrapper>
   );

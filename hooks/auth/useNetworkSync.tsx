@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useSnapshot } from 'valtio';
+import { useProxy } from '../tools/useProxy';
 import { useEffect, useState, useRef } from 'react';
 import {
   accountState,
@@ -36,8 +36,8 @@ export const useNetworkSync = () => {
   const [accountDone, setAccountDone] = useState(false);
   const [loginInfoDone, setLoginInfoDone] = useState(false);
 
-  const accountSnap = useSnapshot(accountState);
-  const loginInfoSnap = useSnapshot(loginInfoState);
+  const accountSnap = useProxy(accountState);
+  const loginInfoSnap = useProxy(loginInfoState);
 
   const dappProviderRef = useRef<DappProvider>();
   const apiNetworkProviderRef = useRef<ApiNetworkProvider>();

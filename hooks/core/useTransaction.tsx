@@ -8,7 +8,7 @@ import {
   ITransactionOnNetwork,
 } from '@multiversx/sdk-core';
 import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
-import { useSnapshot } from 'valtio';
+import { useProxy } from '../tools/useProxy';
 import { accountState, loginInfoState } from '../../store/auth';
 import { getNetworkState } from '../../store/network';
 import { getActiveNetworkConfiguration } from '../../config/network';
@@ -42,8 +42,8 @@ export function useTransaction(
   const [error, setError] = useState('');
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [txResult, setTxResult] = useState<ITransactionOnNetwork | null>(null);
-  const accountSnap = useSnapshot(accountState);
-  const loginInfoSnap = useSnapshot(loginInfoState);
+  const accountSnap = useProxy(accountState);
+  const loginInfoSnap = useProxy(loginInfoState);
 
   const dappProvider = getNetworkState<DappProvider>('dappProvider');
   const apiNetworkProvider =

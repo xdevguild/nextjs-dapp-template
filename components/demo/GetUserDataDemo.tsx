@@ -4,6 +4,7 @@ import { shortenHash } from '../../utils/shortenHash';
 import { useAccount } from '../../hooks/auth/useAccount';
 import { FlexCardWrapper } from '../ui/CardWrapper';
 import { networkConfig, chainType } from '../../config/network';
+import { CardItemWrapper } from './CardItemWrapper';
 
 export const GetUserDataDemo = () => {
   const { address, nonce, balance } = useAccount();
@@ -13,7 +14,7 @@ export const GetUserDataDemo = () => {
       <Text fontSize="xl" mb={2} fontWeight="black">
         User data:
       </Text>
-      <Text>
+      <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
           address:
         </Text>{' '}
@@ -23,14 +24,14 @@ export const GetUserDataDemo = () => {
         >
           {shortenHash(address, 8)}
         </Link>
-      </Text>
-      <Text>
+      </CardItemWrapper>
+      <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
           nonce:
         </Text>{' '}
         {nonce}
-      </Text>
-      <Text>
+      </CardItemWrapper>
+      <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
           balance:
         </Text>{' '}
@@ -39,7 +40,7 @@ export const GetUserDataDemo = () => {
               TokenPayment.egldFromBigInteger(balance).toRationalNumber()
             )
           : '-'}
-      </Text>
+      </CardItemWrapper>
     </FlexCardWrapper>
   );
 };

@@ -12,7 +12,7 @@ const nextConfig = {
     };
     return config;
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
   async rewrites() {
     if (!process.env.MULTIVERSX_PRIVATE_API) {
       return [];

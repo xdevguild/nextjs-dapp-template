@@ -1,8 +1,8 @@
-import { useSnapshot } from 'valtio';
+import { useProxy } from '../tools/useProxy';
 import { accountState } from '../../store/auth';
 
 export const useAccount = () => {
-  const account = useSnapshot(accountState);
+  const account = useProxy(accountState);
 
   return account;
 };

@@ -1,8 +1,8 @@
-import { useSnapshot } from 'valtio';
+import { useProxy } from '../tools/useProxy';
 import { loggingInState } from '../../store/auth';
 
 export const useLoggingIn = () => {
-  const loggingInSnap = useSnapshot(loggingInState);
+  const loggingInSnap = useProxy(loggingInState);
 
   return {
     isLoggingIn: loggingInSnap.pending,

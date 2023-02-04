@@ -5,9 +5,6 @@
     "plugin:valtio/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "rules": {
-    "valtio/state-snapshot-rule": "off"
-  },
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser"
 }
