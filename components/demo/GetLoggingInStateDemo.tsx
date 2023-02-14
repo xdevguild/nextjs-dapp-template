@@ -1,10 +1,10 @@
 import { Text } from '@chakra-ui/react';
 import { FlexCardWrapper } from '../ui/CardWrapper';
-import { useLoggingIn } from '../../hooks/auth/useLoggingIn';
+import { useLoggingIn } from '@useelven/core';
 import { CardItemWrapper } from './CardItemWrapper';
 
 export const GetLoggingInStateDemo = () => {
-  const { isLoggingIn, error, isLoggedIn } = useLoggingIn();
+  const { pending, error, loggedIn } = useLoggingIn();
 
   return (
     <FlexCardWrapper alignItems="flex-start" justifyContent="flex-start">
@@ -15,7 +15,7 @@ export const GetLoggingInStateDemo = () => {
         <Text as="span" display="inline-block" fontWeight="bold">
           isLoggingIn:
         </Text>{' '}
-        {isLoggingIn ? 'true' : 'false'}
+        {pending ? 'true' : 'false'}
       </CardItemWrapper>
       <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
@@ -27,7 +27,7 @@ export const GetLoggingInStateDemo = () => {
         <Text as="span" display="inline-block" fontWeight="bold">
           isLoggedIn:
         </Text>{' '}
-        {isLoggedIn ? 'true' : 'false'}
+        {loggedIn ? 'true' : 'false'}
       </CardItemWrapper>
     </FlexCardWrapper>
   );

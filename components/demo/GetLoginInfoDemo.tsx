@@ -1,6 +1,6 @@
 import { Text, Tooltip } from '@chakra-ui/react';
 import { FlexCardWrapper } from '../ui/CardWrapper';
-import { useLoginInfo } from '../../hooks/auth/useLoginInfo';
+import { useLoginInfo } from '@useelven/core';
 import { shortenHash } from '../../utils/shortenHash';
 import { CardItemWrapper } from './CardItemWrapper';
 

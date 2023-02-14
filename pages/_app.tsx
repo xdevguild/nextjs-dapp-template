@@ -10,11 +10,11 @@ import '@fontsource/poppins/900.css';
 
 import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
-import { useNetworkSync } from '../hooks/auth/useNetworkSync';
+import { useNetworkSync } from '@useelven/core';
 import { theme } from '../config/chakraTheme';
 
 const NextJSDappTemplate = ({ Component, pageProps }: AppProps) => {
-  useNetworkSync();
+  useNetworkSync({ chainType: 'devnet' });
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />

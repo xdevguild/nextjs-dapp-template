@@ -1,8 +1,7 @@
 import { Text, Link } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { useScQuery, SCQueryType } from '../../hooks/core/useScQuery';
+import { useScQuery, SCQueryType, useConfig } from '@useelven/core';
 import { FlexCardWrapper } from '../ui/CardWrapper';
-import { networkConfig, chainType } from '../../config/network';
 import { shortenHash } from '../../utils/shortenHash';
 import { ActionButton } from '../tools/ActionButton';
 
@@ -15,6 +14,7 @@ export const SimpleScQeryDemo = ({
 }: {
   cb: (queryResult: string, pending: boolean, error: string) => void;
 }) => {
+  const { explorerAddress } = useConfig();
   const {
     data: queryResult,
     fetch, // you can always trigger the query manually if 'autoInit' is set to false
@@ -43,7 +43,7 @@ export const SimpleScQeryDemo = ({
         3. You will be querying the smart contract for NFT tokens left to mint:{' '}
         <br />
         <Link
-          href={`${networkConfig[chainType].explorerAddress}/accounts/${mintSmartContractAddress}`}
+          href={`${explorerAddress}/accounts/${mintSmartContractAddress}`}
           fontWeight="bold"
         >
           {shortenHash(mintSmartContractAddress, 8)}

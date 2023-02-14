@@ -1,13 +1,13 @@
 import { TokenPayment } from '@multiversx/sdk-core';
 import { Text, Link } from '@chakra-ui/react';
 import { shortenHash } from '../../utils/shortenHash';
-import { useAccount } from '../../hooks/auth/useAccount';
+import { useAccount, useConfig } from '@useelven/core';
 import { FlexCardWrapper } from '../ui/CardWrapper';
-import { networkConfig, chainType } from '../../config/network';
 import { CardItemWrapper } from './CardItemWrapper';
 
 export const GetUserDataDemo = () => {
   const { address, nonce, balance } = useAccount();
+  const { explorerAddress } = useConfig();
 
   return (
     <FlexCardWrapper alignItems="flex-start" justifyContent="flex-start">
@@ -20,7 +20,7 @@ export const GetUserDataDemo = () => {
         </Text>{' '}
         <Link
           textDecoration="underline"
-          href={`${networkConfig[chainType].explorerAddress}/accounts/${address}`}
+          href={`${explorerAddress}/accounts/${address}`}
         >
           {shortenHash(address, 8)}
         </Link>

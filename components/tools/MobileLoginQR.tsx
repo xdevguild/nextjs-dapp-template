@@ -1,6 +1,6 @@
 import { useEffect, useState, FunctionComponent } from 'react';
 import { Flex, Box } from '@chakra-ui/react';
-import { networkConfig, chainType } from '../../config/network';
+import { useConfig } from '@useelven/core';
 import { isMobile } from '../../utils/isMobile';
 import QRCode from 'qrcode';
 
@@ -12,6 +12,7 @@ export const MobileLoginQR: FunctionComponent<MobileLoginQRProps> = ({
   walletConnectUri,
 }) => {
   const [qrCodeSvg, setQrCodeSvg] = useState('');
+  const { walletConnectDeepLink } = useConfig();
 
   useEffect(() => {
     const generateQRCode = async () => {
@@ -58,9 +59,9 @@ export const MobileLoginQR: FunctionComponent<MobileLoginQRProps> = ({
             _hover={{ bg: 'dappTemplate.color2.darker' }}
             transition="background-color .3s"
             as="a"
-            href={`${
-              networkConfig[chainType]?.walletConnectDeepLink
-            }?wallet-connect=${encodeURIComponent(walletConnectUri)}`}
+            href={`${walletConnectDeepLink}?wallet-connect=${encodeURIComponent(
+              walletConnectUri
+            )}`}
             rel="noopener noreferrer nofollow"
             target="_blank"
           >
