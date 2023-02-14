@@ -1,7 +1,7 @@
 import { useEffect, PropsWithChildren, FC } from 'react';
 import { Spinner, Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useLogin } from '../../hooks/auth/useLogin';
+import { useLogin } from '@useelven/core';
 
 interface ProtectedPageWrapper {
   redirectPath?: string;

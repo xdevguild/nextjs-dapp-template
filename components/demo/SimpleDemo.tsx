@@ -1,24 +1,27 @@
 import { useCallback, useState } from 'react';
 import { Flex, Box, Link, Spinner, Text } from '@chakra-ui/react';
-import { TransactionCb } from '../../hooks/core/common-helpers/sendTxOperations';
+import {
+  TransactionCallbackParams,
+  LoginMethodsEnum,
+  useConfig,
+  useLoginInfo,
+} from '@useelven/core';
 import { FlexCardWrapper } from '../ui/CardWrapper';
 import { SimpleEGLDTxDemo } from './SimpleEGLDTxDemo';
 import { SimpleNftMintDemo } from './SimpleNftMintDemo';
 import { SimpleScQeryDemo } from './SimpleScQueryDemo';
 import { shortenHash } from '../../utils/shortenHash';
-import { networkConfig, chainType } from '../../config/network';
 import { ActionButton } from '../tools/ActionButton';
-import { useLoginInfo } from '../../hooks/auth/useLoginInfo';
-import { LoginMethodsEnum } from '../../types/enums';
 
 export const SimpleDemo = () => {
   const [result, setResult] = useState<{ type: string; content: string }>();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
   const { loginMethod } = useLoginInfo();
+  const { explorerAddress } = useConfig();
 
   const handleTxCb = useCallback(
-    ({ transaction, pending, error }: TransactionCb) => {
+    ({ transaction, pending, error }: TransactionCallbackParams) => {
       if (transaction) {
         setResult({ type: 'tx', content: transaction.getHash().hex() });
         setPending(false);
@@ -127,7 +130,7 @@ export const SimpleDemo = () => {
               <Link
                 fontSize="large"
                 textDecoration="underline"
-                href={`${networkConfig[chainType].explorerAddress}/transactions/${result.content}`}
+                href={`${explorerAddress}/transactions/${result.content}`}
                 isExternal
               >
                 {shortenHash(result.content, 10)}

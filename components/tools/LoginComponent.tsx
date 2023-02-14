@@ -2,8 +2,7 @@
 // You can always use only one of them if needed
 import { useCallback, memo, useState } from 'react';
 import { Box, Stack } from '@chakra-ui/react';
-import { useLogin } from '../../hooks/auth/useLogin';
-import { LoginMethodsEnum } from '../../types/enums';
+import { useLogin, LoginMethodsEnum } from '@useelven/core';
 import { MobileLoginQR } from './MobileLoginQR';
 import { ActionButton } from './ActionButton';
 import { LedgerAccountsList } from './LedgerAccountsList';

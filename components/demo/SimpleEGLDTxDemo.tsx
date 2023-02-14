@@ -1,12 +1,14 @@
 import { Link, Text } from '@chakra-ui/react';
 import { TransactionPayload } from '@multiversx/sdk-core';
-import { useTransaction } from '../../hooks/core/useTransaction';
+import {
+  useTransaction,
+  TransactionCallbackParams,
+  useConfig,
+} from '@useelven/core';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';
-import { networkConfig, chainType } from '../../config/network';
 import { shortenHash } from '../../utils/shortenHash';
 import { FlexCardWrapper } from '../ui/CardWrapper';
-import { TransactionCb } from '../../hooks/core/common-helpers/sendTxOperations';
 
 const egldTransferAddress = process.env.NEXT_PUBLIC_EGLD_TRANSFER_ADDRESS || '';
 const egldTransferAmount = process.env.NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT || '';
@@ -14,9 +16,10 @@ const egldTransferAmount = process.env.NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT || '';
 export const SimpleEGLDTxDemo = ({
   cb,
 }: {
-  cb: (params: TransactionCb) => void;
+  cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { pending, triggerTx } = useTransaction({ cb });
+  const { explorerAddress } = useConfig();
 
   const handleSendTx = useCallback(() => {
     const demoMessage = 'Transaction demo!';
@@ -33,7 +36,7 @@ export const SimpleEGLDTxDemo = ({
       <Text mb={4}>
         1. You will be sending 0.001 EGLD to the address: <br />
         <Link
-          href={`${networkConfig[chainType].explorerAddress}/accounts/${egldTransferAddress}`}
+          href={`${explorerAddress}/accounts/${egldTransferAddress}`}
           fontWeight="bold"
         >
           {shortenHash(egldTransferAddress, 8)}

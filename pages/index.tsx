@@ -16,7 +16,6 @@ import { GetLoggingInStateDemo } from '../components/demo/GetLoggingInStateDemo'
 import { GetLoginInfoDemo } from '../components/demo/GetLoginInfoDemo';
 import { Authenticated } from '../components/tools/Authenticated';
 import { CardWrapper } from '../components/ui/CardWrapper';
-import { LoginModalButton } from '../components/tools/LoginModalButton';
 
 const Home: NextPage = () => {
   return (
@@ -61,14 +60,9 @@ const Home: NextPage = () => {
       <Authenticated
         spinnerCentered
         fallback={
-          <>
-            <Text fontWeight="bold" fontSize="2xl" textAlign="center" mt={8}>
-              Connect your wallet!
-            </Text>
-            <Flex mt={4} justifyContent="center">
-              <LoginModalButton />
-            </Flex>
-          </>
+          <Text fontWeight="bold" fontSize="2xl" textAlign="center" mt={8}>
+            Connect your wallet!
+          </Text>
         }
       >
         <SimpleDemo />

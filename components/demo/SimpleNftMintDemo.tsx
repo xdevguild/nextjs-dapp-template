@@ -1,12 +1,18 @@
 import { Link, Text } from '@chakra-ui/react';
-import { U32Value, ContractFunction, ContractCallPayloadBuilder } from '@multiversx/sdk-core';
-import { useTransaction } from '../../hooks/core/useTransaction';
+import {
+  U32Value,
+  ContractFunction,
+  ContractCallPayloadBuilder,
+} from '@multiversx/sdk-core';
+import {
+  useTransaction,
+  TransactionCallbackParams,
+  useConfig,
+} from '@useelven/core';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';
-import { networkConfig, chainType } from '../../config/network';
 import { shortenHash } from '../../utils/shortenHash';
 import { FlexCardWrapper } from '../ui/CardWrapper';
-import { TransactionCb } from '../../hooks/core/common-helpers/sendTxOperations';
 
 const mintSmartContractAddress =
   process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS || '';
@@ -17,12 +23,12 @@ const mintPaymentPerToken =
 export const SimpleNftMintDemo = ({
   cb,
 }: {
-  cb: (params: TransactionCb) => void;
+  cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { pending, triggerTx } = useTransaction({ cb });
+  const { explorerAddress } = useConfig();
 
   const handleSendTx = useCallback(() => {
-
     // Prepare data payload for smart contract using MultiversX JS SDK core tools
     const data = new ContractCallPayloadBuilder()
       .setFunction(new ContractFunction(mintFunctionName))
@@ -33,7 +39,7 @@ export const SimpleNftMintDemo = ({
       address: mintSmartContractAddress,
       gasLimit: 14000000,
       value: Number(mintPaymentPerToken),
-      data
+      data,
     });
   }, [triggerTx]);
 
@@ -43,7 +49,7 @@ export const SimpleNftMintDemo = ({
         2. You will be minting one NFT using{' '}
         <a href="https://www.elven.tools">Elven Tools</a> smart contract: <br />
         <Link
-          href={`${networkConfig[chainType].explorerAddress}/accounts/${mintSmartContractAddress}`}
+          href={`${explorerAddress}/accounts/${mintSmartContractAddress}`}
           fontWeight="bold"
         >
           {shortenHash(mintSmartContractAddress, 8)}
