@@ -1,3 +1,6 @@
+### [6.0.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v6.0.1) (2023-02-15)
+- update @useelven/core and other dependencies
+
 ### [6.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v6.0.0) (2023-02-14)
 - switch to [@useelven/core](https://www.useElven.com) when it comes to auth and core functionality
 
