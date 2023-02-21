@@ -1,3 +1,6 @@
+### [6.0.3](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v6.0.3) (2023-02-21)
+- remove unused dependencies
+
 ### [6.0.2](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v6.0.2) (2023-02-19)
 - update @useelven/core and other dependencies
 
