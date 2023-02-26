@@ -3,6 +3,7 @@ import {
   U32Value,
   ContractFunction,
   ContractCallPayloadBuilder,
+  TokenPayment,
 } from '@multiversx/sdk-core';
 import {
   useTransaction,
@@ -38,7 +39,7 @@ export const SimpleNftMintDemo = ({
     triggerTx({
       address: mintSmartContractAddress,
       gasLimit: 14000000,
-      value: Number(mintPaymentPerToken),
+      value: TokenPayment.egldFromAmount(mintPaymentPerToken),
       data,
     });
   }, [triggerTx]);
