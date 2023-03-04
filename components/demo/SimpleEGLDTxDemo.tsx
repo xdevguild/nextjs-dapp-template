@@ -19,7 +19,7 @@ export const SimpleEGLDTxDemo = ({
   cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { pending, triggerTx } = useTransaction({ cb });
-  const { explorerAddress } = useConfig();
+  const { explorerAddress, chainType } = useConfig();
 
   const handleSendTx = useCallback(() => {
     const demoMessage = 'Transaction demo!';
@@ -42,7 +42,7 @@ export const SimpleEGLDTxDemo = ({
           {shortenHash(egldTransferAddress, 8)}
         </Link>{' '}
         <br />
-        (devnet)
+        ({chainType})
       </Text>
       <ActionButton disabled={pending} onClick={handleSendTx}>
         <Text>Send Transaction</Text>

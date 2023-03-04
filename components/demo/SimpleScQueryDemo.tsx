@@ -14,7 +14,7 @@ export const SimpleScQeryDemo = ({
 }: {
   cb: (queryResult: string, pending: boolean, error: string) => void;
 }) => {
-  const { explorerAddress } = useConfig();
+  const { explorerAddress, chainType } = useConfig();
   const {
     data: queryResult,
     fetch, // you can always trigger the query manually if 'autoInit' is set to false
@@ -49,7 +49,7 @@ export const SimpleScQeryDemo = ({
           {shortenHash(mintSmartContractAddress, 8)}
         </Link>{' '}
         <br />
-        (devnet)
+        ({chainType})
       </Text>
       <ActionButton disabled={isLoading || isValidating} onClick={fetch}>
         <Text>Query</Text>

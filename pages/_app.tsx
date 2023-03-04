@@ -14,7 +14,12 @@ import { useNetworkSync } from '@useelven/core';
 import { theme } from '../config/chakraTheme';
 
 const NextJSDappTemplate = ({ Component, pageProps }: AppProps) => {
-  useNetworkSync({ chainType: 'devnet' });
+  useNetworkSync({
+    chainType: process.env.NEXT_PUBLIC_MULTIVERSX_CHAIN,
+    ...(process.env.NEXT_PUBLIC_MULTIVERSX_API
+      ? { apiAddress: process.env.NEXT_PUBLIC_MULTIVERSX_API }
+      : {}),
+  });
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />

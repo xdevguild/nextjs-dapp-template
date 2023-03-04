@@ -27,7 +27,7 @@ export const SimpleNftMintDemo = ({
   cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { pending, triggerTx } = useTransaction({ cb });
-  const { explorerAddress } = useConfig();
+  const { explorerAddress, chainType } = useConfig();
 
   const handleSendTx = useCallback(() => {
     // Prepare data payload for smart contract using MultiversX JS SDK core tools
@@ -56,7 +56,7 @@ export const SimpleNftMintDemo = ({
           {shortenHash(mintSmartContractAddress, 8)}
         </Link>{' '}
         <br />
-        (devnet, max 10 NFTs per address)
+        ({chainType}, max 10 NFTs per address)
       </Text>
       <ActionButton disabled={pending} onClick={handleSendTx}>
         <Text>Mint</Text>
