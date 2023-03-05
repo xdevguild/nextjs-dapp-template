@@ -8,12 +8,15 @@ import {
   useDisclosure,
   Spinner,
   Flex,
+  ModalHeader,
+  Stack,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { useLogin, useLogout } from '@useelven/core';
+import { useLogin, useLoginInfo, useLogout } from '@useelven/core';
 import { ActionButton } from '../tools/ActionButton';
 import { LoginComponent } from '../tools/LoginComponent';
 import { useEffectOnlyOnUpdate } from '../../hooks/useEffectOnlyOnUpdate';
+import { getLoginMethodDeviceName } from '../../utils/getSigningDeviceName';
 
 interface LoginModalButtonProps {
   onClose?: () => void;
@@ -28,7 +31,8 @@ export const LoginModalButton: FC<LoginModalButtonProps> = ({
   onClose,
   onOpen,
 }) => {
-  const { isLoggedIn, isLoggingIn } = useLogin();
+  const { isLoggedIn, isLoggingIn, setLoggingInState } = useLogin();
+  const { loginMethod } = useLoginInfo();
   const { logout } = useLogout();
   const {
     isOpen: opened,
@@ -42,6 +46,12 @@ export const LoginModalButton: FC<LoginModalButtonProps> = ({
     }
   }, [isLoggedIn]);
 
+  const onCloseComplete = () => {
+    setLoggingInState('error', '');
+  };
+
+  const ledgerOrPortalName = getLoginMethodDeviceName(loginMethod);
+
   return (
     <>
       {isLoggedIn ? (
@@ -51,7 +61,14 @@ export const LoginModalButton: FC<LoginModalButtonProps> = ({
           {isLoggingIn ? 'Connecting...' : 'Connect'}
         </ActionButton>
       )}
-      <Modal isOpen={opened} size="sm" onClose={close} isCentered>
+      <Modal
+        isOpen={opened}
+        size="sm"
+        onClose={close}
+        isCentered
+        scrollBehavior="inside"
+        onCloseComplete={onCloseComplete}
+      >
         <CustomModalOverlay />
         <ModalContent
           bgColor="dappTemplate.dark.darker"
@@ -61,10 +78,12 @@ export const LoginModalButton: FC<LoginModalButtonProps> = ({
           position="relative"
         >
           <ModalCloseButton _focus={{ outline: 'none' }} />
-          <ModalBody>
-            <Text textAlign="center" mb={7} fontWeight="black" fontSize="2xl">
+          <ModalHeader>
+            <Text textAlign="center" fontWeight="black" fontSize="2xl">
               Connect your wallet
             </Text>
+          </ModalHeader>
+          <ModalBody>
             {isLoggingIn && (
               <Flex
                 alignItems="center"
@@ -72,14 +91,23 @@ export const LoginModalButton: FC<LoginModalButtonProps> = ({
                 bgColor="blackAlpha.700"
                 justifyContent="center"
                 position="absolute"
+                zIndex="overlay"
                 inset={0}
               >
-                <Spinner
-                  thickness="3px"
-                  speed="0.4s"
-                  color="dappTemplate.color2.base"
-                  size="xl"
-                />
+                <Stack alignItems="center">
+                  {ledgerOrPortalName ? (
+                    <>
+                      <Text fontSize="lg">Confirmation required</Text>
+                      <Text fontSize="sm">Approve on {ledgerOrPortalName}</Text>
+                    </>
+                  ) : null}
+                  <Spinner
+                    thickness="3px"
+                    speed="0.4s"
+                    color="dappTemplate.color2.base"
+                    size="xl"
+                  />
+                </Stack>
               </Flex>
             )}
             <LoginComponent />

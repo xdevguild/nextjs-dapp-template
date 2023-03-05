@@ -55,8 +55,7 @@ export const SimpleNftMintDemo = ({
         >
           {shortenHash(mintSmartContractAddress, 8)}
         </Link>{' '}
-        <br />
-        ({chainType}, max 10 NFTs per address)
+        <br />({chainType}, max 10 NFTs per address)
       </Text>
       <ActionButton disabled={pending} onClick={handleSendTx}>
         <Text>Mint</Text>

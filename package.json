@@ -1,6 +1,6 @@
 {
   "name": "nextjs-dapp-template",
-  "version": "6.1.0",
+  "version": "7.0.0",
   "author": "Julian Ćwirko <julian.io>",
   "license": "MIT",
   "homepage": "https://github.com/xdevguild/nextjs-dapp-template",
@@ -17,12 +17,13 @@
     "prettier": "prettier --write '**/*.{js,ts,tsx,json}'"
   },
   "dependencies": {
+    "@chakra-ui/icons": "2.0.17",
     "@chakra-ui/react": "2.5.1",
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
     "@fontsource/poppins": "4.5.10",
     "@multiversx/sdk-core": "11.4.1",
-    "@useelven/core": "0.0.8",
+    "@useelven/core": "0.1.0",
     "buffer": "6.0.3",
     "crypto-browserify": "3.12.0",
     "next": "13.2.3",

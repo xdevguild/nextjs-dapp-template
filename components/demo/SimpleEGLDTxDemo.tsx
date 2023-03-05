@@ -41,8 +41,7 @@ export const SimpleEGLDTxDemo = ({
         >
           {shortenHash(egldTransferAddress, 8)}
         </Link>{' '}
-        <br />
-        ({chainType})
+        <br />({chainType})
       </Text>
       <ActionButton disabled={pending} onClick={handleSendTx}>
         <Text>Send Transaction</Text>

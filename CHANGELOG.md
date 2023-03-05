@@ -1,3 +1,8 @@
+### [7.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v7.0.0) (2023-03-05)
+- switch to v0.1.0 of [useElven](https://www.useelven.com/) with support for xPortal when signing
+- changes for Wallet Connect pairings list
+- other minor improvements
+
 ### [6.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v6.1.0) (2023-03-04)
 - fix passing custom configuration, one should use .env variables for that, `useNetworkSync` will read from them
 

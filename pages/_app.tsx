@@ -19,6 +19,9 @@ const NextJSDappTemplate = ({ Component, pageProps }: AppProps) => {
     ...(process.env.NEXT_PUBLIC_MULTIVERSX_API
       ? { apiAddress: process.env.NEXT_PUBLIC_MULTIVERSX_API }
       : {}),
+    ...(process.env.NEXT_PUBLIC_WC_PROJECT_ID
+      ? { walletConnectV2ProjectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID }
+      : {}),
   });
   return (
     <ChakraProvider theme={theme}>

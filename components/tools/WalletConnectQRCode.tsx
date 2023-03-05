@@ -4,30 +4,30 @@ import { useConfig } from '@useelven/core';
 import { isMobile } from '../../utils/isMobile';
 import QRCode from 'qrcode';
 
-interface MobileLoginQRProps {
-  walletConnectUri: string;
+interface WalletConnectQRCodeProps {
+  uri: string;
 }
 
-export const MobileLoginQR: FunctionComponent<MobileLoginQRProps> = ({
-  walletConnectUri,
-}) => {
+export const WalletConnectQRCode: FunctionComponent<
+  WalletConnectQRCodeProps
+> = ({ uri }) => {
   const [qrCodeSvg, setQrCodeSvg] = useState('');
   const { walletConnectDeepLink } = useConfig();
 
   useEffect(() => {
     const generateQRCode = async () => {
-      if (!walletConnectUri) {
+      if (!uri) {
         return;
       }
 
-      const svg = await QRCode.toString(walletConnectUri, {
+      const svg = await QRCode.toString(uri, {
         type: 'svg',
       });
 
       setQrCodeSvg(svg);
     };
     generateQRCode();
-  }, [walletConnectUri]);
+  }, [uri]);
 
   const mobile = isMobile();
 
@@ -60,7 +60,7 @@ export const MobileLoginQR: FunctionComponent<MobileLoginQRProps> = ({
             transition="background-color .3s"
             as="a"
             href={`${walletConnectDeepLink}?wallet-connect=${encodeURIComponent(
-              walletConnectUri
+              uri
             )}`}
             rel="noopener noreferrer nofollow"
             target="_blank"

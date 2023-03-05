@@ -48,8 +48,7 @@ export const SimpleScQeryDemo = ({
         >
           {shortenHash(mintSmartContractAddress, 8)}
         </Link>{' '}
-        <br />
-        ({chainType})
+        <br />({chainType})
       </Text>
       <ActionButton disabled={isLoading || isValidating} onClick={fetch}>
         <Text>Query</Text>

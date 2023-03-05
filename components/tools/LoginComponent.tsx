@@ -3,16 +3,26 @@
 import { useCallback, memo, useState } from 'react';
 import { Box, Stack } from '@chakra-ui/react';
 import { useLogin, LoginMethodsEnum } from '@useelven/core';
-import { MobileLoginQR } from './MobileLoginQR';
+import { WalletConnectQRCode } from './WalletConnectQRCode';
+import { WalletConnectPairings } from './WalletConnectPairings';
 import { ActionButton } from './ActionButton';
 import { LedgerAccountsList } from './LedgerAccountsList';
 
 export const LoginComponent = memo(() => {
-  // If you need the auth signature and token you can pass it here
-  // example: const { ... } = useLogin({ token: "some_hash_here" })
+  // If you need the auth signature and token pas your unique token in useLogin
   // all auth providers will return the signature, it will be saved in localstorage and global state
-  const { login, isLoggedIn, error, walletConnectUri, getHWAccounts } =
-    useLogin();
+  // For the demo purposes here is a dummy token
+  const {
+    login,
+    isLoggedIn,
+    error,
+    walletConnectUri,
+    getHWAccounts,
+    walletConnectPairingLogin,
+    walletConnectPairings,
+    walletConnectRemovePairing,
+    setLoggingInState,
+  } = useLogin({ token: 'token_just_for_testing_purposes' });
 
   const [loginMethod, setLoginMethod] = useState<LoginMethodsEnum>();
 
@@ -32,7 +42,19 @@ export const LoginComponent = memo(() => {
     setLoginMethod(undefined);
   }, []);
 
-  if (error) return <Box textAlign="center">{error}</Box>;
+  const backToOptions = useCallback(() => {
+    setLoggingInState('error', '');
+  }, [setLoggingInState]);
+
+  if (error)
+    return (
+      <Stack>
+        <Box textAlign="center">{error}</Box>
+        <ActionButton isFullWidth onClick={backToOptions}>
+          Back
+        </ActionButton>
+      </Stack>
+    );
 
   return (
     <>
@@ -65,9 +87,18 @@ export const LoginComponent = memo(() => {
       </Stack>
       {loginMethod === LoginMethodsEnum.walletconnect && walletConnectUri && (
         <Box mt={5}>
-          <MobileLoginQR walletConnectUri={walletConnectUri} />
+          <WalletConnectQRCode uri={walletConnectUri} />
         </Box>
       )}
+      {loginMethod === LoginMethodsEnum.walletconnect &&
+        walletConnectPairings &&
+        walletConnectPairings.length > 0 && (
+          <WalletConnectPairings
+            pairings={walletConnectPairings}
+            login={walletConnectPairingLogin}
+            remove={walletConnectRemovePairing}
+          />
+        )}
       {loginMethod === LoginMethodsEnum.ledger && (
         <LedgerAccountsList
           getHWAccounts={getHWAccounts}

@@ -100,15 +100,18 @@ export default Profile;
 
 ### Working with the API
 
-The API endpoint is proxied on the backend side. The only public API endpoint is `/api/multiversx`. This is useful when you don't want to show the API endpoint because, for example, you use the paid ones. Also, there is an option to block the `/api/multiversx` endpoint to be used only within the Dapp, even previewing it in the browser won't be possible.
+By default, the Dapp provides the `.env.example`, configured not to use the API rewrites and configured to use the official public MultiversX API endpoint. 
 
-You can use `API_ALLOWED_DAPP_HOST` in the .env file to enable `/api/multiversx` restrictions. If you don't want to restrict it, you can remove that variable.
+You have three options:
 
-In the `middleware.ts`, you'll find the logic for the API restrictions. And in the `next.config.js`, you'll find the configuration for rewrites of the API.
-
-In this demo, the Dapp uses a public API endpoint, so it isn't essential, but it is beneficial when you need to use paid 3rd party service.
-
-Read more about it here: https://www.elven.tools/docs/dapp-api-proxy.html
+1. By commenting this out the dapp will use the default MultiversX api endpoint (e.g. https://devnet-api.multiversx.com) \
+  **Note**: `MULTIVERSX_PRIVATE_API` needs to be removed/commented out.
+2. Set this to an absolute address to use a custom MultiversX api endpoint
+   (e.g. http://dev.mydomain.com) \
+  **Note**: `MULTIVERSX_PRIVATE_API` needs to be removed/commented out.
+3. Enter a relative path to proxy/mask your MultiversX api endpoint (e.g. /api/multiversx)
+   Only current instance of the Dapp can use it if only `API_ALLOWED_DAPP_HOST` is set.  \
+  **Note**: `MULTIVERSX_PRIVATE_API` must include the actual MultiversX API endpoint.
 
 ### Working with the .env and config files
 
@@ -123,6 +126,10 @@ Here are all variables:
 
 # MultiversX chain (can be devnet, testnet, mainnet)
 NEXT_PUBLIC_MULTIVERSX_CHAIN = devnet
+
+# Wallet Connect 2 Project Id. This one will work only with this project
+# Get yours at: https://cloud.walletconnect.com/sign-in
+NEXT_PUBLIC_WC_PROJECT_ID = be161e9c2764269adc6a5cf4304c3a22
 
 #
 # Either the public API endpoint of your MultiversX api
@@ -207,12 +214,6 @@ On each repository code push, the Netlify services will redeploy the app.
 Read more about it here: https://www.elven.tools/docs/dapp-deployment.html
 
 Here are other deployment solutions: [NextJS Deployment](https://nextjs.org/docs/deployment).
-
-### Missing for now:
-
-- More docs and examples
-- More tooling and components
-- tests
 
 ### Other solutions
 
