@@ -1,4 +1,4 @@
-import { TokenPayment } from '@multiversx/sdk-core';
+import { TokenTransfer } from '@multiversx/sdk-core';
 import { Text, Link } from '@chakra-ui/react';
 import { shortenHash } from '../../utils/shortenHash';
 import { useAccount, useConfig } from '@useelven/core';
@@ -37,7 +37,7 @@ export const GetUserDataDemo = () => {
         </Text>{' '}
         {balance
           ? parseFloat(
-              TokenPayment.egldFromBigInteger(balance).toRationalNumber()
+              TokenTransfer.egldFromBigInteger(balance).toPrettyString()
             )
           : '-'}
       </CardItemWrapper>

@@ -1,5 +1,5 @@
 import { Link, Text } from '@chakra-ui/react';
-import { TransactionPayload, TokenPayment } from '@multiversx/sdk-core';
+import { TransactionPayload, TokenTransfer } from '@multiversx/sdk-core';
 import {
   useTransaction,
   TransactionCallbackParams,
@@ -27,7 +27,7 @@ export const SimpleEGLDTxDemo = ({
       address: egldTransferAddress,
       gasLimit: 50000 + 1500 * demoMessage.length,
       data: new TransactionPayload(demoMessage),
-      value: TokenPayment.egldFromAmount(egldTransferAmount),
+      value: TokenTransfer.egldFromAmount(egldTransferAmount),
     });
   }, [triggerTx]);
 
