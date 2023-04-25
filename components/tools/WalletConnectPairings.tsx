@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler, useState } from 'react';
 import { PairingTypes } from '@useelven/core';
 import { Stack, Box, Text, Heading, IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
@@ -18,21 +18,23 @@ export const WalletConnectPairings: FC<WalletConnectPairingsProps> = ({
     login(topic);
   };
 
-  const handleRemove =
-    (topic: string): MouseEventHandler<HTMLButtonElement> | undefined =>
-    (e) => {
-      e.stopPropagation();
-      remove(topic);
-    };
+  const [localPairings, setLocalPairings] = useState<PairingTypes.Struct[]>(pairings);
+
+  const handleRemove = (topic: string) => async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    await remove(topic);
+    setLocalPairings(localPairings.filter((pairing) => pairing.topic !== topic));
+  };
 
   return (
     <Stack>
-      {pairings?.length > 0 && (
-        <Heading size="md" mt={4}>
-          Existing pairings:
-        </Heading>
+      {
+        localPairings.length > 0 && (
+          <Heading size="md" mt={4}>
+            Existing pairings:
+          </Heading>
       )}
-      {pairings.map((pairing) => (
+      {localPairings.map((pairing) => (
         <Box
           bgColor="dappTemplate.white"
           py={2}
