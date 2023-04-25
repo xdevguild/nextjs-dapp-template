@@ -1,3 +1,6 @@
+### [7.1.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v7.1.1) (2023-04-25)
+- update dependecies, including [useElven](https://www.useelven.com/) with fixed bug related to WalletConnect pairings removal (thanks to @nikos-koukis for reporting)
+
 ### [7.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v7.1.0) (2023-04-23)
 - update useElven where sdk-core and sdk-hw-provider where updated
 - update sdk-core also in app
