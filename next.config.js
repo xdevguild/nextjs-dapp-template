@@ -12,8 +12,7 @@ const nextConfig = {
     };
     return config;
   },
-  // Related to problems with Ledger integration. Needs some more work. But finally it will be enabled.
-  reactStrictMode: false,
+  reactStrictMode: true,
   async rewrites() {
     if (!process.env.MULTIVERSX_PRIVATE_API) {
       return [];

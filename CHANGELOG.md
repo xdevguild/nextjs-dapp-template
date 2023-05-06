@@ -1,3 +1,7 @@
+### [7.2.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v7.2.0) (2023-05-06)
+- update [useElven](https://www.useelven.com/)
+- fix problems with handling states when strict mode is enabled
+
 ### [7.1.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v7.1.1) (2023-04-25)
 - update dependecies, including [useElven](https://www.useelven.com/) with fixed bug related to WalletConnect pairings removal (thanks to @nikos-koukis for reporting)
 
