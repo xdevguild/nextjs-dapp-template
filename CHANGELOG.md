@@ -1,3 +1,7 @@
+### [7.2.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v7.2.1) (2023-05-14)
+- update [useElven](https://www.useelven.com/)
+- fix problems with initialization of the HW provider
+
 ### [7.2.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v7.2.0) (2023-05-06)
 - update [useElven](https://www.useelven.com/)
 - fix problems with handling states when strict mode is enabled
