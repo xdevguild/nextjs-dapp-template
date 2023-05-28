@@ -9,9 +9,6 @@ import { ActionButton } from './ActionButton';
 import { LedgerAccountsList } from './LedgerAccountsList';
 
 export const LoginComponent = memo(() => {
-  // If you need the auth signature and token pas your unique token in useLogin
-  // all auth providers will return the signature, it will be saved in localstorage and global state
-  // For the demo purposes here is a dummy token
   const {
     login,
     isLoggedIn,
@@ -21,7 +18,7 @@ export const LoginComponent = memo(() => {
     walletConnectPairingLogin,
     walletConnectPairings,
     walletConnectRemovePairing,
-  } = useLogin({ token: 'token_just_for_testing_purposes' });
+  } = useLogin();
 
   const [loginMethod, setLoginMethod] = useState<LoginMethodsEnum>();
 
