@@ -27,8 +27,8 @@ export const GetLoginInfoDemo = () => {
       <CardItemWrapper>
         <Text as="span" display="inline-block" fontWeight="bold">
           loginToken:
-        </Text>{' '}
-        {loginToken || '-'}
+        </Text>
+        <Text wordBreak="break-word" textAlign="left">{loginToken || '-'}</Text>
       </CardItemWrapper>
       <Tooltip label={signature}>
         <CardItemWrapper>

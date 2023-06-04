@@ -1,3 +1,6 @@
+### [8.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.1.0) (2023-06-04)
+- update useElven and other dependencies
+
 ### [8.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.0.0) (2023-05-28)
 - **Breaking:** The dapp now uses the useElven version with built-in native token support. There is no fallback, so it is a breaking change. Standard string-based tokens will be deprecated across the MultiversX soon
 - update dependencies

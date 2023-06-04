@@ -51,7 +51,7 @@ export const Footer = () => {
           <Text
             as="a"
             color="dappTemplate.color3.base"
-            href="https://github.com/juliancwirko/elven.js"
+            href="https://github.com/elven-js/elven.js"
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
