@@ -1,4 +1,4 @@
-### [8.1.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.1.0) (2023-06-07)
+### [8.1.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.1.1) (2023-06-07)
 - update useElven with fix for native auth login token handling
 - update other dependenecies
 
