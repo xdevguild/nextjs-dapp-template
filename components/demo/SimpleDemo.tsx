@@ -107,9 +107,7 @@ export const SimpleDemo = () => {
             </Box>
           )}
           {loginMethod === LoginMethodsEnum.ledger && (
-            <Box>
-              Confirm it on the Ledger app and wait till it finishes.
-            </Box>
+            <Box>Confirm it on the Ledger app and wait till it finishes.</Box>
           )}
           <Box>You will get the transaction hash and link at the end.</Box>
           <Spinner mt={6} color="dappTemplate.color2.darker" />
