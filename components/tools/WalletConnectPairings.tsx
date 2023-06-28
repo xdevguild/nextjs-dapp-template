@@ -1,10 +1,10 @@
 import { FC, MouseEventHandler } from 'react';
-import { PairingTypes } from '@useelven/core';
+import { PairingTypesStruct } from '@useelven/core';
 import { Stack, Box, Text, Heading, IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 
 interface WalletConnectPairingsProps {
-  pairings: PairingTypes.Struct[];
+  pairings: PairingTypesStruct[];
   login: (topic: string) => Promise<void>;
   remove: (topic: string) => Promise<void>;
 }

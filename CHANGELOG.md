@@ -1,3 +1,7 @@
+### [8.3.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.3.0) (2023-06-29)
+- update useElven (switch to tsup)
+- update other dependancies
+
 ### [8.2.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.2.0) (2023-06-19)
 - update useElven (new useTokenTransfer hook available)
 - update other dependancies
