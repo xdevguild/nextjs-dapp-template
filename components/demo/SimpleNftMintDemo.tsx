@@ -9,6 +9,7 @@ import {
   useTransaction,
   TransactionCallbackParams,
   useConfig,
+  useAccount,
 } from '@useelven/core';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';
@@ -27,6 +28,7 @@ export const SimpleNftMintDemo = ({
   cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { pending, triggerTx } = useTransaction({ cb });
+  const { activeGuardianAddress } = useAccount();
   const { explorerAddress, chainType } = useConfig();
 
   const handleSendTx = useCallback(() => {
@@ -36,13 +38,19 @@ export const SimpleNftMintDemo = ({
       .setArgs([new U32Value(1)])
       .build();
 
+    let gasLimit = 14000000;
+
+    if (activeGuardianAddress) {
+      gasLimit = gasLimit + 50000;
+    }
+
     triggerTx({
       address: mintSmartContractAddress,
-      gasLimit: 14000000,
+      gasLimit,
       value: TokenTransfer.egldFromAmount(mintPaymentPerToken),
       data,
     });
-  }, [triggerTx]);
+  }, [activeGuardianAddress, triggerTx]);
 
   return (
     <FlexCardWrapper>

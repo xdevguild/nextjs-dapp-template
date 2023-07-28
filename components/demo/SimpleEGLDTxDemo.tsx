@@ -4,6 +4,7 @@ import {
   useTransaction,
   TransactionCallbackParams,
   useConfig,
+  useAccount,
 } from '@useelven/core';
 import { useCallback } from 'react';
 import { ActionButton } from '../tools/ActionButton';
@@ -19,17 +20,25 @@ export const SimpleEGLDTxDemo = ({
   cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { pending, triggerTx } = useTransaction({ cb });
+  const { activeGuardianAddress } = useAccount();
   const { explorerAddress, chainType } = useConfig();
 
   const handleSendTx = useCallback(() => {
     const demoMessage = 'Transaction demo!';
+
+    let gasLimit = 50000 + 1500 * demoMessage.length;
+
+    if (activeGuardianAddress) {
+      gasLimit = gasLimit + 50000;
+    }
+
     triggerTx({
       address: egldTransferAddress,
-      gasLimit: 50000 + 1500 * demoMessage.length,
+      gasLimit,
       data: new TransactionPayload(demoMessage),
       value: TokenTransfer.egldFromAmount(egldTransferAmount),
     });
-  }, [triggerTx]);
+  }, [activeGuardianAddress, triggerTx]);
 
   return (
     <FlexCardWrapper>

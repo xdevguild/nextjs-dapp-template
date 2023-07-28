@@ -1,3 +1,7 @@
+### [8.4.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.4.0) (2023-07-28)
+- update useElven (guardians support)
+- update other dependencies
+
 ### [8.3.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.3.0) (2023-06-29)
 - update useElven (switch to tsup)
 - update other dependancies

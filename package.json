@@ -1,6 +1,6 @@
 {
   "name": "nextjs-dapp-template",
-  "version": "8.3.0",
+  "version": "8.4.0",
   "author": "Julian Ćwirko <julian.io>",
   "license": "MIT",
   "homepage": "https://github.com/xdevguild/nextjs-dapp-template",
@@ -17,16 +17,16 @@
     "prettier": "prettier --write '**/*.{js,ts,tsx,json}'"
   },
   "dependencies": {
-    "@chakra-ui/icons": "2.0.19",
-    "@chakra-ui/react": "2.7.1",
+    "@chakra-ui/icons": "2.1.0",
+    "@chakra-ui/react": "2.8.0",
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
-    "@fontsource/poppins": "5.0.3",
-    "@multiversx/sdk-core": "12.4.3",
-    "@useelven/core": "0.8.0",
+    "@fontsource/poppins": "5.0.5",
+    "@multiversx/sdk-core": "12.6.0",
+    "@useelven/core": "0.9.0",
     "buffer": "6.0.3",
     "crypto-browserify": "3.12.0",
-    "next": "13.4.7",
+    "next": "13.4.12",
     "path-browserify": "1.0.1",
     "process": "0.11.10",
     "qrcode": "1.5.3",
@@ -36,16 +36,16 @@
     "stream-browserify": "3.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.3.2",
-    "@types/qrcode": "1.5.0",
-    "@types/react": "18.2.14",
-    "@typescript-eslint/eslint-plugin": "5.60.1",
-    "@typescript-eslint/parser": "5.60.1",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.7",
-    "eslint-config-prettier": "8.8.0",
+    "@types/node": "20.4.5",
+    "@types/qrcode": "1.5.1",
+    "@types/react": "18.2.17",
+    "@typescript-eslint/eslint-plugin": "6.2.0",
+    "@typescript-eslint/parser": "6.2.0",
+    "eslint": "8.45.0",
+    "eslint-config-next": "13.4.12",
+    "eslint-config-prettier": "8.9.0",
     "eslint-plugin-valtio": "0.6.2",
-    "prettier": "2.8.8",
-    "typescript": "5.1.5"
+    "prettier": "3.0.0",
+    "typescript": "5.1.6"
   }
 }
