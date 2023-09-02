@@ -1,3 +1,8 @@
+### [9.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.0.0) (2023-09-02)
+- switch to the Next.js App Router architecture
+- remove API proxy and rewrites, you can still have them, but it isn't implemented by default. It was too confusing.
+- remove the Chakra UI and switch to [Radix UI](https://www.radix-ui.com/) + [Tailwind](https://tailwindcss.com/), wrapped with [Shadcn UI](https://ui.shadcn.com/). I think these are more future proof solutions
+
 ### [8.4.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v8.4.0) (2023-07-28)
 - update useElven (guardians support)
 - update other dependencies
