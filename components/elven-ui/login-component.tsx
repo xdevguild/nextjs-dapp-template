@@ -52,7 +52,7 @@ export const LoginComponent = memo(() => {
   return (
     <>
       {isLoggingIn ? (
-        <div className="flex inset-0 z-50 items-center justify-center min-h-[208px]">
+        <div className="flex inset-0 z-50 items-center justify-center min-h-[200px]">
           <div>
             {ledgerOrPortalName ? (
               <>
@@ -60,7 +60,7 @@ export const LoginComponent = memo(() => {
                 <div className="text-sm">Approve on {ledgerOrPortalName}</div>
               </>
             ) : null}
-            <div className="flex items-center justify-center mt-6">
+            <div className="flex items-center justify-center">
               <Spinner size="40" />
             </div>
           </div>
@@ -68,28 +68,28 @@ export const LoginComponent = memo(() => {
       ) : (
         <div className="flex flex-col gap-4 items-center px-8">
           <Button
-            className="w-full select-none"
+            className="w-full select-none h-auto"
             variant="outline"
             onClick={handleLogin(LoginMethodsEnum.wallet)}
           >
             MultiversX Web Wallet
           </Button>
           <Button
-            className="w-full select-none"
+            className="w-full select-none h-auto"
             variant="outline"
             onClick={handleLogin(LoginMethodsEnum.extension)}
           >
             MultiversX Browser Extension
           </Button>
           <Button
-            className="w-full select-none"
+            className="w-full select-none h-auto"
             variant="outline"
             onClick={handleLogin(LoginMethodsEnum.walletconnect)}
           >
             xPortal Mobile App
           </Button>
           <Button
-            className="w-full select-none"
+            className="w-full select-none h-auto"
             variant="outline"
             onClick={handleLedgerAccountsList}
           >

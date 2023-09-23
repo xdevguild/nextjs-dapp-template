@@ -1,3 +1,8 @@
+### [9.0.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.0.1) (2023-09-23)
+- update useElven (update with a bugfix)
+- update dependencies
+- minor style fixes
+
 ### [9.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.0.0) (2023-09-02)
 - switch to the Next.js App Router architecture
 - remove API proxy and rewrites, you can still have them, but it isn't implemented by default. It was too confusing.
