@@ -1,3 +1,8 @@
+### [9.0.2](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.0.2) (2023-09-28)
+- update useElven (native token configuration improvements)
+- fix styles for xPortal deeplink on login modal + other minor style fixes
+- update dependencies
+
 ### [9.0.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.0.1) (2023-09-23)
 - update useElven (update with a bugfix)
 - update dependencies

@@ -34,14 +34,8 @@ export const WalletConnectQRCode: FunctionComponent<
 
   return (
     <div>
-      <div
-        className="[&>svg]:rounded-xl [&>svg]:max-w-xs [&>svg]:mx-auto"
-        dangerouslySetInnerHTML={{
-          __html: qrCodeSvg,
-        }}
-      />
       {mobile ? (
-        <div className="justify-center">
+        <div className="flex justify-center w-full mb-6">
           <Button asChild>
             <a
               href={`${walletConnectDeepLink}?wallet-connect=${encodeURIComponent(
@@ -50,11 +44,17 @@ export const WalletConnectQRCode: FunctionComponent<
               rel="noopener noreferrer nofollow"
               target="_blank"
             >
-              xPortal Login
+              Go to xPortal to sign in!
             </a>
           </Button>
         </div>
       ) : null}
+      <div
+        className="[&>svg]:rounded-xl [&>svg]:max-w-xs [&>svg]:mx-auto [&>svg]:border [&>svg]:border-solid [&>svg]:border-zinc-300 dark:[&>svg]:border-0"
+        dangerouslySetInnerHTML={{
+          __html: qrCodeSvg,
+        }}
+      />
     </div>
   );
 };
