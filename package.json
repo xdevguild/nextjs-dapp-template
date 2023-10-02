@@ -1,6 +1,6 @@
 {
   "name": "nextjs-dapp-template",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "author": "Julian Ćwirko <julian.io>",
   "license": "MIT",
   "homepage": "https://github.com/xdevguild/nextjs-dapp-template",
@@ -22,7 +22,7 @@
     "@radix-ui/react-dropdown-menu": "2.0.6",
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-tooltip": "1.0.7",
-    "@useelven/core": "0.9.3",
+    "@useelven/core": "0.9.5",
     "class-variance-authority": "0.7.0",
     "clsx": "2.0.0",
     "lucide-react": "0.279.0",
@@ -36,9 +36,9 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
-    "@types/node": "20.7.1",
+    "@types/node": "20.8.0",
     "@types/qrcode": "1.5.2",
-    "@types/react": "18.2.23",
+    "@types/react": "18.2.24",
     "@types/react-dom": "18.2.8",
     "@typescript-eslint/eslint-plugin": "6.7.3",
     "@typescript-eslint/parser": "6.7.3",
@@ -46,7 +46,7 @@
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.3",
     "eslint-config-prettier": "9.0.0",
-    "postcss": "8.4.30",
+    "postcss": "8.4.31",
     "prettier": "3.0.3",
     "typescript": "5.2.2"
   }
