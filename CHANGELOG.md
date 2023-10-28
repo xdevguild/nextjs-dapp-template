@@ -1,3 +1,6 @@
+### [9.1.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.1.1) (2023-10-28)
+- update useElven - fix NaiveAuth configuration
+
 ### [9.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.1.0) (2023-10-28)
 - useelven update - add support for xAlias
 - update Next.js to v14 (required min Node version: 18.7.0)
