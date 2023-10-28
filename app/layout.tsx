@@ -104,6 +104,10 @@ export default function RootLayout({
                   {'useElven'}
                 </a>
                 <span className="font-thin mx-2"> | </span>
+                <a href="https://www.buildo.dev" target="_blank">
+                  {'Buildo.dev'}
+                </a>
+                <span className="font-thin mx-2"> | </span>
                 <a
                   href="https://github.com/xdevguild/buildo-begins"
                   target="_blank"

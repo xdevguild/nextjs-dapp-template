@@ -175,10 +175,10 @@ Compact MultiversX SDK for browsers (no build steps required)
 
 Tools that can help you with interactions:
 
+- [Buildo.dev](https://www.buildo.dev)
 - [Buildo Begins](https://github.com/xdevguild/buildo-begins)
 - [Elven Tools](https://www.elven.tools)
 
 ### Contact
 
 - [julian.io](https://www.julian.io)
-

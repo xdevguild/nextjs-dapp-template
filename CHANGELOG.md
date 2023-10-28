@@ -1,3 +1,8 @@
+### [9.1.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.1.0) (2023-10-28)
+- useelven update - add support for xAlias
+- update Next.js to v14 (required min Node version: 18.7.0)
+- update dependencies
+
 ### [9.0.3](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.0.3) (2023-10-02)
 - update useElven (bug related to guardian address and localstorage entry)
 - update dependencies
