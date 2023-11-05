@@ -1,3 +1,6 @@
+### [9.2.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.2.0) (2023-11-05)
+- update useElven - new useMultiTokenTransfer hook
+
 ### [9.1.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.1.1) (2023-10-28)
 - update useElven - fix NaiveAuth configuration
 
