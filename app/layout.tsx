@@ -20,6 +20,7 @@ const globalImage = `${dappHostname}/og-image.png`;
 export const metadata: Metadata = {
   metadataBase: new URL(dappHostname!),
   title: globalTitle,
+  referrer: "strict-origin-when-cross-origin",
   description: globalDescription,
   authors: { name: 'xDevGuild', url: 'https://www.xdevguild.com' },
   openGraph: {
