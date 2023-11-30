@@ -49,7 +49,7 @@ const Home: NextPage = () => {
               className="underline font-bold"
               target="_blank"
             >
-              Buidlo.dev
+              Buildo.dev
             </a>{' '}
             app.
           </div>
