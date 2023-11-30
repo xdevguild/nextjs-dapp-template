@@ -1,3 +1,6 @@
+### [9.3.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.3.0) (2023-11-..)
+- update useElven and add Sign message demo
+
 ### [9.2.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.2.0) (2023-11-05)
 - update useElven - new useMultiTokenTransfer hook
 

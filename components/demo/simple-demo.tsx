@@ -13,6 +13,7 @@ import { SimpleEGLDTxDemo } from './simple-egld-tx-demo';
 import { SimpleNftMintDemo } from './simple-nft-mint-demo';
 import { SimpleScQeryDemo } from './simple-sc-query-demo';
 import { shortenHash } from '@/lib/shortenHash';
+import { SimpleSignMessageDemo } from './sign-message-demo';
 
 export const SimpleDemo = () => {
   const [result, setResult] = useState<{ type: string; content: string }>();
@@ -21,6 +22,7 @@ export const SimpleDemo = () => {
   const { loginMethod } = useLoginInfo();
   const { explorerAddress } = useConfig();
 
+  // TODO: these callbacks will be deprecated in useElven
   const handleTxCb = useCallback(
     ({ transaction, pending, error }: TransactionCallbackParams) => {
       if (transaction) {
@@ -74,7 +76,10 @@ export const SimpleDemo = () => {
       <div className="flex gap-8 flex-wrap justify-center items-stretch mb-4 flex-col lg:flex-row">
         <SimpleEGLDTxDemo cb={handleTxCb} />
         <SimpleNftMintDemo cb={handleTxCb} />
+      </div>
+      <div className="flex gap-8 flex-wrap justify-center items-stretch mb-4 flex-col lg:flex-row">
         <SimpleScQeryDemo cb={handleQueryCb} />
+        <SimpleSignMessageDemo />
       </div>
       {error && (
         <div className="flex flex-col items-center justify-center absolute inset-0 backdrop-blur-sm bg-zinc-200 bg-opacity-60 dark:bg-zinc-950 dark:bg-opacity-60">

@@ -23,7 +23,8 @@ export const SimpleEGLDTxDemo = ({
   const { explorerAddress, chainType } = useConfig();
 
   const handleSendTx = useCallback(() => {
-    const demoMessage = 'Transaction demo!';
+    const demoMessage =
+      'Transaction demo from xDevGuild Next.js dapp template!';
 
     let gasLimit = 50000 + 1500 * demoMessage.length;
 

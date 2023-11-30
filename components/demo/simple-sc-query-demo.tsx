@@ -53,7 +53,7 @@ export const SimpleScQeryDemo = ({
           >
             {shortenHash(mintSmartContractAddress, 8)}
           </a>{' '}
-          <br />({chainType})
+          ({chainType})
         </div>
       </CardContent>
       <CardFooter>
