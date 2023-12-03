@@ -19,7 +19,7 @@ const Home: NextPage = () => {
             and Tailwind CSS.
           </div>
           <div className="mb-4">
-            We have hardcoded a setup for four different operations to simplify
+            We have hardcoded a setup for five different operations to simplify
             things. These are:
           </div>
           <ul className="mb-4">
@@ -35,6 +35,7 @@ const Home: NextPage = () => {
               - Random query operation on the Elven Tools demo minter smart
               contract.
             </li>
+            <li>- Simple smart contract deployment</li>
             <li>- Signing a mesage</li>
           </ul>
           <span>
