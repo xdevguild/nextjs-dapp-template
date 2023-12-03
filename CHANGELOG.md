@@ -1,3 +1,6 @@
+### [9.4.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.4.0) (2023-12-03)
+- update useElven and add deploy a smart contract demo
+
 ### [9.3.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.3.0) (2023-11-30)
 - update useElven and add Sign message demo
 

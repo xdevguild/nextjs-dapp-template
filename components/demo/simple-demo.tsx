@@ -14,6 +14,7 @@ import { SimpleNftMintDemo } from './simple-nft-mint-demo';
 import { SimpleScQeryDemo } from './simple-sc-query-demo';
 import { shortenHash } from '@/lib/shortenHash';
 import { SimpleSignMessageDemo } from './sign-message-demo';
+import { SimpleDeployScDemo } from './simple-deploy-sc-demo';
 
 export const SimpleDemo = () => {
   const [result, setResult] = useState<{ type: string; content: string }>();
@@ -65,6 +66,27 @@ export const SimpleDemo = () => {
     []
   );
 
+  const handleDeployCb = useCallback(
+    ({ txResult, pending, error }: TransactionCallbackParams) => {
+      if (txResult) {
+        setResult({ type: 'tx', content: txResult.hash });
+        setPending(false);
+        setError(undefined);
+      }
+      if (pending) {
+        setPending(true);
+        setError(undefined);
+        setResult(undefined);
+      }
+      if (error) {
+        setError(error);
+        setPending(false);
+        setResult(undefined);
+      }
+    },
+    []
+  );
+
   const handleClose = useCallback(() => {
     setResult(undefined);
     setPending(false);
@@ -76,9 +98,10 @@ export const SimpleDemo = () => {
       <div className="flex gap-8 flex-wrap justify-center items-stretch mb-4 flex-col lg:flex-row">
         <SimpleEGLDTxDemo cb={handleTxCb} />
         <SimpleNftMintDemo cb={handleTxCb} />
+        <SimpleScQeryDemo cb={handleQueryCb} />
       </div>
       <div className="flex gap-8 flex-wrap justify-center items-stretch mb-4 flex-col lg:flex-row">
-        <SimpleScQeryDemo cb={handleQueryCb} />
+        <SimpleDeployScDemo cb={handleDeployCb} />
         <SimpleSignMessageDemo />
       </div>
       {error && (
