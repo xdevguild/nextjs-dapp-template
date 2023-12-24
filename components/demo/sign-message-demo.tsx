@@ -1,10 +1,11 @@
 'use client';
 
-import { useSignMessage } from '@useelven/core';
+import { useLoginInfo, useSignMessage } from '@useelven/core';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 export const SimpleSignMessageDemo = () => {
+  const { loginMethod } = useLoginInfo();
   const { signMessage, pending, signature } = useSignMessage();
 
   const handleSignMessage = () => {
@@ -43,7 +44,9 @@ export const SimpleSignMessageDemo = () => {
           disabled={pending}
           onClick={handleSignMessage}
         >
-          Sign a message
+          {pending
+            ? `Pending... (confirmation with ${loginMethod})`
+            : 'Sign a message'}
         </Button>
       </CardFooter>
     </Card>
