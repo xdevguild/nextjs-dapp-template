@@ -26,7 +26,11 @@ export const GetLoginInfoDemo = () => {
         </div>
         <div>
           <span className="inline-block font-bold">loginToken:</span>
-          <div className="break-all text-left">{loginToken || '-'}</div>
+          {loginToken ? (
+            <div className="break-words text-left">{loginToken}</div>
+          ) : (
+            '-'
+          )}
         </div>
         <TooltipProvider>
           <Tooltip>

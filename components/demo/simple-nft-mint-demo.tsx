@@ -9,11 +9,13 @@ import {
   TransactionCallbackParams,
   useConfig,
   useAccount,
+  useLoggingIn,
 } from '@useelven/core';
 import { useCallback } from 'react';
 import { shortenHash } from '@/lib/shortenHash';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { ConnectWalletInfo } from '@/components/demo/connect-wallet-info';
 
 const mintSmartContractAddress =
   process.env.NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS || '';
@@ -26,6 +28,7 @@ export const SimpleNftMintDemo = ({
 }: {
   cb: (params: TransactionCallbackParams) => void;
 }) => {
+  const { loggedIn } = useLoggingIn();
   const { pending, triggerTx } = useTransaction({ cb });
   const { activeGuardianAddress } = useAccount();
   const { explorerAddress, chainType } = useConfig();
@@ -52,7 +55,7 @@ export const SimpleNftMintDemo = ({
   }, [activeGuardianAddress, triggerTx]);
 
   return (
-    <Card className="flex-1">
+    <Card className="flex flex-1 flex-col justify-between">
       <CardContent className="mt-6">
         <div className="mb-4">
           2. You will be minting one NFT using{' '}
@@ -69,9 +72,14 @@ export const SimpleNftMintDemo = ({
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" disabled={pending} onClick={handleSendTx}>
+        <Button
+          variant="outline"
+          disabled={pending || !loggedIn}
+          onClick={handleSendTx}
+        >
           Mint
         </Button>
+        <ConnectWalletInfo loggedIn={loggedIn} />
       </CardFooter>
     </Card>
   );

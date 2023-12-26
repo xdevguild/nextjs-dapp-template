@@ -4,11 +4,13 @@ import {
   TransactionCallbackParams,
   useConfig,
   useAccount,
+  useLoggingIn,
 } from '@useelven/core';
 import { useCallback } from 'react';
 import { shortenHash } from '@/lib/shortenHash';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { ConnectWalletInfo } from '@/components/demo/connect-wallet-info';
 
 const egldTransferAddress = process.env.NEXT_PUBLIC_EGLD_TRANSFER_ADDRESS || '';
 const egldTransferAmount = process.env.NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT || '';
@@ -19,6 +21,7 @@ export const SimpleEGLDTxDemo = ({
   cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { pending, triggerTx } = useTransaction({ cb });
+  const { loggedIn } = useLoggingIn();
   const { activeGuardianAddress } = useAccount();
   const { explorerAddress, chainType } = useConfig();
 
@@ -41,7 +44,7 @@ export const SimpleEGLDTxDemo = ({
   }, [activeGuardianAddress, triggerTx]);
 
   return (
-    <Card className="flex-1 flex flex-col justify-between">
+    <Card className="flex flex-1 flex-col justify-between">
       <CardContent className="mt-6">
         <div className="mb-4">
           1. You will be sending 0.001 EGLD to the address: <br />
@@ -56,9 +59,14 @@ export const SimpleEGLDTxDemo = ({
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" disabled={pending} onClick={handleSendTx}>
+        <Button
+          variant="outline"
+          disabled={pending || !loggedIn}
+          onClick={handleSendTx}
+        >
           Send Transaction
         </Button>
+        <ConnectWalletInfo loggedIn={loggedIn} />
       </CardFooter>
     </Card>
   );

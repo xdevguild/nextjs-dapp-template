@@ -41,7 +41,7 @@ export const SimpleScQeryDemo = ({
   };
 
   return (
-    <Card className="flex-1">
+    <Card className="flex flex-1 flex-col justify-between">
       <CardContent className="mt-6">
         <div className="mb-4">
           3. You will be querying the smart contract for NFT tokens left to

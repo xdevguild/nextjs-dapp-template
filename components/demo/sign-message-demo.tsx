@@ -1,11 +1,13 @@
 'use client';
 
-import { useLoginInfo, useSignMessage } from '@useelven/core';
+import { useLoggingIn, useLoginInfo, useSignMessage } from '@useelven/core';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ConnectWalletInfo } from '@/components/demo/connect-wallet-info';
 
 export const SimpleSignMessageDemo = () => {
   const { loginMethod } = useLoginInfo();
+  const { loggedIn } = useLoggingIn();
   const { signMessage, pending, signature } = useSignMessage();
 
   const handleSignMessage = () => {
@@ -41,13 +43,14 @@ export const SimpleSignMessageDemo = () => {
       <CardFooter>
         <Button
           variant="outline"
-          disabled={pending}
+          disabled={pending || !loggedIn}
           onClick={handleSignMessage}
         >
           {pending
             ? `Pending... (confirmation with ${loginMethod})`
             : 'Sign a message'}
         </Button>
+        <ConnectWalletInfo loggedIn={loggedIn} />
       </CardFooter>
     </Card>
   );

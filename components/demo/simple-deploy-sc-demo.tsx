@@ -3,10 +3,12 @@
 import {
   TransactionCallbackParams,
   useConfig,
+  useLoggingIn,
   useScDeploy,
 } from '@useelven/core';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ConnectWalletInfo } from '@/components/demo/connect-wallet-info';
 
 export const SimpleDeployScDemo = ({
   cb,
@@ -14,6 +16,7 @@ export const SimpleDeployScDemo = ({
   cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { explorerAddress } = useConfig();
+  const { loggedIn } = useLoggingIn();
   const { deploy, scAddress, txResult, pending } = useScDeploy({ cb });
 
   const handleDeploy = () => {
@@ -50,9 +53,14 @@ export const SimpleDeployScDemo = ({
         )}
       </CardContent>
       <CardFooter>
-        <Button variant="outline" disabled={pending} onClick={handleDeploy}>
+        <Button
+          variant="outline"
+          disabled={pending || !loggedIn}
+          onClick={handleDeploy}
+        >
           {pending ? 'Pending...' : 'Deploy'}
         </Button>
+        <ConnectWalletInfo loggedIn={loggedIn} />
       </CardFooter>
     </Card>
   );

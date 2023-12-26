@@ -16,12 +16,16 @@ export const GetUserDataDemo = () => {
         <div className="text-xl mb-2 font-bold">User data:</div>
         <div>
           <span className="inline-block font-bold">address:</span>{' '}
-          <Link
-            className="underline"
-            href={`${explorerAddress}/accounts/${address}`}
-          >
-            {shortenHash(address, 8)}
-          </Link>
+          {address ? (
+            <Link
+              className="underline"
+              href={`${explorerAddress}/accounts/${address}`}
+            >
+              {shortenHash(address, 8)}
+            </Link>
+          ) : (
+            '-'
+          )}
         </div>
         <div>
           <span className="inline-block font-bold">guardian:</span>{' '}
