@@ -1,3 +1,6 @@
+### [9.4.4](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.4.4) (2023-12-29)
+- fix missing transaction id logic for guardians 2fa hook
+
 ### [9.4.3](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.4.3) (2023-12-28)
 - update useElven and cleanup
 
