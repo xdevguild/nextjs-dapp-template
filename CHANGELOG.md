@@ -1,4 +1,7 @@
-### [9.4.2](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.4.1) (2023-12-26)
+### [9.4.3](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.4.3) (2023-12-28)
+- update useElven and cleanup
+
+### [9.4.2](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.4.2) (2023-12-26)
 - reveal demo section for not logged in
 
 ### [9.4.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.4.1) (2023-12-24)

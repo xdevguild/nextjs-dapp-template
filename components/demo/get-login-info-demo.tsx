@@ -27,7 +27,7 @@ export const GetLoginInfoDemo = () => {
         <div>
           <span className="inline-block font-bold">loginToken:</span>
           {loginToken ? (
-            <div className="break-words text-left">{loginToken}</div>
+            <div className="break-all text-left">{loginToken}</div>
           ) : (
             '-'
           )}
