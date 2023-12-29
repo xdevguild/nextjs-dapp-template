@@ -18,6 +18,9 @@ It has straightforward and complete functionality.
 
 ### How to start it locally:
 
+`npx buildo-begins@latest init` - from the list, choose Next.js dapp template.
+
+Or you can also do this manually:
 1. clone or download the repo
 2. `cd nextjs-dapp-template`
 3. `npm install`
