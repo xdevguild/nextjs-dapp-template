@@ -1,7 +1,7 @@
 'use client';
 
 import { useLoginInfo } from '@useelven/core';
-import { shortenHash } from '@/lib/shortenHash';
+import { shortenHash } from '@/lib/shorten-hash';
 import {
   Tooltip,
   TooltipContent,

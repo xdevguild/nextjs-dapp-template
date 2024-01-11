@@ -2,7 +2,7 @@
 
 import { TokenTransfer } from '@multiversx/sdk-core';
 import Link from 'next/link';
-import { shortenHash } from '@/lib/shortenHash';
+import { shortenHash } from '@/lib/shorten-hash';
 import { useAccount, useConfig } from '@useelven/core';
 import { Card, CardContent } from '@/components/ui/card';
 

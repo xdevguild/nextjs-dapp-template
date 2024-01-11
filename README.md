@@ -126,7 +126,7 @@ NEXT_PUBLIC_DAPP_HOST = http://localhost:3000
 # =============================================
 
 # The wallet address used for the demo EGLD transaction on the devnet
-NEXT_PUBLIC_EGLD_TRANSFER_ADDRESS = erd17a4wydhhd6t3hhssvcp9g23ppn7lgkk4g2tww3eqzx4mlq95dukss0g50f
+NEXT_PUBLIC_TRANSFER_ADDRESS = erd17a4wydhhd6t3hhssvcp9g23ppn7lgkk4g2tww3eqzx4mlq95dukss0g50f
 
 # The smart contract address used for minting the NFT token (as example deployed Elven Tools Smart Contract)
 NEXT_PUBLIC_MINT_SMART_CONTRACT_ADDRESS = erd1qqqqqqqqqqqqqpgqztp5vpqrxe2tha224jwsa3sv2800a88zgtksar2kc8

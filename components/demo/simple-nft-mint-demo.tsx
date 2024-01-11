@@ -12,7 +12,7 @@ import {
   useLoggingIn,
 } from '@useelven/core';
 import { useCallback } from 'react';
-import { shortenHash } from '@/lib/shortenHash';
+import { shortenHash } from '@/lib/shorten-hash';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { ConnectWalletInfo } from '@/components/demo/connect-wallet-info';

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useScQuery, SCQueryType, useConfig } from '@useelven/core';
-import { shortenHash } from '@/lib/shortenHash';
+import { shortenHash } from '@/lib/shorten-hash';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 

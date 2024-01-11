@@ -1,9 +1,9 @@
-import { TransactionPayload, TokenTransfer } from '@multiversx/sdk-core';
 import {
-  useTransaction,
+  ESDTType,
   TransactionCallbackParams,
   useConfig,
   useLoggingIn,
+  useTokenTransfer,
 } from '@useelven/core';
 import { shortenHash } from '@/lib/shorten-hash';
 import { Button } from '@/components/ui/button';
@@ -11,26 +11,22 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { ConnectWalletInfo } from '@/components/demo/connect-wallet-info';
 
 const transferAddress = process.env.NEXT_PUBLIC_TRANSFER_ADDRESS || '';
-const egldTransferAmount = process.env.NEXT_PUBLIC_EGLD_TRANSFER_AMOUNT || '';
 
-export const SimpleEGLDTxDemo = ({
+export const SimpleESDTTxDemo = ({
   cb,
 }: {
   cb: (params: TransactionCallbackParams) => void;
 }) => {
-  const { pending, triggerTx } = useTransaction({ cb });
+  const { transfer, pending } = useTokenTransfer({ cb });
   const { loggedIn } = useLoggingIn();
   const { explorerAddress, chainType } = useConfig();
 
   const handleSendTx = () => {
-    const demoMessage =
-      'Transaction demo from xDevGuild Next.js dapp template!';
-
-    triggerTx({
-      address: transferAddress,
-      gasLimit: 50000 + 1500 * demoMessage.length,
-      data: new TransactionPayload(demoMessage),
-      value: TokenTransfer.egldFromAmount(egldTransferAmount),
+    transfer({
+      type: ESDTType.FungibleESDT,
+      amount: '1',
+      tokenId: 'BUILDO-22c0a5',
+      receiver: transferAddress,
     });
   };
 
@@ -38,7 +34,7 @@ export const SimpleEGLDTxDemo = ({
     <Card className="flex flex-1 flex-col justify-between">
       <CardContent className="mt-6">
         <div className="mb-4">
-          1. You will be sending 0.001 EGLD to the address: <br />
+          1. You will be sending 1 BUILDO-22c0a5 to the address: <br />
           <a
             className="font-bold"
             href={`${explorerAddress}/accounts/${transferAddress}`}
@@ -46,7 +42,15 @@ export const SimpleEGLDTxDemo = ({
           >
             {shortenHash(transferAddress, 8)}
           </a>{' '}
-          <br />({chainType})
+          ({chainType})<br />
+          You can get some Buildo tokens here:{' '}
+          <a
+            href="https://r3d4.fr/faucet/"
+            target="_blank"
+            className="underline"
+          >
+            r3d4.fr/faucet
+          </a>
         </div>
       </CardContent>
       <CardFooter>

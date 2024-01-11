@@ -7,7 +7,7 @@ import { WalletConnectPairings } from './walletconnect-pairings';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { LedgerAccountsList } from './ledger-accounts-list';
-import { getLoginMethodDeviceName } from '@/lib/getSigningDeviceName';
+import { getLoginMethodDeviceName } from '@/lib/get-signing-device-name';
 
 export const LoginComponent = memo(() => {
   const {

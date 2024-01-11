@@ -1,6 +1,6 @@
 import { useEffect, useState, FunctionComponent } from 'react';
 import { useConfig } from '@useelven/core';
-import { isMobile } from '@/lib/isMobile';
+import { isMobile } from '@/lib/is-mobile';
 import QRCode from 'qrcode';
 import { Button } from '@/components/ui/button';
 

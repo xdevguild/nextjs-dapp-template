@@ -2,8 +2,8 @@ import { FC, useCallback, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoginMethodsEnum, useLoginInfo } from '@useelven/core';
 import { Button } from '@/components/ui/button';
-import { shortenHash } from '@/lib/shortenHash';
-import { errorParse } from '@/lib/errorParse';
+import { shortenHash } from '@/lib/shorten-hash';
+import { errorParse } from '@/lib/error-parse';
 import { Spinner } from '@/components/ui/spinner';
 
 interface LedgerAccountsListProps {

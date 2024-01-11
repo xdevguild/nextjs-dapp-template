@@ -12,9 +12,10 @@ import {
 import { SimpleEGLDTxDemo } from './simple-egld-tx-demo';
 import { SimpleNftMintDemo } from './simple-nft-mint-demo';
 import { SimpleScQeryDemo } from './simple-sc-query-demo';
-import { shortenHash } from '@/lib/shortenHash';
+import { shortenHash } from '@/lib/shorten-hash';
 import { SimpleSignMessageDemo } from './sign-message-demo';
 import { SimpleDeployScDemo } from './simple-deploy-sc-demo';
+import { SimpleESDTTxDemo } from './simple-esdt-tx-demo';
 
 export const SimpleDemo = () => {
   const [result, setResult] = useState<{ type: string; content: string }>();
@@ -97,10 +98,11 @@ export const SimpleDemo = () => {
     <div className="relative">
       <div className="flex gap-8 flex-wrap justify-center items-stretch mb-4 flex-col lg:flex-row">
         <SimpleEGLDTxDemo cb={handleTxCb} />
+        <SimpleESDTTxDemo cb={handleTxCb} />
         <SimpleNftMintDemo cb={handleTxCb} />
-        <SimpleScQeryDemo cb={handleQueryCb} />
       </div>
       <div className="flex gap-8 flex-wrap justify-center items-stretch mb-4 flex-col lg:flex-row">
+        <SimpleScQeryDemo cb={handleQueryCb} />
         <SimpleDeployScDemo cb={handleDeployCb} />
         <SimpleSignMessageDemo />
       </div>
