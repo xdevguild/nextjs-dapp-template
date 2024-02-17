@@ -55,48 +55,50 @@ export const LoginComponent = memo(() => {
         <div className="flex inset-0 z-50 items-center justify-center min-h-[200px]">
           <div>
             {ledgerOrPortalName ? (
-              <>
-                <div className="text-lg">Confirmation required</div>
-                <div className="text-sm">Approve on {ledgerOrPortalName}</div>
-              </>
+              <div className="mb-4">
+                <div className="text-lg text-center">Confirmation required</div>
+                <div className="text-sm text-center">
+                  Approve on {ledgerOrPortalName}
+                </div>
+              </div>
             ) : null}
             <div className="flex items-center justify-center">
-              <Spinner size="40" />
+              <Spinner size="26" />
             </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-4 items-center px-8">
+        <div className="flex flex-col gap-3 items-center lg:px-8">
           <Button
-            className="w-full select-none h-auto"
+            className="w-full select-none h-auto py-3"
             variant="outline"
             onClick={handleLogin(LoginMethodsEnum.walletconnect)}
           >
             xPortal Mobile App
           </Button>
           <Button
-            className="w-full select-none h-auto"
+            className="w-full select-none h-auto py-3"
             variant="outline"
             onClick={handleLogin(LoginMethodsEnum.extension)}
           >
             MultiversX Browser Extension
           </Button>
           <Button
-            className="w-full select-none h-auto"
+            className="w-full select-none h-auto py-3"
             variant="outline"
             onClick={handleLogin(LoginMethodsEnum.wallet)}
           >
             MultiversX Web Wallet
           </Button>
           <Button
-            className="w-full select-none h-auto"
+            className="w-full select-none h-auto py-3"
             variant="outline"
             onClick={handleLedgerAccountsList}
           >
             Ledger
           </Button>
           <Button
-            className="w-full select-none h-auto"
+            className="w-full select-none h-auto py-3"
             variant="outline"
             onClick={handleLogin(LoginMethodsEnum.xalias)}
           >

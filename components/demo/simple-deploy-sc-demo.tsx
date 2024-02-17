@@ -9,6 +9,7 @@ import {
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ConnectWalletInfo } from '@/components/demo/connect-wallet-info';
+import { shortenHash } from '@/lib/shorten-hash';
 
 export const SimpleDeployScDemo = ({
   cb,
@@ -41,14 +42,24 @@ export const SimpleDeployScDemo = ({
           <div className="lg:max-w-lg w-full break-words white">
             Your deployed smart contract address:
             <br />
-            <strong>
+            <a
+              href={`${explorerAddress}/accounts/${scAddress}`}
+              target="_blank"
+              className="font-bold underline"
+            >
+              {shortenHash(scAddress, 12)}
+            </a>
+            <br />
+            <small>
+              To interact with it, check the{' '}
               <a
-                href={`${explorerAddress}/accounts/${scAddress}`}
+                href="https://piggy-bank-dapp.vercel.app/"
                 target="_blank"
+                className="underline"
               >
-                {scAddress}
+                Piggy Bank Dapp
               </a>
-            </strong>
+            </small>
           </div>
         )}
       </CardContent>

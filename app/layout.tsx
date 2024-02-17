@@ -83,36 +83,20 @@ export default function RootLayout({
                 MultiversX NextJS Dapp Template (v{`${packageJson.version}`})
               </div>
               <div className="text-xs font-light">
-                All for free. Please support the project. Give it credit and
-                tell the world about it. Attribution is not required but
-                welcomed in the form of a backlink.
+                Support Our Project: While attribution isn&apos;t mandatory, we
+                deeply appreciate any form of recognition.
               </div>
               <div className="flex flex-row content-center text-xs font-bold mt-4">
                 <a href="https://github.com/xdevguild" target="_blank">
                   {'xDevGuild'}
                 </a>
                 <span className="font-thin mx-2"> | </span>
-                <a href="https://www.elven.tools" target="_blank">
-                  {'Elven Tools'}
-                </a>
-                <span className="font-thin mx-2"> | </span>
-                <a href="https://www.elvenjs.com" target="_blank">
-                  {'Elven.js'}
-                </a>
-                <span className="font-thin mx-2"> | </span>
-                <a href="https://www.useElven.com" target="_blank">
-                  {'useElven'}
+                <a href="https://www.elven.family" target="_blank">
+                  {'Elven Family tools'}
                 </a>
                 <span className="font-thin mx-2"> | </span>
                 <a href="https://www.buildo.dev" target="_blank">
                   {'Buildo.dev'}
-                </a>
-                <span className="font-thin mx-2"> | </span>
-                <a
-                  href="https://github.com/xdevguild/buildo-begins"
-                  target="_blank"
-                >
-                  {'Buildo Begins'}
                 </a>
                 <span className="font-thin mx-2"> | </span>
                 <a href="https://www.julian.io" target="_blank">

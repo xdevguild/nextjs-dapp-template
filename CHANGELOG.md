@@ -1,3 +1,7 @@
+### [9.5.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.5.1) (2024-02-17)
+- improve UI
+- update dependencies
+
 ### [9.5.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.5.0) (2024-01-11)
 - add ESDT transfer demo
 - update useElven and dependencies

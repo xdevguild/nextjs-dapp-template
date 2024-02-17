@@ -134,7 +134,7 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
 
   if (error) {
     return (
-      <div className="text-center ml-auto mr-auto mt-6">
+      <div className="text-center m-auto mt-6">
         <div>{error}</div>
         <Button className="mt-4" onClick={handleRefresh}>
           Refresh
@@ -145,7 +145,7 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
 
   if (chosenAddress) {
     return (
-      <div className="flex flex-col justify-center items-center mt-6 break-all">
+      <div className="flex flex-col justify-center items-center mt-6 break-all w-full sm:w-3/4 m-auto">
         <Spinner />
         <div className="mt-3">Confirm on the Ledger device:</div>
         <div className="mt-3 break-words text-center">
@@ -154,7 +154,7 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
         {loginToken && (
           <div className="mt-3">
             <div className="font-bold text-center">Login token:</div>
-            <div className="break-words">{loginToken}</div>
+            <div className="break-words text-center">{loginToken}</div>
           </div>
         )}
       </div>
@@ -164,20 +164,22 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
   if (!accounts) return null;
 
   return (
-    <div className="ml-auto mr-auto mt-6">
+    <div className="m-auto mt-6 w-full sm:w-3/4">
       <div className="font-semibold text-center mb-2">Choose address:</div>
       {accounts?.map((account: string, index: number) => (
         <div
           key={account}
-          className="mb-0.5 p-2 cursor-pointer border border-transparent border-solid rounded-md hover:border-dotted hover:border-white transition duration-200"
+          className="flex items-center gap-3 mb-0.5 p-2 cursor-pointer border border-solid rounded-md hover:border-dotted hover:bg-accent transition duration-200"
           onClick={login(index, account)}
         >
           <span className="inline-block text-center min-w-4">
-            {index + currentPage.current * ADDRESSES_PER_PAGE}
+            {index + currentPage.current * ADDRESSES_PER_PAGE}:
           </span>
-          :
-          <span className="inline-block ml-4 text-center">
-            {shortenHash(account, 11)}
+          <span className="hidden md:inline-block text-center flex-1">
+            {shortenHash(account, 14)}
+          </span>
+          <span className="inline-block md:hidden text-center flex-1">
+            {shortenHash(account, 10)}
           </span>
         </div>
       ))}

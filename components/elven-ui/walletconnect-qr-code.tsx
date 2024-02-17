@@ -17,7 +17,6 @@ export const WalletConnectQRCode: FunctionComponent<
   useEffect(() => {
     const generateQRCode = async () => {
       if (!uri) {
-        setQrCodeSvg('<div>dupa</div>');
         return;
       }
 
@@ -51,9 +50,9 @@ export const WalletConnectQRCode: FunctionComponent<
       ) : null}
       <div
         className="[&>svg]:rounded-xl [&>svg]:max-w-xs [&>svg]:mx-auto [&>svg]:border [&>svg]:border-solid [&>svg]:border-zinc-300 dark:[&>svg]:border-0"
-        dangerouslySetInnerHTML={{
-          __html: qrCodeSvg,
-        }}
+        {...(qrCodeSvg
+          ? { dangerouslySetInnerHTML: { __html: qrCodeSvg } }
+          : {})}
       />
     </div>
   );

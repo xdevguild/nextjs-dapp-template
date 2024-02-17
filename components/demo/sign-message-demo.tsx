@@ -22,7 +22,7 @@ export const SimpleSignMessageDemo = () => {
           <strong>Elven Family is awesome!</strong>{' '}
         </div>
         {signature && (
-          <div className="lg:max-w-lg w-full break-words white">
+          <div className="lg:max-w-[250px] xl:max-w-[330px] w-full break-words white">
             Your signature for that message:
             <br />
             <strong>{signature}</strong>
