@@ -1,3 +1,7 @@
+### [9.6.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.6.0) (2024-02-25)
+- update useElven, changes in callbacks naming and added transaction watcher configuration
+- update dependencies
+
 ### [9.5.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.5.1) (2024-02-17)
 - improve UI
 - update dependencies
