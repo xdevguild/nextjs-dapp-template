@@ -23,10 +23,14 @@ export const SimpleESDTTxDemo = ({
 
   const handleSendTx = () => {
     transfer({
-      type: ESDTType.FungibleESDT,
-      amount: '1',
-      tokenId: 'BUILDO-22c0a5',
       receiver: transferAddress,
+      tokens: [
+        {
+          type: ESDTType.FungibleESDT,
+          amount: '1',
+          tokenId: 'BUILDO-22c0a5',
+        },
+      ],
     });
   };
 

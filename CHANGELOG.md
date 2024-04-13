@@ -1,3 +1,8 @@
+### [9.7.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.7.0) (2024-04-13)
+- update useElven, which now supports sdk-core v13, and now, it is required to install it alongside with useElven
+- adjust current codebase
+- update other dependencies
+
 ### [9.6.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.6.1) (2024-02-28)
 - update useElven with fixes for useTokenTransfer
 - update dependencies
