@@ -11,15 +11,14 @@ export const SimpleSignMessageDemo = () => {
   const { signMessage, pending, signature } = useSignMessage();
 
   const handleSignMessage = () => {
-    signMessage({ message: 'Elven Family is awesome!' });
+    signMessage({ message: 'ElvenFamily' });
   };
 
   return (
     <Card className="flex-1 flex flex-col justify-between w-full">
       <CardContent className="mt-6">
         <div className="mb-4">
-          You will be signing a hardcoded message:{' '}
-          <strong>Elven Family is awesome!</strong>{' '}
+          You will be signing a hardcoded message: <strong>ElvenFamily</strong>{' '}
         </div>
         {signature && (
           <div className="lg:max-w-[250px] xl:max-w-[330px] w-full break-words white">
