@@ -1,3 +1,7 @@
+### [9.8.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.8.1) (2024-07-06)
+- update dependencies
+- adjust UI
+
 ### [9.8.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.8.0) (2024-06-20)
 - update useElven - added MultiversX 'apps hub' support (experimental, report problems)
 

@@ -1,13 +1,14 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
 import packageJson from '@/package.json';
-import { Github } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ModeToggle } from '@/components/mode-toggle';
 import { ElvenInit } from '@/components/elven-ui/elven-init';
 import { LoginModalButton } from '@/components/elven-ui/login-modal-button';
 import Link from 'next/link';
+import GitHubIcon from '/public/github.svg';
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -62,7 +63,12 @@ export default function RootLayout({
                     href="https://github.com/xdevguild/nextjs-dapp-template"
                     target="_blank"
                   >
-                    <Github size={30} />
+                    <Image
+                      src={GitHubIcon}
+                      width={20}
+                      height={20}
+                      alt="xDevGuild GitHub"
+                    />
                   </a>
                 </div>
                 {/* TODO: implement docs page */}

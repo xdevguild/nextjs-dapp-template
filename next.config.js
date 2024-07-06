@@ -10,11 +10,6 @@ const nextConfig = {
   eslint: {
     dirs: ['components', 'hooks', 'lib', 'app'],
   },
-  experimental: {
-    turbo: {
-      externals: externals,
-    },
-  },
 };
 
 module.exports = nextConfig;

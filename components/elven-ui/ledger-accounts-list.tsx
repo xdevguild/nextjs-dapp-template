@@ -1,6 +1,6 @@
 import { FC, useCallback, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { LoginMethodsEnum, useLoginInfo } from '@useelven/core';
+import { LoginMethodsEnum } from '@useelven/core';
 import { Button } from '@/components/ui/button';
 import { shortenHash } from '@/lib/shorten-hash';
 import { errorParse } from '@/lib/error-parse';
@@ -28,8 +28,6 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
   const [listPending, setListPending] = useState(true);
   const [error, setError] = useState<string>();
   const [chosenAddress, setAddress] = useState<string>();
-
-  const { loginToken } = useLoginInfo();
 
   const router = useRouter();
 
@@ -151,12 +149,6 @@ export const LedgerAccountsList: FC<LedgerAccountsListProps> = ({
         <div className="mt-3 break-words text-center">
           <div className="font-bold">Address:</div> {chosenAddress}
         </div>
-        {loginToken && (
-          <div className="mt-3">
-            <div className="font-bold text-center">Login token:</div>
-            <div className="break-words text-center">{loginToken}</div>
-          </div>
-        )}
       </div>
     );
   }
