@@ -1,3 +1,6 @@
+### [9.9.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.9.0) (2024-07-13)
+- support for multiple tabs and transactions signing
+
 ### [9.8.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.8.1) (2024-07-06)
 - update dependencies
 - adjust UI
