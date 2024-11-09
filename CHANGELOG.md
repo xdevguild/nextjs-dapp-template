@@ -1,3 +1,8 @@
+### [9.10.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.10.0) (2024-11-09)
+- update Next
+- update useElven
+- update other dependencies
+
 ### [9.9.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.9.0) (2024-07-13)
 - support for multiple tabs and transactions signing
 

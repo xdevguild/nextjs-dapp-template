@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-const externals = ['pino-pretty', 'lokijs', 'utf-8-validate', 'bufferutil'];
-
 const nextConfig = {
   webpack: (config) => {
-    config.externals.push(...externals);
+    config.resolve.fallback = { fs: false };
+    config.externals.push('pino-pretty', 'lokijs', 'encoding', {
+      bufferutil: 'bufferutil',
+      'utf-8-validate': 'utf-8-validate',
+    });
     return config;
   },
   eslint: {

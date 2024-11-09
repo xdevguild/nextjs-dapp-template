@@ -51,7 +51,7 @@ export const LoginModalButton: FC<LoginModalButtonProps> = ({
     <Dialog open={isOpen} onOpenChange={onCloseComplete}>
       {isLoggedIn ? (
         <Button variant="outline" onClick={() => logout()}>
-          Logout
+          Disconnect
         </Button>
       ) : (
         <Button variant="outline" onClick={handleOpen}>

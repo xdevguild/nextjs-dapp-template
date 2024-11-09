@@ -51,7 +51,14 @@ const Home: NextPage = () => {
             >
               Buildo.dev
             </a>{' '}
-            app.
+            app. Check the source at{' '}
+            <a
+              href="https://github.com/xdevguild/buildo.dev"
+              className="underline font-bold"
+            >
+              xDevGuild
+            </a>
+            .
           </div>
         </CardContent>
       </Card>
