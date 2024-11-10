@@ -17,7 +17,10 @@ export const SimpleESDTTxDemo = ({
 }: {
   cb: (params: TransactionCallbackParams) => void;
 }) => {
-  const { transfer, pending } = useTokenTransfer({ cb });
+  const { transfer, pending } = useTokenTransfer({
+    cb,
+    id: 'SimpleESDTTxDemo',
+  });
   const { loggedIn } = useLoggingIn();
   const { explorerAddress, chainType } = useConfig();
 

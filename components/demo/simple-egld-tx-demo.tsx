@@ -18,7 +18,7 @@ export const SimpleEGLDTxDemo = ({
 }: {
   cb: (params: TransactionCallbackParams) => void;
 }) => {
-  const { pending, triggerTx } = useTransaction({ cb });
+  const { pending, triggerTx } = useTransaction({ cb, id: 'SimpleEGLDTxDemo' });
   const { loggedIn } = useLoggingIn();
   const { explorerAddress, chainType } = useConfig();
 

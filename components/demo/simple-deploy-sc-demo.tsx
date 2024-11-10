@@ -18,7 +18,10 @@ export const SimpleDeployScDemo = ({
 }) => {
   const { explorerAddress } = useConfig();
   const { loggedIn } = useLoggingIn();
-  const { deploy, scAddress, txResult, pending } = useScDeploy({ cb });
+  const { deploy, scAddress, txResult, pending } = useScDeploy({
+    cb,
+    id: 'SimpleDeployScDemo',
+  });
 
   const handleDeploy = () => {
     deploy({ source: '/piggybank.wasm' });

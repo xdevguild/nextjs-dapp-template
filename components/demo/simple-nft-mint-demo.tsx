@@ -29,7 +29,10 @@ export const SimpleNftMintDemo = ({
   cb: (params: TransactionCallbackParams) => void;
 }) => {
   const { loggedIn } = useLoggingIn();
-  const { pending, triggerTx } = useTransaction({ cb });
+  const { pending, triggerTx } = useTransaction({
+    cb,
+    id: 'SimpleNftMintDemo',
+  });
   const { activeGuardianAddress } = useAccount();
   const { explorerAddress, chainType } = useConfig();
 

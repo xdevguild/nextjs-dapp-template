@@ -1,3 +1,6 @@
+### [9.10.1](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.10.1) (2024-11-10)
+- add transaction ids to prevent multiple API calls when using Web Wallet signing provider
+
 ### [9.10.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.10.0) (2024-11-09)
 - update Next
 - update useElven
