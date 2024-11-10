@@ -1,6 +1,6 @@
 {
   "name": "nextjs-dapp-template",
-  "version": "9.10.1",
+  "version": "9.10.2",
   "author": "Julian Ćwirko <julian.io>",
   "license": "MIT",
   "homepage": "https://github.com/xdevguild/nextjs-dapp-template",
@@ -10,7 +10,7 @@
   },
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
