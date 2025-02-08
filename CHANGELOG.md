@@ -1,3 +1,9 @@
+### [10.0.0](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v10.0.0) (2025-02-08)
+- update useElven
+- update Next
+- update React
+- update Tailwind
+
 ### [9.10.2](https://github.com/xdevguild/nextjs-dapp-template/releases/tag/v9.10.2) (2024-11-11)
 - add `--experimental-https`
 

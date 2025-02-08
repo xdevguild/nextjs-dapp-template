@@ -107,7 +107,7 @@ export const SimpleDemo = () => {
         <SimpleSignMessageDemo />
       </div>
       {error && (
-        <div className="flex flex-col items-center justify-center absolute inset-0 backdrop-blur-sm bg-zinc-200 bg-opacity-60 dark:bg-zinc-950 dark:bg-opacity-60">
+        <div className="flex flex-col items-center justify-center absolute inset-0 backdrop-blur bg-gray-400/20 dark:bg-gray-500/20">
           <div className="text-xl font-bold">Transaction status:</div>
           <div className="text-lg">{error}</div>
           <Button variant="outline" className="mt-4" onClick={handleClose}>
@@ -116,7 +116,7 @@ export const SimpleDemo = () => {
         </div>
       )}
       {pending && (
-        <div className="flex flex-col items-center justify-center absolute inset-0 backdrop-blur-sm bg-zinc-200 bg-opacity-60 dark:bg-zinc-950 dark:bg-opacity-60">
+        <div className="flex flex-col items-center justify-center absolute inset-0 backdrop-blur bg-gray-400/20 dark:bg-gray-500/20">
           <div className="text-xl font-bold">
             Transaction is pending. Please wait.
           </div>
@@ -138,7 +138,7 @@ export const SimpleDemo = () => {
         </div>
       )}
       {result?.type && (
-        <div className="flex flex-col items-center justify-center absolute inset-0 backdrop-blur-sm bg-zinc-200 bg-opacity-60 dark:bg-zinc-950 dark:bg-opacity-60">
+        <div className="flex flex-col items-center justify-center absolute inset-0 backdrop-blur bg-gray-400/20 dark:bg-gray-500/20">
           {result.type === 'tx' ? (
             <>
               <div className="text-xl font-bold">Transaction hash:</div>
