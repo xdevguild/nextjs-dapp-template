@@ -56,7 +56,7 @@ export const SimpleDeployScDemo = ({
             <small>
               To interact with it, check the{' '}
               <a
-                href="https://piggy-bank-dapp.vercel.app/"
+                href="https://piggy-bank-dapp.netlify.app/"
                 target="_blank"
                 className="underline"
               >
