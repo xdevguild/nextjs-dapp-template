@@ -9,6 +9,7 @@ import { LoginModalButton } from '@/components/elven-ui/login-modal-button';
 import Link from 'next/link';
 import GitHubIcon from '/public/github.svg';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -71,10 +72,9 @@ export default function RootLayout({
                     />
                   </a>
                 </div>
-                {/* TODO: implement docs page */}
-                {/* <Button asChild variant="outline">
+                <Button asChild variant="outline">
                   <Link href="/docs">Docs</Link>
-                </Button> */}
+                </Button>
                 <LoginModalButton />
                 <ModeToggle />
               </div>
